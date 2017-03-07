@@ -16,6 +16,7 @@ public class Shape {
 
     private Context context;
 
+    private boolean isHidden;
     private Page page;
     private String shapeName;
     private String imageName;
@@ -24,35 +25,39 @@ public class Shape {
 
     private boolean possessions;
 
-    public Shape(Page p, boolean inPossessions, String imageName, String drawableText) {
+    public Shape(Page p, boolean inPossessions, String imageName,
+                 String drawableText, boolean isHidden) {
         this.shapeName = p.name + "/" + imageName;
         this.imageName = imageName;
         this.drawableText = drawableText;
+        this.isHidden = isHidden;
 
         this.page = p;
         this.possessions = inPossessions;
     }
 
     public void draw(int x1, int y1, int x2, int y2) {
-        if (!drawableText.isEmpty())
-            page.getCanvas().drawText(drawableText, x1, y1, paint);
-        else if (!imageName.isEmpty()) {
-            ResSingleton rs = ResSingleton.getInstance();
+         //need to fix hidden based on whether it is gameplay or editor mode
+        if (!isHidden) {
+            if (!drawableText.isEmpty())
+                page.getCanvas().drawText(drawableText, x1, y1, paint);
+            else if (!imageName.isEmpty()) {
+                ResSingleton rs = ResSingleton.getInstance();
 //            rs.getContext().getResources().getIdentifier()
-            System.out.println("MIGUEL");
-            System.out.println(rs.getContext().getPackageName());
-            System.out.println("MIGUEL");
-            int fileID = rs.getContext()
-                    .getResources().getIdentifier(imageName, "drawable", rs.getContext().getPackageName());
-
-            System.out.println(fileID);
-            BitmapDrawable x =
-                    (BitmapDrawable) rs.getContext().getResources().getDrawable(fileID);
-            page.getCanvas().drawBitmap(
-                    x.getBitmap(), null, new RectF(x1, y1, x2, y2), null);
-        } else {
-            RectF r = new RectF(x1, y1, x2, y2);
-            page.getCanvas().drawRect(r, paint);
+                System.out.println("MIGUEL");
+                System.out.println(rs.getContext().getPackageName());
+                System.out.println("MIGUEL");
+                int fileID = rs.getContext()
+                        .getResources().getIdentifier(imageName, "drawable", rs.getContext().getPackageName());
+                System.out.println(fileID);
+                BitmapDrawable x =
+                        (BitmapDrawable) rs.getContext().getResources().getDrawable(fileID);
+                page.getCanvas().drawBitmap(
+                        x.getBitmap(), null, new RectF(x1, y1, x2, y2), null);
+            } else {
+                RectF r = new RectF(x1, y1, x2, y2);
+                page.getCanvas().drawRect(r, paint);
+            }
         }
     }
 

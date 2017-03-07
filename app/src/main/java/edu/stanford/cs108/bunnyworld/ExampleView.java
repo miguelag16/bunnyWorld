@@ -16,7 +16,7 @@ public class ExampleView extends View {
     Page p;
 
     private void init() {
-        Shape s = new Shape(p, false, "dolan", "");
+        Shape s = new Shape(p, false, "dolan", "", true);
         s.draw(20, 20, 500, 500);
     }
 
