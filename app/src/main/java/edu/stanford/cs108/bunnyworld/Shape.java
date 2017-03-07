@@ -24,7 +24,7 @@ public class Shape {
 
     private boolean possessions;
 
-    public Shape(Page p, boolean inPossessions, String imageName, String drawableText){
+    public Shape(Page p, boolean inPossessions, String imageName, String drawableText) {
         this.shapeName = p.name + "/" + imageName;
         this.imageName = imageName;
         this.drawableText = drawableText;
@@ -34,9 +34,9 @@ public class Shape {
     }
 
     public void draw(int x1, int y1, int x2, int y2) {
-        if(!drawableText.isEmpty())
+        if (!drawableText.isEmpty())
             page.getCanvas().drawText(drawableText, x1, y1, paint);
-        else if(!imageName.isEmpty()){
+        else if (!imageName.isEmpty()) {
             ResSingleton rs = ResSingleton.getInstance();
 //            rs.getContext().getResources().getIdentifier()
             System.out.println("MIGUEL");
@@ -49,14 +49,14 @@ public class Shape {
             BitmapDrawable x =
                     (BitmapDrawable) rs.getContext().getResources().getDrawable(fileID);
             page.getCanvas().drawBitmap(
-                    x.getBitmap(), null, new RectF(x1,y1,x2,y2), null);
+                    x.getBitmap(), null, new RectF(x1, y1, x2, y2), null);
         } else {
             RectF r = new RectF(x1, y1, x2, y2);
             page.getCanvas().drawRect(r, paint);
         }
     }
 
-    public boolean inPossessions(){
+    public boolean inPossessions() {
         return possessions;
     }
 
@@ -64,7 +64,7 @@ public class Shape {
         return shapeName;
     }
 
-    public void setName(String newName){
+    public void setName(String newName) {
         this.shapeName = newName;
     }
 
