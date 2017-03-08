@@ -47,16 +47,6 @@ public class Page {// extends View { I am pretty sure that Page does not need to
 
 
 
-//    @Override
-//    protected void onDraw(Canvas canvas) {
-//        super.onDraw(canvas);
-//        this.canvas = canvas;
-//        for(int i = shapeList.size() -1; i >= 0; i--){
-//            shapeList.get(i).draw();
-//        }
-//    }
-
-
     public void Draw(Canvas canvas) {
         this.canvas = canvas;
         for(int i = shapeList.size() -1; i >= 0; i--){
