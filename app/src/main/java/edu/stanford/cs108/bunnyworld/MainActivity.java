@@ -7,6 +7,7 @@ import android.graphics.Paint;
 import android.graphics.drawable.BitmapDrawable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 
 public class MainActivity extends AppCompatActivity {
     //just testing out github pushes
@@ -23,7 +24,7 @@ public class MainActivity extends AppCompatActivity {
     public void play() {
     }
 
-    public void edit() {
+    public void edit(View view) {
         Intent intent = new Intent(this, Book.class);
         startActivity(intent);
     }
