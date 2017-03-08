@@ -13,4 +13,14 @@ class CurBookSingleton {
 
     private CurBookSingleton() {
     }
+
+    protected Book currentBook;
+
+    public Book getCurrentBook() {
+        return currentBook;
+    }
+
+    public void setCurrentBook(Book b) {
+        this.currentBook = b;
+    }
 }

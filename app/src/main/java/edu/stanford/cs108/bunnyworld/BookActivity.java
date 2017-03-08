@@ -26,6 +26,7 @@ public class BookActivity extends AppCompatActivity {
         setContentView(R.layout.edit_main);
 
         book = (edu.stanford.cs108.bunnyworld.Book) findViewById(R.id.Book);
-
+        CurBookSingleton cb = CurBookSingleton.getInstance();
+        cb.setCurrentBook(book);
     }
 }

@@ -17,7 +17,7 @@ import static android.content.ContentValues.TAG;
  */
 
 
-public class Book extends View implements Parcelable{
+public class Book extends View {
 
     private Page currentPage;//this is the only page that needs to be drawn, can easily switch to any page in the list
     public ArrayList<Page> allPages; //shapes need to be able to access other shapes on different pages
@@ -62,25 +62,6 @@ public class Book extends View implements Parcelable{
         //do stuff to currentPage
     }
 
-    @Override
-    public void writeToParcel(Parcel parcel, int i) {
-
-    }
-
-    public static final Parcelable.Creator CREATOR = new Parcelable.Creator() {
-        public Book createFromParcel(Parcel in){
-            return new Book(in);
-        }
-
-        public Book[] newArray(int size){
-            return new Book[size];
-        }
-    };
-
-    @Override
-    public int describeContents() {
-        return 0;
-    }
 }
 
 

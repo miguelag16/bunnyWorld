@@ -14,7 +14,7 @@ public class ResSingleton {
 
     private ResSingleton() {}
 
-    Context context;
+    protected Context context;
 
     public Context getContext() {
         return context;
