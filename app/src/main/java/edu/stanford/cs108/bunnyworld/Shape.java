@@ -10,6 +10,9 @@ import android.graphics.RectF;
 import android.graphics.drawable.BitmapDrawable;
 import android.util.Log;
 
+import java.util.ArrayList;
+import java.util.StringTokenizer;
+
 import static android.content.ContentValues.TAG;
 
 /**
@@ -102,6 +105,11 @@ public class Shape {
     //shapes can have clauses in them that when executed, hide other shapes
     public void setisHidden(boolean isHidden){
         this.isHidden = isHidden;
+    }
+
+    //leave drop name as the empty string if it is not a drop event.
+    public void enactScript(String TriggerEvent, String dropName){
+        ArrayList<String> commands = script.getClauses(TriggerEvent, dropName);
     }
 
 

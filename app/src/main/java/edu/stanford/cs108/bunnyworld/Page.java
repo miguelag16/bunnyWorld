@@ -21,7 +21,7 @@ public class Page {// extends View { I am pretty sure that Page does not need to
 
     protected String name;
     private Canvas canvas;
-    ArrayList<Shape> shapeList;
+    public ArrayList<Shape> shapeList;
 
 //    public Page(Context context, AttributeSet attrs) {
 //        super(context, attrs);
@@ -31,11 +31,17 @@ public class Page {// extends View { I am pretty sure that Page does not need to
 //
 //    }
 
-    public Page() {
-        this.name = "page" + Integer.toString(pageCount);
+
+    //leave name as empty string for a default name
+    public Page(String name) {
+        if(name.isEmpty()){
+            this.name = "page" + Integer.toString(pageCount);
+        }
+        else{
+            this.name = name;
+        }
         this.pageCount++;
         shapeList = new ArrayList<Shape>();
-
     }
 
 
@@ -74,11 +80,42 @@ public class Page {// extends View { I am pretty sure that Page does not need to
         return shapeList.size();
     }
 
-    //need to be able to add shapes to a page
+
+    //need to be able to add shapes to a page probably from the soon to be book class
     public void addShape(Shape shape){
-        Log.d(TAG, "does add shape work: ");
         this.shapeList.add(shape);
     }
 
+//    public ArrayList<Shape> getShapes(){//don't need shapelist is now public
+//        return shapeList;
+//    }
+
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

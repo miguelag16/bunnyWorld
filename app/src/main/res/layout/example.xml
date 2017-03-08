@@ -3,7 +3,7 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <edu.stanford.cs108.bunnyworld.ExampleView
+    <edu.stanford.cs108.bunnyworld.Book
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1" />
