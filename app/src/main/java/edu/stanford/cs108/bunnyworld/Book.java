@@ -2,6 +2,8 @@ package edu.stanford.cs108.bunnyworld;
 
 import android.content.Context;
 import android.graphics.Canvas;
+import android.os.Parcel;
+import android.os.Parcelable;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.View;
@@ -15,7 +17,7 @@ import static android.content.ContentValues.TAG;
  */
 
 
-public class Book extends View {
+public class Book extends View implements Parcelable{
 
     private Page currentPage;//this is the only page that needs to be drawn, can easily switch to any page in the list
     public ArrayList<Page> allPages; //shapes need to be able to access other shapes on different pages
@@ -23,7 +25,7 @@ public class Book extends View {
     private void init() {
         Shape s = new Shape(currentPage, false, "dolan", "", false, false, new Point(20, 20, 500, 500));
         currentPage.addShape(s);
-        s = new Shape(currentPage, false, "", "Dominic is the best", false, false, new Point(20, 40, 100000, 100000));
+        s = new Shape(currentPage, false, "", "stan is the wurrrrst", false, false, new Point(20, 40, 100000, 100000));
         currentPage.addShape(s);
     }
 
@@ -60,9 +62,25 @@ public class Book extends View {
         //do stuff to currentPage
     }
 
+    @Override
+    public void writeToParcel(Parcel parcel, int i) {
 
+    }
 
+    public static final Parcelable.Creator CREATOR = new Parcelable.Creator() {
+        public Book createFromParcel(Parcel in){
+            return new Book(in);
+        }
 
+        public Book[] newArray(int size){
+            return new Book[size];
+        }
+    };
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
 }
 
 
