@@ -28,6 +28,14 @@ public class Page extends View {
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
+
+        //This is what we need. First we need to change shape class to take in x and y in constructor
+        //and add methods to change what the x and y of a given shape are
+//        for(Shape s : shapeList){
+//            s.draw();
+//        }
+
+
 //        this.canvas = canvas;
     }
 
@@ -42,6 +50,9 @@ public class Page extends View {
     public int numShapes() {
         return shapeList.size();
     }
+
+    //need to be able to add shapes to a page
+    public void addShape(Shape shape){ this.shapeList.add(shape); }
 
 
 }

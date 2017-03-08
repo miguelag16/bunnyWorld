@@ -26,6 +26,9 @@ public class Shape {
     private String drawableText;
     private Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
 
+    //a shape's script needs to be able to be changed by other classes in editor mode
+    public Script script;
+
 
     private boolean possessions;
 
@@ -39,12 +42,13 @@ public class Shape {
 
         this.page = p;
         this.possessions = inPossessions;
+        this.script = new Script();
     }
 
     public void draw(int x1, int y1, int x2, int y2) {
+
+
          //need to fix hidden based on whether it is gameplay or editor mode
-
-
         if (!isHidden) {
             if (!drawableText.isEmpty()){
                 paint.setTextSize(textSize);
@@ -86,6 +90,12 @@ public class Shape {
 
     public void setTextSize(float f){
         textSize = f;
+    }
+
+
+    //shapes can have clauses in them that when executed, hide other shapes
+    public void setisHidden(boolean isHidden){
+        this.isHidden = isHidden;
     }
 
 
