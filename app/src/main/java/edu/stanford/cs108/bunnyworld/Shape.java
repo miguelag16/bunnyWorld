@@ -41,7 +41,6 @@ public class Shape {
 
 
 
-
     public Shape(Page p, boolean inPossessions, String imageName,
                  String drawableText, boolean isHidden, boolean isMoveable, Point point) {
         this.shapeName = p.name + "/" + imageName;
