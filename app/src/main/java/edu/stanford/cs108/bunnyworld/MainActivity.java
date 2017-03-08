@@ -1,5 +1,6 @@
 package edu.stanford.cs108.bunnyworld;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Paint;
@@ -16,7 +17,15 @@ public class MainActivity extends AppCompatActivity {
         ResSingleton rs = ResSingleton.getInstance();
         rs.setContext(this.getApplicationContext());
 
-        setContentView(R.layout.example);
+        setContentView(R.layout.activity_main);
+    }
+
+    public void play() {
+    }
+
+    public void edit() {
+        Intent intent = new Intent(this, Book.class);
+        startActivity(intent);
     }
 
 }
