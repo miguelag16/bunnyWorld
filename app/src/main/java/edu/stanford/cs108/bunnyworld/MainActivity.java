@@ -22,11 +22,13 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void play(View view) {
+        CurBookSingleton.getInstance().getCurrentBook().setEditorMode(false);
 //        Intent intent = new Intent(this, PlayActivity.class);
 //        startActivity(intent);
     }
 
     public void edit(View view) {
+        CurBookSingleton.getInstance().getCurrentBook().setEditorMode(true);
         Intent intent = new Intent(this, BookActivity.class);
         startActivity(intent);
     }

@@ -50,7 +50,7 @@ public class Shape {
 
     public void draw() {
          //need to fix hidden based on whether it is gameplay or editor mode
-        if (!isHidden) {
+        if (!isHidden || CurBookSingleton.getInstance().getCurrentBook().isEditorMode) {
             if (!drawableText.isEmpty()){
                 paint.setTextSize(textSize);
                 page.getCanvas().drawText(drawableText, point.getLeft(), point.getTop() + textSize, paint);//text is drawn starting at lower left corner
@@ -99,6 +99,34 @@ public class Shape {
     //leave drop name as the empty string if it is not a drop event.
     public void enactScript(String TriggerEvent, String dropName){
         ArrayList<String> commands = script.getClauses(TriggerEvent, dropName);
+        if(commands.size() == 0){
+            return;
+        }
+        Book book = CurBookSingleton.getInstance().getCurrentBook();
+        for(int i = 0; i < commands.size(); i = i + 2){
+            if(commands.get(i).equals("hide") || commands.get(i).equals("show")){
+                boolean flag = true;
+                if(commands.get(i).equals("show")){//enables me to have one loop to handle hide and show
+                    flag = false;                  //versus two identical loops except the set value
+                }
+                for(int j = 0; j < book.allPages.size(); j++){//looks thorugh all pages and all shapes for one it needs to hide
+                    for(int k = 0; k < book.allPages.get(j).shapeList.size(); k++){
+                        if(book.allPages.get(j).shapeList.get(k).equals(commands.get(i + 1))){
+                            book.allPages.get(j).shapeList.get(k).setIsHidden(flag);
+                        }
+                    }
+                }
+            }
+            else if(commands.get(i).equals("play")){
+                //Someone please add code here to play designated sound file
+            }
+            else{
+                //experimental but I think it will work
+                int pageIndex = book.allPages.indexOf(commands.get(i + 1));
+                book.setCurrentPage(book.allPages.get(pageIndex));
+            }
+        }
+
     }
 
 //    private boolean isImage(String resText) {
