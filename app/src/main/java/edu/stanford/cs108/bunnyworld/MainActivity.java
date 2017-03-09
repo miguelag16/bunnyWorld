@@ -22,16 +22,14 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void play(View view) {
-        //CurBookSingleton.getInstance().getCurrentBook().setEditorMode(false);
 //        Intent intent = new Intent(this, PlayActivity.class);
+//        intent.putExtra("IS_EDITOR", false);
 //        startActivity(intent);
     }
 
     public void edit(View view) {
-        //line of code below causes program to crash, Im not sure when singletons are made
-        //but somehow we need to be able to convey this information
-        //CurBookSingleton.getInstance().getCurrentBook().setEditorMode(true);
         Intent intent = new Intent(this, BookActivity.class);
+        intent.putExtra("IS_EDITOR", true);
         startActivity(intent);
     }
 

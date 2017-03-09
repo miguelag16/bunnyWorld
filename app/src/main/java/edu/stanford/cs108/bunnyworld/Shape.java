@@ -2,6 +2,7 @@ package edu.stanford.cs108.bunnyworld;
 
 
 import android.content.Context;
+import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.RectF;
@@ -48,12 +49,14 @@ public class Shape {
         this.point = point;
     }
 
-    public void draw() {
+
+    //needs to take in a Canvas object instead of getting it exclusivley from its page because it could be the possessions trying to draw it.
+    public void draw(Canvas canvas) {
          //need to fix hidden based on whether it is gameplay or editor mode
-        if (!isHidden || CurBookSingleton.getInstance().getCurrentBook().isEditorMode) {
+        if (!isHidden || CurBookSingleton.getInstance().getCurrentBook().isEditorMode()) {
             if (!drawableText.isEmpty()){
                 paint.setTextSize(textSize);
-                page.getCanvas().drawText(drawableText, point.getLeft(), point.getTop() + textSize, paint);//text is drawn starting at lower left corner
+                canvas.drawText(drawableText, point.getLeft(), point.getTop() + textSize, paint);//text is drawn starting at lower left corner
             }
             else if (!resText.isEmpty()) {
                 ResSingleton rs = ResSingleton.getInstance();
@@ -61,7 +64,7 @@ public class Shape {
                         .getResources().getIdentifier(resText, "drawable", rs.getContext().getPackageName());
                 BitmapDrawable x =
                         (BitmapDrawable) rs.getContext().getResources().getDrawable(fileID);
-                page.getCanvas().drawBitmap(
+                canvas.drawBitmap(
                         x.getBitmap(), null, new RectF(point.getLeft(), point.getTop(),
                                 point.getRight(), point.getBottom()), null);
             } else {
@@ -69,7 +72,7 @@ public class Shape {
                 paint.setColor(Color.LTGRAY);
                 RectF r = new RectF(point.getLeft(), point.getTop(),
                         point.getRight(), point.getBottom());
-                page.getCanvas().drawRect(r, paint);
+                canvas.drawRect(r, paint);
             }
         }
     }
@@ -129,7 +132,22 @@ public class Shape {
 
     }
 
-//    private boolean isImage(String resText) {
+    //I think the below two classes will enable me to use hashmaps/sets
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Shape shape = (Shape) o;
+        return shapeName != null ? shapeName.equals(shape.shapeName) : shape.shapeName == null;
+
+    }
+
+    @Override
+    public int hashCode() {
+        return shapeName != null ? shapeName.hashCode() : 0;
+    }
+
+    //    private boolean isImage(String resText) {
 //        String[]
 //    }
 //

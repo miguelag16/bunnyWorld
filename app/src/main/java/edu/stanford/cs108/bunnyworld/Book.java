@@ -21,7 +21,11 @@ public class Book extends View {
 
     private Page currentPage;//this is the only page that needs to be drawn, can easily switch to any page in the list
     public ArrayList<Page> allPages; //shapes need to be able to access other shapes on different pages
-    public boolean isEditorMode;
+    private boolean isEditorMode;
+
+    public boolean isEditorMode(){
+        return this.isEditorMode;
+    }
 
     public void setEditorMode(boolean b){
         this.isEditorMode = b;

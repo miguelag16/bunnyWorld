@@ -14,6 +14,7 @@ public class BookActivity extends AppCompatActivity {
 
     public Book book;
 
+
     public void addPage(View view) {
         Intent intent = new Intent(this, PageCreator.class);
         startActivity(intent);
@@ -27,5 +28,6 @@ public class BookActivity extends AppCompatActivity {
         book = (edu.stanford.cs108.bunnyworld.Book) findViewById(R.id.Book);
         CurBookSingleton cb = CurBookSingleton.getInstance();
         cb.setCurrentBook(book);
+        cb.getCurrentBook().setEditorMode(getIntent().getBooleanExtra("IS_EDITOR", true));
     }
 }
