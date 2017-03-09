@@ -18,6 +18,7 @@
         </activity>
 
         <activity android:name=".BookActivity"></activity>
+        <activity android:name=".PageCreator"></activity>
         <activity android:name=".ShapeCreator"></activity>
 
     </application>

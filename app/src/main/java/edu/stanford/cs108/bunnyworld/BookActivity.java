@@ -15,8 +15,7 @@ public class BookActivity extends AppCompatActivity {
     public Book book;
 
     public void addPage(View view) {
-        Intent intent = new Intent(this, ShapeCreator.class);
-        intent.putExtra("BOOK", (Parcelable) book);
+        Intent intent = new Intent(this, PageCreator.class);
         startActivity(intent);
     }
 

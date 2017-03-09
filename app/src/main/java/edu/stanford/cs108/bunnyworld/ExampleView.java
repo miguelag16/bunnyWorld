@@ -20,13 +20,13 @@ public class ExampleView extends View {
 
     private void init() {
         //Shape s = new Shape(p, false, "dolan", "", false, false);
-        Log.d(TAG, "init: ");
-        Shape s = new Shape(p, false, "dolan", "", false, false, new Point(20, 20, 500, 500));
-        p.addShape(s);
-        s = new Shape(p, false, "", "Dominic is the best", false, false, new Point(20, 40, 100000, 100000));
-        p.addShape(s);
-        //s.draw(20, 20, 500, 500);
-        //s.draw();
+//        Log.d(TAG, "init: ");
+//        Shape s = new Shape(p, false, "dolan", "", false, false, new Point(20, 20, 500, 500));
+//        p.addShape(s);
+//        s = new Shape(p, false, "", "Dominic is the best", false, false, new Point(20, 40, 100000, 100000));
+//        p.addShape(s);
+//        s.draw(20, 20, 500, 500);
+//        s.draw();
     }
 
     @Override

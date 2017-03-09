@@ -23,10 +23,12 @@ public class Book extends View {
     public ArrayList<Page> allPages; //shapes need to be able to access other shapes on different pages
 
     private void init() {
-        Shape s = new Shape(currentPage, false, "dolan", "", false, false, new Point(20, 20, 500, 500));
+
+        // We need to fix draw so that we can pass the file extension to draw, image vs audio
+        Shape s = new Shape(currentPage, "dolan.png", "", false, false, false, new Point(20, 20, 500, 500));
         currentPage.addShape(s);
-        s = new Shape(currentPage, false, "", "stan is the wurrrrst", false, false, new Point(20, 40, 100000, 100000));
-        currentPage.addShape(s);
+//        s = new Shape(currentPage, "", "stan is the wurrrrst", false, false, false, new Point(20, 40, 100000, 100000));
+//        currentPage.addShape(s);
     }
 
     @Override
@@ -46,6 +48,10 @@ public class Book extends View {
         currentPage = new Page("Page1");
     }
 
+
+    public Page getCurrentPage(){
+        return currentPage;
+    }
 
     //should be called by a button in editor mode
     //should create a new page with the name from some text field

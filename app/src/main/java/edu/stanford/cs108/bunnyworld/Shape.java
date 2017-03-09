@@ -1,19 +1,13 @@
 package edu.stanford.cs108.bunnyworld;
 
+
 import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
-import android.graphics.Rect;
 import android.graphics.RectF;
 import android.graphics.drawable.BitmapDrawable;
-import android.util.Log;
 
 import java.util.ArrayList;
-import java.util.StringTokenizer;
-
-import static android.content.ContentValues.TAG;
 
 /**
  * Created by miguelgarcia on 3/5/17.
@@ -24,11 +18,11 @@ public class Shape {
     private Context context;
 
     private float textSize = 50.0f;
-    private boolean isMoveable;
+    private boolean isMovable;
     private boolean isHidden;
     private Page page;
     private String shapeName;
-    private String imageName;
+    private String resText;
     private String drawableText;
     private Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
     private Point point;
@@ -40,14 +34,13 @@ public class Shape {
     private boolean possessions;
 
 
-
-    public Shape(Page p, boolean inPossessions, String imageName,
-                 String drawableText, boolean isHidden, boolean isMoveable, Point point) {
-        this.shapeName = p.name + "/" + imageName;
-        this.imageName = imageName;
+    public Shape(Page p, String resText, String drawableText, boolean inPossessions,
+                 boolean isHidden, boolean isMovable, Point point) {
+        this.shapeName = p.name + "/" + resText + "-" + drawableText;
+        this.resText = resText;
         this.drawableText = drawableText;
         this.isHidden = isHidden;
-        this.isMoveable = isMoveable;
+        this.isMovable = isMovable;
 
         this.page = p;
         this.possessions = inPossessions;
@@ -62,13 +55,10 @@ public class Shape {
                 paint.setTextSize(textSize);
                 page.getCanvas().drawText(drawableText, point.getLeft(), point.getTop() + textSize, paint);//text is drawn starting at lower left corner
             }
-            else if (!imageName.isEmpty()) {
+            else if (!resText.isEmpty()) {
                 ResSingleton rs = ResSingleton.getInstance();
-//            rs.getContext().getResources().getIdentifier()
-                System.out.println(rs.getContext().getPackageName());
                 int fileID = rs.getContext()
-                        .getResources().getIdentifier(imageName, "drawable", rs.getContext().getPackageName());
-                System.out.println(fileID);
+                        .getResources().getIdentifier(resText, "drawable", rs.getContext().getPackageName());
                 BitmapDrawable x =
                         (BitmapDrawable) rs.getContext().getResources().getDrawable(fileID);
                 page.getCanvas().drawBitmap(
@@ -102,7 +92,7 @@ public class Shape {
 
 
     //shapes can have clauses in them that when executed, hide other shapes
-    public void setisHidden(boolean isHidden){
+    public void setIsHidden(boolean isHidden){
         this.isHidden = isHidden;
     }
 
@@ -110,6 +100,7 @@ public class Shape {
     public void enactScript(String TriggerEvent, String dropName){
         ArrayList<String> commands = script.getClauses(TriggerEvent, dropName);
     }
+
 
 
 
