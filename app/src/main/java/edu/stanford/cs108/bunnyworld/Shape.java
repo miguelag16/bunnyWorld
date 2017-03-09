@@ -101,8 +101,12 @@ public class Shape {
         ArrayList<String> commands = script.getClauses(TriggerEvent, dropName);
     }
 
-
-
-
+//    private boolean isImage(String resText) {
+//        String[]
+//    }
+//
+//    private boolean isAudio(String resText) {
+//
+//    }
 
 }
