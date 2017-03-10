@@ -16,14 +16,14 @@
         android:layout_height="wrap_content" />
 
     <Spinner
-        android:id="@+id/image_spinner"
+        android:id="@+id/sc_spinner"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:paddingBottom="16dp"
         android:paddingTop="8dp"/>
 
     <EditText
-        android:id="@+id/shape_text"
+        android:id="@+id/sc_text"
         android:hint="Enter text to draw, if any"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
@@ -42,17 +42,12 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
             <RadioButton
-                android:id="@+id/bool_possessions"
-                android:text="Possession Item"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-            <RadioButton
-                android:id="@+id/bool_movable"
+                android:id="@+id/sc_movable"
                 android:text="Movable"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
             <RadioButton
-                android:id="@+id/bool_hidden"
+                android:id="@+id/sc_hidden"
                 android:text="Hidden"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
@@ -111,7 +106,6 @@
                 android:text="create shape"
                 android:backgroundTint="@color/hotPink"/>
         </LinearLayout>
-
     </LinearLayout>
 
 </LinearLayout>

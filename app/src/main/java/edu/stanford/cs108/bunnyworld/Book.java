@@ -89,7 +89,7 @@ public class Book extends View {
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
         currentPage.setCanvas(canvas);
-        init();
+//        init();
         currentPage.Draw(canvas);
         possessions.Draw(canvas);
     }

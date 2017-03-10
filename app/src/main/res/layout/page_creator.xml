@@ -4,6 +4,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <edu.stanford.cs108.bunnyworld.Book
+        android:id="@+id/Book"
+        android:layout_height="0dp"
+        android:layout_width="match_parent"
+        android:layout_weight="1">
+    </edu.stanford.cs108.bunnyworld.Book>
+
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

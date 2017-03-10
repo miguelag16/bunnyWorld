@@ -25,5 +25,6 @@ public class PageCreator extends AppCompatActivity {
 
         CurBookSingleton cb = CurBookSingleton.getInstance();
         book = cb.getCurrentBook();
+        book.getCurrentPage().Draw(book.getCurrentPage().getCanvas());
     }
 }

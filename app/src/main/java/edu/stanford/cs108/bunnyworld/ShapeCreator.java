@@ -1,10 +1,13 @@
 package edu.stanford.cs108.bunnyworld;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.RadioButton;
 import android.widget.Spinner;
 
 import java.util.ArrayList;
@@ -16,9 +19,25 @@ import java.util.ArrayList;
 public class ShapeCreator extends AppCompatActivity {
 
     public void addShapeToPage(View view) {
-        Shape x = null;
         Page cp = CurBookSingleton.getInstance().getCurrentBook().getCurrentPage();
+
+        System.out.println("Here");
+        String resText = ((Spinner) findViewById(R.id.sc_spinner)).getSelectedItem().toString();
+
+        resText = resText.substring(0, resText.indexOf('.'));
+        System.out.println(resText);
+        String drawableText = ((EditText) findViewById(R.id.sc_text)).getText().toString();
+        System.out.println(drawableText);
+        boolean isHidden = ((RadioButton) findViewById(R.id.sc_hidden)).isChecked();
+        boolean isMovable = ((RadioButton) findViewById(R.id.sc_movable)).isChecked();
+
+        Point p = new Point(0, 0, 50, 50);
+
+        Shape x = new Shape(cp, resText, drawableText, false, isHidden, isMovable, p);
         cp.addShape(x);
+
+        Intent intent = new Intent(this, PageCreator.class);
+        startActivity(intent);
     }
 
     @Override
@@ -26,7 +45,7 @@ public class ShapeCreator extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.shape_creator);
 
-        Spinner spinner = (Spinner) findViewById(R.id.image_spinner);
+        Spinner spinner = (Spinner) findViewById(R.id.sc_spinner);
         // Create an ArrayAdapter using the string array and a default spinner layout
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
                 R.array.shapes_array, android.R.layout.simple_spinner_item);

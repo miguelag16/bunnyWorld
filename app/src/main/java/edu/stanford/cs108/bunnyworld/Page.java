@@ -23,6 +23,8 @@ public class Page {
     private Canvas canvas;
     public ArrayList<Shape> shapeList;
 
+    private Shape curShape;
+
     //Leave name as empty string for a default name
     public Page(String name) {
         if(name.isEmpty()){
@@ -55,7 +57,16 @@ public class Page {
     }
 
     public void addShape(Shape shape){
+        curShape = shape;
         this.shapeList.add(shape);
+    }
+
+    public Shape getCurShape(Shape shape){
+        return curShape;
+    }
+
+    public void setCurShape(Shape shape){
+        curShape = shape;
     }
 
 //    public ArrayList<Shape> getShapes(){//don't need shapelist is now public
