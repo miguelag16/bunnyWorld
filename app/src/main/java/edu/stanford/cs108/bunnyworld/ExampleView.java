@@ -34,7 +34,7 @@ public class ExampleView extends View {
         super.onDraw(canvas);
         p.setCanvas(canvas);
         init();
-        p.Draw(canvas);
+        p.draw(canvas);
 
 //        canvas.drawBitmap(dolan.getBitmap(),
 //                null,

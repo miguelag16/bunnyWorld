@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <edu.stanford.cs108.bunnyworld.Book
-        android:id="@+id/libro"
-        android:layout_height="0dp"
+    <TextView
+        android:id="@+id/ba_bookName"
         android:layout_width="match_parent"
-        android:layout_weight="1">
-    </edu.stanford.cs108.bunnyworld.Book>
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"/>
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="ADD PAGE"
-        android:onClick="addPage" />
+        android:onClick="addPage"
+        android:layout_alignParentBottom="true"/>
 
-</LinearLayout>
+</RelativeLayout>

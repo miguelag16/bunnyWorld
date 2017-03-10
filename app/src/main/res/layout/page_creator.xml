@@ -9,17 +9,40 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
-    <edu.stanford.cs108.bunnyworld.Book
-        android:id="@+id/libro"
+    <edu.stanford.cs108.bunnyworld.PageView
+        android:id="@+id/pc_pageView"
         android:layout_height="0dp"
         android:layout_width="match_parent"
-        android:layout_weight="1">
-    </edu.stanford.cs108.bunnyworld.Book>
+        android:layout_weight="1"/>
 
-    <Button
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="add shape"
-        android:onClick="addShape" />
+        android:orientation = "horizontal"
+        >
+        <Button
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/buttonGreen"
+            android:text="add shape"
+            android:onClick="addShape" />
+
+        <Button
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/red"
+            android:text="undo"
+            android:onClick="undo" />
+
+        <Button
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/hotPink"
+            android:text="save"
+            android:onClick="save" />
+    </LinearLayout>
 
 </LinearLayout>

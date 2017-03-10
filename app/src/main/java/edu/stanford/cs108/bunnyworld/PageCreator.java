@@ -13,8 +13,6 @@ import android.widget.TextView;
 
 public class PageCreator extends AppCompatActivity {
 
-    public Book book;
-
     public void addShape(View view) {
         Intent intent = new Intent(this, ShapeCreator.class);
         startActivity(intent);
@@ -26,18 +24,7 @@ public class PageCreator extends AppCompatActivity {
         setContentView(R.layout.page_creator);
 
         CurBookSingleton cb = CurBookSingleton.getInstance();
-        book = cb.getCurrentBook();
-
-        Page p = new Page("DOMINIC"); // hard coded added page for now
-//        Page cp = book.getCurrentPage();
-
-        book.addPage(p);
-
-        Page cp = book.getCurrentPage();
-
-        TextView tv =  (TextView)findViewById(R.id.pc_pageName);
-        tv.setText(cp.name);
-
-        cp.Draw(book.getCurrentPage().getCanvas());
+        Page cp = cb.getCurrentBook().getCurrentPage();
+        ((TextView)findViewById(R.id.pc_pageName)).setText(cp.name);
     }
 }

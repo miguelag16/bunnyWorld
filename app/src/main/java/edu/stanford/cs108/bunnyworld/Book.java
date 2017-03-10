@@ -12,8 +12,9 @@ import java.util.ArrayList;
  */
 
 
-public class Book extends View {
+public class Book {
 
+    private static int numBooks = 0;
     private Page currentPage;//this is the only page that needs to be drawn, can easily switch to any page in the list
     public ArrayList<Page> allPages; //shapes need to be able to access other shapes on different pages
     private boolean isEditorMode;
@@ -82,27 +83,32 @@ public class Book extends View {
 //        currentPage.addShape(s);
     }
 
-    @Override
-    protected void onDraw(Canvas canvas) {
-        super.onDraw(canvas);
-        currentPage.setCanvas(canvas);
-//        init();
-        currentPage.Draw(canvas);
-        possessions.Draw(canvas);
-    }
+//    @Override
+//    protected void onDraw(Canvas canvas) {
+//        super.onDraw(canvas);
+//        currentPage.setCanvas(canvas);
+////        init();
+//        currentPage.Draw(canvas);
+//        possessions.Draw(canvas);
+//    }
 
-    public Book(Context context, AttributeSet attrs) {
-        super(context, attrs);
-        System.out.println("AJS:LJAS:LDJKA:DJS:AJ");
-        allPages = new ArrayList<Page>();
+    private String bookName;
+
+    public Book(String name) {
+        this.allPages = new ArrayList<Page>();
+        this.possessions = new Possessions(this);
+
+        if(name.isEmpty()) this.bookName = "book" + Integer.toString(numBooks);
+        else this.bookName = name;
         //if database is empty create new empty page else load it from database
         //will also be different depending on whether it is in editor or game mode
         //doesn't make sense to have a book view without at least one page
-        currentPage = new Page("Page1");
-        this.allPages.add(currentPage);
-        possessions = new Possessions(this);
+        this.numBooks++;
     }
 
+    public String getName(){
+        return this.bookName;
+    }
 
     public Page getCurrentPage(){
         return currentPage;

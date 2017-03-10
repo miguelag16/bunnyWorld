@@ -26,7 +26,6 @@ public class Page implements Serializable {
 
     private Shape curShape;
 
-    //Leave name as empty string for a default name
     public Page(String name) {
         if(name.isEmpty()){
             this.name = "page" + Integer.toString(pageCount);
@@ -38,7 +37,7 @@ public class Page implements Serializable {
         shapeList = new ArrayList<Shape>();
     }
 
-    public void Draw(Canvas canvas) {
+    public void draw(Canvas canvas) {
         this.canvas = canvas;
         for(Shape i : shapeList){
             i.draw(canvas);
