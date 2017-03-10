@@ -77,8 +77,8 @@ public class Book {
     private void init() {
 
         // We need to fix draw so that we can pass the file extension to draw, image vs audio
-        Shape s = new Shape(currentPage, "dolan", "", false, false, false, new Point(20, 20, 500, 500));
-        currentPage.addShape(s);
+//        Shape s = new Shape(currentPage, "dolan", "", false, false, false, new Point(20, 20, 500, 500));
+//        currentPage.addShape(s);
 //        s = new Shape(currentPage, "", "stan is the wurrrrst", false, false, false, new Point(20, 40, 100000, 100000));
 //        currentPage.addShape(s);
     }

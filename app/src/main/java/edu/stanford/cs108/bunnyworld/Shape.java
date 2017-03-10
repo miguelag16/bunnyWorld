@@ -16,6 +16,9 @@ import java.util.ArrayList;
 
 public class Shape {
 
+    protected static final float WIDTH = 200.0f;
+    protected static final float HEIGHT = 200.0f;
+
     private Context context;
 
     private float textSize = 50.0f;
@@ -49,6 +52,12 @@ public class Shape {
         this.point = point;
     }
 
+    public Point getLocation() {return this.point; }
+    public void setLocation(float x, float y) {
+        this.point.setLeft(x);
+        this.point.setTop(y);
+    }
+
 
     //needs to take in a Canvas object instead of getting it exclusivley from its page because it could be the possessions trying to draw it.
     public void draw(Canvas canvas) {
@@ -66,12 +75,12 @@ public class Shape {
                         (BitmapDrawable) rs.getContext().getResources().getDrawable(fileID);
                 canvas.drawBitmap(
                         x.getBitmap(), null, new RectF(point.getLeft(), point.getTop(),
-                                point.getRight(), point.getBottom()), null);
+                                point.getLeft() + WIDTH, point.getTop() + HEIGHT), null);
             } else {
                 paint.setStyle(Paint.Style.FILL_AND_STROKE);
                 paint.setColor(Color.LTGRAY);
                 RectF r = new RectF(point.getLeft(), point.getTop(),
-                        point.getRight(), point.getBottom());
+                        point.getLeft() + WIDTH, point.getTop() + HEIGHT);
                 canvas.drawRect(r, paint);
             }
         }

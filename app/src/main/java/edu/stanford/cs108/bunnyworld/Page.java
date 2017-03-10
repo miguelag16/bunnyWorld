@@ -24,8 +24,6 @@ public class Page implements Serializable {
     private Canvas canvas;
     public ArrayList<Shape> shapeList;
 
-    private Shape curShape;
-
     public Page(String name) {
         if(name.isEmpty()){
             this.name = "page" + Integer.toString(pageCount);
@@ -37,6 +35,14 @@ public class Page implements Serializable {
         shapeList = new ArrayList<Shape>();
     }
 
+    public void setCanvas(Canvas canvas) {
+        this.canvas = canvas;
+    }
+
+    public void addShape(Shape shape){
+        this.shapeList.add(shape);
+    }
+
     public void draw(Canvas canvas) {
         this.canvas = canvas;
         for(Shape i : shapeList){
@@ -44,30 +50,42 @@ public class Page implements Serializable {
         }
     }
 
+    public Shape findSelectedShape(float x, float y) {
+        for(int i = shapeList.size() - 1; i >= 0; i--){
+            Shape cur = shapeList.get(i);
+            System.out.println(cur.getName());
+            if(selected(cur, x, y)) return cur;
+        }
+        return null;
+    }
+
+    private boolean selected(Shape s, float x, float y) {
+        System.out.println(Float.toString(x) + "XY" + Float.toString(y));
+        Point p = s.getLocation();
+        if(x >= p.getLeft() && x <= p.getLeft() + Shape.WIDTH) {
+            System.out.println(Float.toString(p.getLeft()) + "LR" + Float.toString(p.getLeft() + Shape.WIDTH));
+            System.out.println(Float.toString(p.getTop()) + "TB" + Float.toString(p.getTop() + Shape.HEIGHT));
+            if (y >= p.getTop() && y <= p.getTop() + Shape.HEIGHT) {
+                System.out.println(Float.toString(p.getTop()) + "TB" + Float.toString(p.getTop() + Shape.HEIGHT));
+                return true;
+            }
+        }
+        return false;
+    }
+
+
+
     public Canvas getCanvas() {
         return this.canvas;
     }
 
-    public void setCanvas(Canvas canvas) {
-        this.canvas = canvas;
-    }
+
 
     public int numShapes() {
         return shapeList.size();
     }
 
-    public void addShape(Shape shape){
-        curShape = shape;
-        this.shapeList.add(shape);
-    }
 
-    public Shape getCurShape(Shape shape){
-        return curShape;
-    }
-
-    public void setCurShape(Shape shape){
-        curShape = shape;
-    }
 
 //    public ArrayList<Shape> getShapes(){//don't need shapelist is now public
 //        return shapeList;

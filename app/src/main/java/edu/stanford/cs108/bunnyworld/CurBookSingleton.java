@@ -14,15 +14,19 @@ class CurBookSingleton {
     private CurBookSingleton() {
     }
 
-    protected Book currentBook;
-
+    protected Book curBook;
     public Book getCurrentBook() {
-        return currentBook;
+        return curBook;
     }
-
     public void setCurrentBook(Book b) {
-        this.currentBook = b;
+        this.curBook = b;
     }
 
+
+//    protected Shape curShape;
+//    public void setCurrentShape(Shape s) {this.curShape = s; }
+//    public Shape getCurrentShape(Shape s) {
+//        return this.curShape;
+//    }
 
 }

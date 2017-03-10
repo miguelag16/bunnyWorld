@@ -19,7 +19,8 @@ import java.util.ArrayList;
 public class ShapeCreator extends AppCompatActivity {
 
     public void addShapeToPage(View view) {
-        Page cp = CurBookSingleton.getInstance().getCurrentBook().getCurrentPage();
+        CurBookSingleton cbs = CurBookSingleton.getInstance();
+        Page cp = cbs.getCurrentBook().getCurrentPage();
 
         System.out.println("Here");
         String resText = ((Spinner) findViewById(R.id.sc_spinner)).getSelectedItem().toString();
@@ -31,7 +32,7 @@ public class ShapeCreator extends AppCompatActivity {
         boolean isHidden = ((RadioButton) findViewById(R.id.sc_hidden)).isChecked();
         boolean isMovable = ((RadioButton) findViewById(R.id.sc_movable)).isChecked();
 
-        Point p = new Point(0, 0, 50, 50);
+        Point p = new Point(0, 0);
 
         Shape x = new Shape(cp, resText, drawableText, false, isHidden, isMovable, p);
         cp.addShape(x);

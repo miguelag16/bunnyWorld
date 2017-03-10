@@ -10,7 +10,7 @@ public class Point{
     private float right;
     private float bottom;
 
-    public Point(float left, float top, float right, float bottom){
+    public Point(float left, float top){
         this.left = left;
         this.top = top;
         this.right = right;
@@ -20,16 +20,20 @@ public class Point{
     public float getLeft(){
         return left;
     }
+    public void setLeft(float f) {this.left = f;}
 
     public float getTop(){
         return top;
     }
+    public void setTop(float f) {this.top = f;}
 
-    public float getRight(){
-        return right;
-    }
-
-    public float getBottom(){
-        return bottom;
-    }
+//    public float getRight(){
+//        return right;
+//    }
+//    public void setRight(float f) {this.right = f;}
+//
+//    public float getBottom(){
+//        return bottom;
+//    }
+//    public void setBottom(float f) {this.bottom = f;}
 }
