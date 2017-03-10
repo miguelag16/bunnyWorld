@@ -101,6 +101,7 @@ public class Book extends View {
         //will also be different depending on whether it is in editor or game mode
         //doesn't make sense to have a book view without at least one page
         currentPage = new Page("Page1");
+        this.allPages.add(currentPage);
         possessions = new Possessions(this);
     }
 
@@ -117,16 +118,9 @@ public class Book extends View {
     //should be called by a button in editor mode
     //should create a new page with the name from some text field
     //then set current page equal to it and allow the user to add shapes
-    public void addPage(){
-
-    }
-
-
-    //should be called by a button in editor mode
-    //should create a new shape on the currently being edited page
-    //should get all the information for the shape from checkboxes and textfields
-    public void addShape(){
-        //do stuff to currentPage
+    public void addPage(Page page){
+        this.currentPage = page;
+        this.allPages.add(page);
     }
 
 }
