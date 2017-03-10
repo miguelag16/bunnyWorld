@@ -35,8 +35,8 @@ public class BookActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.edit_main);
 
-        book = (edu.stanford.cs108.bunnyworld.Book) findViewById(R.id.Book);
-
+        book = (edu.stanford.cs108.bunnyworld.Book) findViewById(R.id.libro);
+//        System.out.println(book == null);
         CurBookSingleton cb = CurBookSingleton.getInstance();
         cb.setCurrentBook(book);
         cb.getCurrentBook().setEditorMode(getIntent().getBooleanExtra("IS_EDITOR", true));

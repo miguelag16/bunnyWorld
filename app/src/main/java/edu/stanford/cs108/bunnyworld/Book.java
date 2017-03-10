@@ -20,9 +20,6 @@ public class Book extends View {
     private Possessions possessions;
 
 
-
-
-
     public class Possessions{
 
         //would add a get shapesInInventory function, but I don't see why this would ever be needed with
@@ -96,6 +93,7 @@ public class Book extends View {
 
     public Book(Context context, AttributeSet attrs) {
         super(context, attrs);
+        System.out.println("AJS:LJAS:LDJKA:DJS:AJ");
         allPages = new ArrayList<Page>();
         //if database is empty create new empty page else load it from database
         //will also be different depending on whether it is in editor or game mode
