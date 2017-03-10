@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.EditText;
+import android.widget.TextView;
 
 /**
  * Created by miguelgarcia on 3/8/17.
@@ -25,6 +27,11 @@ public class PageCreator extends AppCompatActivity {
 
         CurBookSingleton cb = CurBookSingleton.getInstance();
         book = cb.getCurrentBook();
-        book.getCurrentPage().Draw(book.getCurrentPage().getCanvas());
+        Page cp = book.getCurrentPage();
+
+        TextView tv =  (TextView)findViewById(R.id.pc_pageName);
+        tv.setText(cp.name);
+
+        cp.Draw(book.getCurrentPage().getCanvas());
     }
 }

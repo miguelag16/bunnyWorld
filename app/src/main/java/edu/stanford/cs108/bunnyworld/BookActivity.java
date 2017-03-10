@@ -19,6 +19,7 @@ public class BookActivity extends AppCompatActivity {
 
     public void addPage(View view) {
         Intent intent = new Intent(this, PageCreator.class);
+
         startActivity(intent);
     }
 
