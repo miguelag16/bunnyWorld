@@ -27,13 +27,13 @@
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="play"
+            android:text="PLAY GAME"
             android:onClick="play" />
 
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="edit"
+            android:text="EDITOR MODE"
             android:onClick="edit" />
 
     </LinearLayout>
