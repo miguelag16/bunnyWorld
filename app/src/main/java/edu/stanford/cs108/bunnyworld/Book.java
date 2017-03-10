@@ -101,6 +101,7 @@ public class Book extends View {
         //will also be different depending on whether it is in editor or game mode
         //doesn't make sense to have a book view without at least one page
         currentPage = new Page("Page1");
+        this.allPages.add(currentPage);
         possessions = new Possessions(this);
     }
 
