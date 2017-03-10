@@ -27,6 +27,12 @@ public class PageCreator extends AppCompatActivity {
 
         CurBookSingleton cb = CurBookSingleton.getInstance();
         book = cb.getCurrentBook();
+
+        Page p = new Page("DOMINIC"); // hard coded added page for now
+//        Page cp = book.getCurrentPage();
+
+        book.addPage(p);
+
         Page cp = book.getCurrentPage();
 
         TextView tv =  (TextView)findViewById(R.id.pc_pageName);

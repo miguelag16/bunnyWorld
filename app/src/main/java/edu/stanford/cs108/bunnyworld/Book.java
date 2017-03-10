@@ -117,8 +117,9 @@ public class Book extends View {
     //should be called by a button in editor mode
     //should create a new page with the name from some text field
     //then set current page equal to it and allow the user to add shapes
-    public void addPage(){
-
+    public void addPage(Page page){
+        this.setCurrentPage(page);
+        this.allPages.add(page);
     }
 
 

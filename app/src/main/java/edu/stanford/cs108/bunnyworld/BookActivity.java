@@ -13,23 +13,22 @@ public class BookActivity extends AppCompatActivity {
 
     public Book book;
 
-    public void addShape(View view) {
-
-    }
-
+//    public void addShape(View view) {
+//
+//    }
+//
     public void addPage(View view) {
         Intent intent = new Intent(this, PageCreator.class);
-
         startActivity(intent);
     }
-
-    public void gotoPage(View view) {
-
-    }
-
-    public void finishEdit(View view) {
-
-    }
+//
+//    public void gotoPage(View view) {
+//
+//    }
+//
+//    public void finishEdit(View view) {
+//
+//    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
