@@ -7,6 +7,7 @@ import android.util.AttributeSet;
 import android.util.Log;
 import android.view.View;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 import static android.content.ContentValues.TAG;
@@ -15,7 +16,7 @@ import static android.content.ContentValues.TAG;
  * Created by miguelgarcia on 3/5/17.
  */
 
-public class Page {
+public class Page implements Serializable {
 
     private static int pageCount = 0;
 
