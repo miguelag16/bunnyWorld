@@ -3,20 +3,20 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="16dp"
+    android:paddingBottom="2dp"
     android:paddingLeft="16dp"
     android:paddingRight="16dp"
     android:paddingTop="16dp"
     >
 
     <TextView
-        android:text="Choose a file:"
+        android:text="Choose an image file, if any:"
         android:textAlignment="center"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
     <Spinner
-        android:id="@+id/res_spinner"
+        android:id="@+id/image_spinner"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:paddingBottom="16dp"
@@ -32,32 +32,86 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
-    <RadioButton
-        android:id="@+id/bool_possessions"
-        android:text="Posession Item"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
-    <RadioButton
-        android:id="@+id/bool_movable"
-        android:text="Movable"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
-    <RadioButton
-        android:id="@+id/bool_hidden"
-        android:text="Hidden"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <RadioButton
+                android:id="@+id/bool_possessions"
+                android:text="Possession Item"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+            <RadioButton
+                android:id="@+id/bool_movable"
+                android:text="Movable"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+            <RadioButton
+                android:id="@+id/bool_hidden"
+                android:text="Hidden"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent">
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingTop="8dp"
+                android:paddingEnd="16dp"
+                >
+                <Button
+                    android:text="Add Script"
+                    android:onClick="addScriptToPage"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:backgroundTint="@color/buttonGreen"
+                    android:layout_centerInParent="true"
+                    />
+            </RelativeLayout>
+        </LinearLayout>
+
+    </LinearLayout>
 
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-
-    <Button
-        android:onClick="addShapeToPage"
-        android:text="create"
+        android:paddingTop="4dp"
         android:textAlignment="center"
+        android:text="Attached scripts: "
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <ListView
+            android:id="@+id/script_list"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="5">
+        </ListView>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_weight="1"
+            android:layout_height="0dp">
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="addShapeToPage"
+                android:text="create shape"
+                android:backgroundTint="@color/hotPink"/>
+        </LinearLayout>
+
+    </LinearLayout>
 
 </LinearLayout>
