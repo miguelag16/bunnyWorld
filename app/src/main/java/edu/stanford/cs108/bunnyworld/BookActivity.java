@@ -2,7 +2,6 @@ package edu.stanford.cs108.bunnyworld;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Parcelable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
@@ -26,6 +25,7 @@ public class BookActivity extends AppCompatActivity {
         setContentView(R.layout.edit_main);
 
         book = (edu.stanford.cs108.bunnyworld.Book) findViewById(R.id.Book);
+
         CurBookSingleton cb = CurBookSingleton.getInstance();
         cb.setCurrentBook(book);
         cb.getCurrentBook().setEditorMode(getIntent().getBooleanExtra("IS_EDITOR", true));

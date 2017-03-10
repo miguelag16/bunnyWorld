@@ -37,8 +37,8 @@ public class Page {
 
     public void Draw(Canvas canvas) {
         this.canvas = canvas;
-        for(int i = shapeList.size() -1; i >= 0; i--){
-            shapeList.get(i).draw(canvas);
+        for(Shape i : shapeList){
+            i.draw(canvas);
         }
     }
 

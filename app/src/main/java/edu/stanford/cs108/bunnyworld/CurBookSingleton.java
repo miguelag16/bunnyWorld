@@ -23,4 +23,6 @@ class CurBookSingleton {
     public void setCurrentBook(Book b) {
         this.currentBook = b;
     }
+
+
 }
