@@ -13,31 +13,30 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
-    //just testing out github pushes
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        //DO NOT DELETE: we need this to access files in shapeCreator
+        //Use to access files in shapeCreator
         ResSingleton rs = ResSingleton.getInstance();
         rs.setContext(this.getApplicationContext());
 
         // Load existing books from file
-        ArrayList<Book> booksList = null;
+        ArrayList<Book> loadedBookList = new ArrayList<Book>();
         try {
-            booksList = FileStorage.load();
+            loadedBookList = FileStorage.load();
         } catch (IOException e) {
             e.printStackTrace();
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
+
         // Add books to booksMap
-        for (Book b : booksList) {
+        for (Book b : loadedBookList) {
             ChooseOrCreateBook.booksMap.put(b.getName(), b);
         }
-
-
 
     }
 
@@ -49,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void edit(View view) {
         Intent intent = new Intent(this, ChooseOrCreateBook.class);
-        // intent.putExtra("IS_EDITOR", true);
+//        intent.putExtra("IS_EDITOR", true);
         startActivity(intent);
     }
 
