@@ -14,7 +14,7 @@ import java.util.List;
 public class ChooseOrCreateBook extends AppCompatActivity {
 
     // HashMap of books
-    public static HashMap<String, Book> booksMap;
+    public static HashMap<String, Book> booksMap = new HashMap<String, Book>();
     private ListView existing_books_listview;
     private ArrayAdapter<String> listAdapter;
 
