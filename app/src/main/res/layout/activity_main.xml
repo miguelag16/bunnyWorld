@@ -20,7 +20,10 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Select mode:\n"
+            android:text="Welcome to BunnyWorld!\n"
+            android:textSize="50sp"
+            android:textColor="@color/colorPrimaryDark"
+            android:fontFamily="cursive"
             android:textAlignment="center"
             />
 
@@ -28,12 +31,14 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="PLAY GAME"
+            android:backgroundTint="@color/hotPink"
             android:onClick="play" />
 
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="EDITOR MODE"
+            android:backgroundTint="@color/buttonGreen"
             android:onClick="edit" />
 
     </LinearLayout>
