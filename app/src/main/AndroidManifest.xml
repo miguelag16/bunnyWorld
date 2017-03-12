@@ -15,7 +15,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".BookActivity" />
+        <activity android:name=".ChooseOrCreatePage" />
         <activity android:name=".PageCreator" />
         <activity android:name=".ShapeCreator" />
         <activity android:name=".ChooseOrCreateBook" />

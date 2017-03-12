@@ -19,7 +19,6 @@ import static android.content.ContentValues.TAG;
 public class Page implements Serializable {
 
     private static int pageCount = 0;
-
     protected String name;
     private Canvas canvas;
     public ArrayList<Shape> shapeList;

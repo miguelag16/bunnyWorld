@@ -8,7 +8,6 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 public class ChooseOrCreateBook extends AppCompatActivity {
@@ -28,7 +27,7 @@ public class ChooseOrCreateBook extends AppCompatActivity {
         List<String> bookNameList = new ArrayList<String>(MainActivity.booksMap.keySet());
 
         // Create ArrayAdapter using the bookNameList
-        listAdapter = new ArrayAdapter<String>(this, R.layout.books_listview, bookNameList);
+        listAdapter = new ArrayAdapter<String>(this, R.layout.listview_template, bookNameList);
 
         // Set the ArrayAdapter as the ListView's adapter
         existing_books.setAdapter(listAdapter);
@@ -41,8 +40,8 @@ public class ChooseOrCreateBook extends AppCompatActivity {
         MainActivity.booksMap.put(book.getName(), book);
         // Set as current book
         CurBookSingleton.getInstance().setCurrentBook(book);
-        // Goto BookActivity
-        Intent intent = new Intent(this, BookActivity.class);
+        // Goto ChooseOrCreatePage
+        Intent intent = new Intent(this, ChooseOrCreatePage.class);
         startActivity(intent);
     }
 }
