@@ -17,7 +17,7 @@ public class Book implements Serializable {
     public LinkedHashMap<String, Page> pagesMap; //shapes need to be able to access other shapes on different pages
     private boolean isEditorMode;
     private Possessions possessions;
-
+    private String bookName;
 
     public class Possessions{
 
@@ -90,15 +90,14 @@ public class Book implements Serializable {
 //        possessions.Draw(canvas);
 //    }
 
-    private String bookName;
 
     public Book(String name) {
-        this.pagesMap = new LinkedHashMap<String, Page>();
-        this.possessions = new Possessions(this);
-        this.numBooks++;
+        pagesMap = new LinkedHashMap<String, Page>();
+        possessions = new Possessions(this);
+        numBooks++;
 
-        if(name.isEmpty()) this.bookName = "Book" + Integer.toString(numBooks);
-        else this.bookName = name;
+        if(name.isEmpty()) bookName = "Book" + Integer.toString(numBooks);
+        else bookName = name;
 
         // Automatically add a default page when a new book is created
         //Page page = new Page("");
@@ -106,16 +105,15 @@ public class Book implements Serializable {
     }
 
     public String getName(){
-        return this.bookName;
+        return bookName;
     }
 
     public Page getCurrentPage(){
         return currentPage;
     }
-
-
+    
     public void setCurrentPage(Page p){
-        this.currentPage = p;
+        currentPage = p;
     }
 
     //should be called by a button in editor mode
