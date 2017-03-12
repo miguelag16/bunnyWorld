@@ -1,10 +1,7 @@
 package edu.stanford.cs108.bunnyworld;
 
-import android.content.Context;
 import android.graphics.Canvas;
-import android.util.AttributeSet;
-import android.view.View;
-
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
@@ -12,7 +9,7 @@ import java.util.ArrayList;
  */
 
 
-public class Book {
+public class Book implements Serializable {
 
     private static int numBooks = 1;
     private Page currentPage;//this is the only page that needs to be drawn, can easily switch to any page in the list
