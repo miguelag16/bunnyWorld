@@ -1,5 +1,6 @@
 package edu.stanford.cs108.bunnyworld;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
@@ -7,7 +8,7 @@ import java.util.ArrayList;
  */
 
 
-public class Script {
+public class Script implements Serializable {
 
     private ArrayList<String> clauses;
 

@@ -1,10 +1,12 @@
 package edu.stanford.cs108.bunnyworld;
 
+import java.io.Serializable;
+
 /**
  * Created by dominic on 3/7/2017.
  */
 
-public class Point{
+public class Point implements Serializable {
     private float left;
     private float top;
     private float right;
