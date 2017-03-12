@@ -20,12 +20,33 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Welcome to BunnyWorld!\n"
+            android:text="Welcome to BunnyWorld!"
             android:textSize="50sp"
             android:textColor="@color/colorPrimaryDark"
             android:fontFamily="cursive"
             android:textAlignment="center"
             />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+
+        <ImageView
+            android:id="@+id/imageView1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:adjustViewBounds="true"
+            android:maxWidth="220sp"
+            android:maxHeight="220sp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/zayetz_circle" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
 
         <Button
             android:layout_width="match_parent"
@@ -42,6 +63,5 @@
             android:onClick="edit" />
 
     </LinearLayout>
-
 
 </LinearLayout>
