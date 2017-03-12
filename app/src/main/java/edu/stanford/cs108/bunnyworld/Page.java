@@ -25,7 +25,7 @@ public class Page implements Serializable {
 
     public Page(String name) {
         if(name.isEmpty()){
-            this.name = "page" + Integer.toString(CurBookSingleton.getInstance().getCurrentBook().allPages.size() + 1);
+            this.name = "page" + Integer.toString(CurBookSingleton.getInstance().getCurrentBook().pagesMap.size() + 1);
         }
         else{
             this.name = name;

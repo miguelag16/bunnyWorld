@@ -3,6 +3,7 @@ package edu.stanford.cs108.bunnyworld;
 import android.graphics.Canvas;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 
 /**
  * Created by dominic on 3/7/2017.
@@ -13,7 +14,7 @@ public class Book implements Serializable {
 
     private static int numBooks = 1;
     private Page currentPage;//this is the only page that needs to be drawn, can easily switch to any page in the list
-    public ArrayList<Page> allPages; //shapes need to be able to access other shapes on different pages
+    public LinkedHashMap<String, Page> pagesMap; //shapes need to be able to access other shapes on different pages
     private boolean isEditorMode;
     private Possessions possessions;
 
@@ -45,10 +46,10 @@ public class Book implements Serializable {
             Book book = CurBookSingleton.getInstance().getCurrentBook();
             //since it has been placed in inventory,  below loop removes it from page it used to be on
             //assumes all shape names are unique, need to add this error checking when getting android data
-            for(int i = 0; i < book.allPages.size(); i++){//looks thorugh all pages and all shapes for one it needs to hide
-                for(int j = 0; j < book.allPages.get(i).shapeList.size(); j++){
-                    if(book.allPages.get(i).shapeList.get(j).getName().equals(s.getName())){
-                        book.allPages.get(i).shapeList.remove(j);
+            for(int i = 0; i < book.pagesMap.size(); i++){//looks thorugh all pages and all shapes for one it needs to hide
+                for(int j = 0; j < book.pagesMap.get(i).shapeList.size(); j++){
+                    if(book.pagesMap.get(i).shapeList.get(j).getName().equals(s.getName())){
+                        book.pagesMap.get(i).shapeList.remove(j);
                         return;
                     }
                 }
@@ -92,7 +93,7 @@ public class Book implements Serializable {
     private String bookName;
 
     public Book(String name) {
-        this.allPages = new ArrayList<Page>();
+        this.pagesMap = new LinkedHashMap<String, Page>();
         this.possessions = new Possessions(this);
 
         if(name.isEmpty()) this.bookName = "Book" + Integer.toString(numBooks);
@@ -121,7 +122,7 @@ public class Book implements Serializable {
     //then set current page equal to it and allow the user to add shapes
     public void addPage(Page page){
         this.setCurrentPage(page);
-        this.allPages.add(page);
+        this.pagesMap.put(page.name, page);
     }
 
 

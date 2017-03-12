@@ -121,10 +121,10 @@ public class Shape {
                 if(commands.get(i).equals("show")){//enables me to have one loop to handle hide and show
                     flag = false;                  //versus two identical loops except the set value
                 }
-                for(int j = 0; j < book.allPages.size(); j++){//looks thorugh all pages and all shapes for one it needs to hide
-                    for(int k = 0; k < book.allPages.get(j).shapeList.size(); k++){
-                        if(book.allPages.get(j).shapeList.get(k).equals(commands.get(i + 1))){
-                            book.allPages.get(j).shapeList.get(k).setIsHidden(flag);
+                for(int j = 0; j < book.pagesMap.size(); j++){//looks thorugh all pages and all shapes for one it needs to hide
+                    for(int k = 0; k < book.pagesMap.get(j).shapeList.size(); k++){
+                        if(book.pagesMap.get(j).shapeList.get(k).equals(commands.get(i + 1))){
+                            book.pagesMap.get(j).shapeList.get(k).setIsHidden(flag);
                         }
                     }
                 }
@@ -134,8 +134,8 @@ public class Shape {
             }
             else{
                 //experimental but I think it will work
-                int pageIndex = book.allPages.indexOf(commands.get(i + 1));
-                book.setCurrentPage(book.allPages.get(pageIndex));
+                //int pageIndex = book.pagesMap.indexOf(commands.get(i + 1));
+                //book.setCurrentPage(book.pagesMap.get(pageIndex));
             }
         }
 
