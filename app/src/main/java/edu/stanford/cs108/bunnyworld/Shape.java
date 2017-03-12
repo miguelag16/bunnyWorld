@@ -8,13 +8,14 @@ import android.graphics.Paint;
 import android.graphics.RectF;
 import android.graphics.drawable.BitmapDrawable;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
  * Created by miguelgarcia on 3/5/17.
  */
 
-public class Shape {
+public class Shape implements Serializable {
 
     protected static final float WIDTH = 200.0f;
     protected static final float HEIGHT = 200.0f;
