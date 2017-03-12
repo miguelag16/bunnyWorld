@@ -70,4 +70,39 @@ public class ShapeCreator extends AppCompatActivity {
 
         list.setAdapter(itemsAdapter);
     }
+
+        Intent intent = new Intent(this, ScriptCreator.class);
+        startActivity(intent);
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }

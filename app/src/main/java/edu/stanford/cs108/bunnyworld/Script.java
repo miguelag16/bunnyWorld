@@ -27,24 +27,46 @@ public class Script implements Serializable {
         clauses = new ArrayList<String>();
     }
 
-    public void addGotoAction(String page_name){
-        clauses.add("goto");
-        clauses.add(page_name);
+
+
+    //adds the goto action to to the commands executed for the given trigger
+    public void addGotoAction(String page_name, String trigger){
+        int index = clauses.indexOf(trigger);
+        if(trigger.equals(Script.ONDROP)){
+            index++;
+        }
+        clauses.add(index + 1, "goto");
+        clauses.add(index + 2, page_name);
     }
 
-    public void addPlaySoundAction(String sound_name){
-        clauses.add("play");
-        clauses.add(sound_name);
+    //adds the play action to to the commands executed for the given trigger
+    public void addPlaySoundAction(String sound_name, String trigger){
+        int index = clauses.indexOf(trigger);
+        if(trigger.equals(Script.ONDROP)){
+            index++;
+        }
+        clauses.add(index + 1, "play");
+        clauses.add(index + 2, sound_name);
     }
 
-    public void addHideAction(String shape_name){
-        clauses.add("hide");
-        clauses.add(shape_name);
+    //adds the hide action to to the commands executed for the given trigger
+    public void addHideAction(String shape_name, String trigger){
+        int index = clauses.indexOf(trigger);
+        if(trigger.equals(Script.ONDROP)){
+            index++;
+        }
+        clauses.add(index + 1, "hide");
+        clauses.add(index + 2, shape_name);
     }
 
-    public void addShowAction(String shape_name){
-        clauses.add("show");
-        clauses.add(shape_name);
+    //adds the show action to to the commands executed for the given trigger
+    public void addShowAction(String shape_name, String trigger){
+        int index = clauses.indexOf(trigger);
+        if(trigger.equals(Script.ONDROP)){
+            index++;
+        }
+        clauses.add(index + 1, "show");
+        clauses.add(index + 2, shape_name);
     }
 
     //parses through all of the clauses entered for the shape and returns list of commands that need to

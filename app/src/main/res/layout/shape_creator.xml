@@ -65,7 +65,7 @@
                 >
                 <Button
                     android:text="Add Script"
-                    android:onClick="addScriptToPage"
+                    android:onClick="addScriptToShape"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:backgroundTint="@color/buttonGreen"
