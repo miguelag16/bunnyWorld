@@ -6,26 +6,30 @@
 
     <TextView
         android:id="@+id/pc_pageName"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="40sp"
+        android:fontFamily="cursive"
+        android:textColor="@color/colorPrimaryDark"
+        android:layout_gravity="center_horizontal" />
 
     <edu.stanford.cs108.bunnyworld.PageView
         android:id="@+id/pc_pageView"
         android:layout_height="0dp"
         android:layout_width="match_parent"
-        android:layout_weight="1"/>
+        android:layout_weight="1" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation = "horizontal"
-        >
+        android:orientation = "horizontal">
+
         <Button
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="wrap_content"
             android:backgroundTint="@color/buttonGreen"
-            android:text="add shape"
+            android:text="ADD SHAPE"
             android:onClick="addShape" />
 
         <Button
@@ -33,7 +37,7 @@
             android:layout_weight="1"
             android:layout_height="wrap_content"
             android:backgroundTint="@color/red"
-            android:text="undo"
+            android:text="UNDO"
             android:onClick="undo" />
 
         <Button
@@ -41,8 +45,9 @@
             android:layout_weight="1"
             android:layout_height="wrap_content"
             android:backgroundTint="@color/hotPink"
-            android:text="save"
+            android:text="SAVE"
             android:onClick="save" />
+
     </LinearLayout>
 
 </LinearLayout>
