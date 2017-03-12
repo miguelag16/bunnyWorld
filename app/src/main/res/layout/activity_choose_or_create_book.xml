@@ -8,19 +8,25 @@
     tools:context="edu.stanford.cs108.bunnyworld.ChooseOrCreateBook">
 
     <TextView
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="SELECT BOOK"/>
+        android:textSize="40sp"
+        android:fontFamily="cursive"
+        android:textColor="@color/colorPrimaryDark"
+        android:layout_gravity="center_horizontal"
+        android:text="Select Book"/>
 
     <ListView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="1"
         android:id="@+id/existing_books">
     </ListView>
 
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:backgroundTint="@color/hotPink"
         android:text="CREATE NEW BOOK"
         android:onClick="createBook"/>
 

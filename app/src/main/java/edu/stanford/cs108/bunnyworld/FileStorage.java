@@ -6,7 +6,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.PrintWriter;
-import java.util.ArrayList;
+import java.util.LinkedHashMap;
 
 /**
  * Created by Stan on 3/10/17.
@@ -14,21 +14,21 @@ import java.util.ArrayList;
 
 public class FileStorage {
 
-    public static void store(ArrayList<Book> booksList) throws IOException {
+    public static void store(LinkedHashMap<String, Book> booksMap) throws IOException {
         // Clear savedBooks.bin file
         PrintWriter pw = new PrintWriter("savedBooks.bin");
         pw.close();
 
         ObjectOutputStream os = new ObjectOutputStream(new FileOutputStream("savedBooks.bin"));
-        os.writeObject(booksList);
+        os.writeObject(booksMap);
         os.close();
     }
 
-    public static ArrayList<Book> load() throws IOException, ClassNotFoundException {
+    public static LinkedHashMap<String, Book> load() throws IOException, ClassNotFoundException {
         ObjectInputStream is = new ObjectInputStream(new FileInputStream("savedBooks.bin"));
-        ArrayList<Book> booksList = (ArrayList<Book>) is.readObject();
+        LinkedHashMap<String, Book> booksMap = (LinkedHashMap<String, Book>) is.readObject();
         is.close();
-        return booksList;
+        return booksMap;
     }
 
 }

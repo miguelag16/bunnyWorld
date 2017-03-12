@@ -13,9 +13,7 @@ import java.util.List;
 
 public class ChooseOrCreateBook extends AppCompatActivity {
 
-    // HashMap of books
-    public static HashMap<String, Book> booksMap = new HashMap<String, Book>();
-    private ListView existing_books_listview;
+    private ListView existing_books;
     private ArrayAdapter<String> listAdapter;
 
     @Override
@@ -24,23 +22,23 @@ public class ChooseOrCreateBook extends AppCompatActivity {
         setContentView(R.layout.activity_choose_or_create_book);
 
         // Find the ListView resource
-        existing_books_listview = (ListView) findViewById(R.id.existing_books);
+        existing_books = (ListView) findViewById(R.id.existing_books);
 
         // Create and populate a List of book names
-        List<String> bookNameList = new ArrayList<String>(booksMap.keySet());
+        List<String> bookNameList = new ArrayList<String>(MainActivity.booksMap.keySet());
 
         // Create ArrayAdapter using the bookNameList
         listAdapter = new ArrayAdapter<String>(this, R.layout.books_listview, bookNameList);
 
         // Set the ArrayAdapter as the ListView's adapter
-        existing_books_listview.setAdapter(listAdapter);
+        existing_books.setAdapter(listAdapter);
 
     }
 
     public void createBook (View view) {
         // Create a new book and add it to booksList
         Book book = new Book("");
-        booksMap.put(book.getName(), book);
+        MainActivity.booksMap.put(book.getName(), book);
         // Set as current book
         CurBookSingleton.getInstance().setCurrentBook(book);
         // Goto BookActivity
