@@ -25,14 +25,9 @@ public class BookActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.edit_main);
+        setContentView(R.layout.activity_book);
 
-        Book book = new Book("");
-        CurBookSingleton cb = CurBookSingleton.getInstance();
-        cb.setCurrentBook(book);
-        cb.getCurrentBook().setEditorMode(getIntent().getBooleanExtra("IS_EDITOR", true));
-
-        TextView tv = (TextView) findViewById(R.id.ba_bookName);
-        tv.setText(book.getName());
+        TextView tv = (TextView) findViewById(R.id.bookName);
+        tv.setText(CurBookSingleton.getInstance().getCurrentBook().getName());
     }
 }

@@ -14,7 +14,7 @@ import java.util.ArrayList;
 
 public class Book {
 
-    private static int numBooks = 0;
+    private static int numBooks = 1;
     private Page currentPage;//this is the only page that needs to be drawn, can easily switch to any page in the list
     public ArrayList<Page> allPages; //shapes need to be able to access other shapes on different pages
     private boolean isEditorMode;
@@ -98,7 +98,7 @@ public class Book {
         this.allPages = new ArrayList<Page>();
         this.possessions = new Possessions(this);
 
-        if(name.isEmpty()) this.bookName = "book" + Integer.toString(numBooks);
+        if(name.isEmpty()) this.bookName = "Book" + Integer.toString(numBooks);
         else this.bookName = name;
         //if database is empty create new empty page else load it from database
         //will also be different depending on whether it is in editor or game mode
