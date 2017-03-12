@@ -41,6 +41,14 @@ public class Page implements Serializable {
         this.shapeList.add(shape);
     }
 
+    public Canvas getCanvas() {
+        return this.canvas;
+    }
+
+    public int numShapes() {
+        return shapeList.size();
+    }
+
     public void draw(Canvas canvas) {
         this.canvas = canvas;
         for(Shape i : shapeList){
@@ -71,50 +79,4 @@ public class Page implements Serializable {
         return false;
     }
 
-
-
-    public Canvas getCanvas() {
-        return this.canvas;
-    }
-
-
-
-    public int numShapes() {
-        return shapeList.size();
-    }
-
-
-
-//    public ArrayList<Shape> getShapes(){//don't need shapelist is now public
-//        return shapeList;
-//    }
-
-
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
