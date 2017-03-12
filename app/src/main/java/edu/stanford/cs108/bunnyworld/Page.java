@@ -18,19 +18,18 @@ import static android.content.ContentValues.TAG;
 
 public class Page implements Serializable {
 
-    private static int pageCount = 0;
+    private static int pageCount;
     protected String name;
     private Canvas canvas;
     public ArrayList<Shape> shapeList;
 
     public Page(String name) {
         if(name.isEmpty()){
-            this.name = "page" + Integer.toString(pageCount);
+            this.name = "page" + Integer.toString(CurBookSingleton.getInstance().getCurrentBook().allPages.size() + 1);
         }
         else{
             this.name = name;
         }
-        this.pageCount++;
         shapeList = new ArrayList<Shape>();
     }
 

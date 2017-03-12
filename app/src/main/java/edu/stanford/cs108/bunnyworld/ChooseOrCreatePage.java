@@ -35,7 +35,9 @@ public class ChooseOrCreatePage extends AppCompatActivity {
         existing_pages = (ListView) findViewById(R.id.existing_pages);
 
         // Create and populate a List of book names
-        List<String> pageNameList = new ArrayList<String>(CurBookSingleton.getInstance().getCurrentBook().allPages.keySet());
+
+        // ** WANT TO REPLACE WITH CurBookSingleton.getInstance().getCurrentBook().allPages.keySet() WHEN ALLPAGES IS A LINKED HASHMAP
+        List<String> pageNameList = new ArrayList<String>();
 
         // Create ArrayAdapter using the bookNameList
         listAdapter = new ArrayAdapter<String>(this, R.layout.listview_template, pageNameList);
