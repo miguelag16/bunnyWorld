@@ -17,8 +17,11 @@ import java.util.ArrayList;
 
 public class Shape implements Serializable {
 
-    protected static final float WIDTH = 200.0f;
-    protected static final float HEIGHT = 200.0f;
+    protected static final float DEFAULT_WIDTH = 200.0f;
+    protected static final float DEFAULT_HEIGHT = 200.0f;
+
+    private float width;
+    private float height;
 
     private Context context;
 
@@ -42,6 +45,9 @@ public class Shape implements Serializable {
     public Shape(Page p, String resText, String drawableText, boolean inPossessions,
                  boolean isHidden, boolean isMovable, Point point) {
         this.shapeName = p.name + "/" + resText + "-" + drawableText;
+        this.width = DEFAULT_WIDTH;
+        this.height = DEFAULT_HEIGHT;
+
         this.resText = resText;
         this.drawableText = drawableText;
         this.isHidden = isHidden;
@@ -53,10 +59,26 @@ public class Shape implements Serializable {
         this.point = point;
     }
 
+    public float getWidth(){ return this.width; }
+    public void setWidth(float f){ this.width = f; }
+
+    public float getHeight(){ return this.height; }
+    public void setHeight(float f){ this.height = f; }
+
     public Point getLocation() {return this.point; }
     public void setLocation(float x, float y) {
         this.point.setLeft(x);
         this.point.setTop(y);
+    }
+
+    private void highlightShape(Canvas canvas) {
+        RectF highlight = new RectF(point.getLeft(), point.getTop(),
+                point.getLeft() + width, point.getTop() + height);
+
+        Paint goldPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
+        goldPaint.setColor(Color.YELLOW);
+        goldPaint.setStrokeWidth(15.0f);
+        canvas.drawRect(highlight, goldPaint);
     }
 
 
@@ -76,12 +98,12 @@ public class Shape implements Serializable {
                         (BitmapDrawable) rs.getContext().getResources().getDrawable(fileID);
                 canvas.drawBitmap(
                         x.getBitmap(), null, new RectF(point.getLeft(), point.getTop(),
-                                point.getLeft() + WIDTH, point.getTop() + HEIGHT), null);
+                                point.getLeft() + width, point.getTop() + height), null);
             } else {
                 paint.setStyle(Paint.Style.FILL_AND_STROKE);
                 paint.setColor(Color.LTGRAY);
                 RectF r = new RectF(point.getLeft(), point.getTop(),
-                        point.getLeft() + WIDTH, point.getTop() + HEIGHT);
+                        point.getLeft() + width, point.getTop() + height);
                 canvas.drawRect(r, paint);
             }
         }

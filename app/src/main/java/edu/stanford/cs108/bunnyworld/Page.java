@@ -40,6 +40,9 @@ public class Page implements Serializable {
     public void addShape(Shape shape){
         this.shapeList.add(shape);
     }
+    public void removeShape(Shape shape) {
+        shapeList.remove(shape);
+    }
 
     public Canvas getCanvas() {
         return this.canvas;
@@ -68,11 +71,11 @@ public class Page implements Serializable {
     private boolean selected(Shape s, float x, float y) {
         System.out.println(Float.toString(x) + "XY" + Float.toString(y));
         Point p = s.getLocation();
-        if(x >= p.getLeft() && x <= p.getLeft() + Shape.WIDTH) {
-            System.out.println(Float.toString(p.getLeft()) + "LR" + Float.toString(p.getLeft() + Shape.WIDTH));
-            System.out.println(Float.toString(p.getTop()) + "TB" + Float.toString(p.getTop() + Shape.HEIGHT));
-            if (y >= p.getTop() && y <= p.getTop() + Shape.HEIGHT) {
-                System.out.println(Float.toString(p.getTop()) + "TB" + Float.toString(p.getTop() + Shape.HEIGHT));
+        if(x >= p.getLeft() && x <= p.getLeft() + s.getWidth()) {
+            System.out.println(Float.toString(p.getLeft()) + "LR" + Float.toString(p.getLeft() + s.getWidth()));
+            System.out.println(Float.toString(p.getTop()) + "TB" + Float.toString(p.getTop() + s.getHeight()));
+            if (y >= p.getTop() && y <= p.getTop() + s.getHeight()) {
+                System.out.println(Float.toString(p.getTop()) + "TB" + Float.toString(p.getTop() + s.getHeight()));
                 return true;
             }
         }

@@ -54,4 +54,9 @@ public class ChooseOrCreatePage extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public void closeBook(View view) {
+        Intent intent = new Intent(this, ChooseOrCreateBook.class);
+        startActivity(intent);
+    }
+
 }
