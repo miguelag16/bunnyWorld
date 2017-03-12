@@ -23,9 +23,9 @@ public class Page implements Serializable {
     private Canvas canvas;
     public ArrayList<Shape> shapeList;
 
-    public Page(String name) {
+    public Page(String name, Book book) {
         if(name.isEmpty()){
-            this.name = "page" + Integer.toString(CurBookSingleton.getInstance().getCurrentBook().pagesMap.size() + 1);
+            this.name = "Page" + Integer.toString(book.pagesMap.size() + 1);
         }
         else{
             this.name = name;

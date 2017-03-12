@@ -45,7 +45,7 @@ public class ExampleView extends View {
     public ExampleView(Context context, AttributeSet attrs) {
         super(context, attrs);
         //p = new Page(context, attrs);
-        p = new Page("Page1");
+        //p = new Page("Page1");
     }
 }
 

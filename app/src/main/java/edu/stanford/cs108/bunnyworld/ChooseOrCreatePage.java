@@ -45,10 +45,10 @@ public class ChooseOrCreatePage extends AppCompatActivity {
     }
 
     public void addPage(View view) {
-        CurBookSingleton cb = CurBookSingleton.getInstance();
+        Book book = CurBookSingleton.getInstance().getCurrentBook();
 
-        Page newPage = new Page("");
-        cb.getCurrentBook().addPage(newPage);
+        Page newPage = new Page("", book);
+        book.addPage(newPage);
 
         Intent intent = new Intent(this, PageCreator.class);
         startActivity(intent);

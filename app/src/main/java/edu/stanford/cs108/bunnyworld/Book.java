@@ -100,8 +100,8 @@ public class Book implements Serializable {
         else bookName = name;
 
         // Automatically add a default page when a new book is created
-        //Page page = new Page("");
-        //pagesMap.put(page.name, page);
+        Page page = new Page("", this);
+        pagesMap.put(page.name, page);
     }
 
     public String getName(){
@@ -111,7 +111,7 @@ public class Book implements Serializable {
     public Page getCurrentPage(){
         return currentPage;
     }
-    
+
     public void setCurrentPage(Page p){
         currentPage = p;
     }
