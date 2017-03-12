@@ -71,6 +71,7 @@ public class ShapeCreator extends AppCompatActivity {
         list.setAdapter(itemsAdapter);
     }
 
+    public void addScriptToShape(View view){
         Intent intent = new Intent(this, ScriptCreator.class);
         startActivity(intent);
     }
