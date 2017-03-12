@@ -12,7 +12,7 @@ import java.util.LinkedHashMap;
 
 public class Book implements Serializable {
 
-    private static int numBooks = 1;
+    private static int numBooks = 0;
     private Page currentPage;//this is the only page that needs to be drawn, can easily switch to any page in the list
     public LinkedHashMap<String, Page> pagesMap; //shapes need to be able to access other shapes on different pages
     private boolean isEditorMode;
@@ -95,13 +95,14 @@ public class Book implements Serializable {
     public Book(String name) {
         this.pagesMap = new LinkedHashMap<String, Page>();
         this.possessions = new Possessions(this);
+        this.numBooks++;
 
         if(name.isEmpty()) this.bookName = "Book" + Integer.toString(numBooks);
         else this.bookName = name;
-        //if database is empty create new empty page else load it from database
-        //will also be different depending on whether it is in editor or game mode
-        //doesn't make sense to have a book view without at least one page
-        this.numBooks++;
+
+        // Automatically add a default page when a new book is created
+        //Page page = new Page("");
+        //pagesMap.put(page.name, page);
     }
 
     public String getName(){
