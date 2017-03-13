@@ -14,6 +14,7 @@ public class Book implements Serializable {
 
     private static int numBooks = 0;
     private Page currentPage;   // The page that needs to be drawn
+    private Page firstPage;     //the page that gameplay mode will start on
     public LinkedHashMap<String, Page> pagesMap;    // Shapes need to be able to access other shapes on different pages
     private boolean isEditorMode;
     private Possessions possessions;
@@ -29,6 +30,8 @@ public class Book implements Serializable {
 
         // Automatically add a default page when a new book is created
         Page page = new Page("", this);
+        this.firstPage = page; //the automatically added page will always be the first one
+                               //please allow for some way of changing the name of a page
         pagesMap.put(page.name, page);
     }
 
@@ -69,6 +72,10 @@ public class Book implements Serializable {
 
     public Page getPage(String name) {
         return pagesMap.get(name);
+    }
+
+    public Page getFirstPage(){
+        return this.firstPage;
     }
 
 

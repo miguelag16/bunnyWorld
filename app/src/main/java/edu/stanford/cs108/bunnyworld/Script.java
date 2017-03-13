@@ -79,12 +79,14 @@ public class Script implements Serializable {
     public ArrayList<String> getClauses(String Trigger, String dropName){
         ArrayList<String> result = new ArrayList<String>();
         for(int i = 0; i < clauses.size(); i++){
+            System.out.println(clauses.get(i));
             if(clauses.get(i).equals(Trigger)){
                 if(Trigger.equals(ONDROP) && !clauses.get(i + 1).equals(dropName)){//only applies to drop triggers
                     continue;//increments i goes to top of for loop
                 }
+                i++;
                 while(i < clauses.size() && !clauses.get(i).equals(ONCLICK)
-                && !clauses.get(i).equals(ONENTER) && !clauses.get(i).equals(ONDROP)){//adds all of the commands in the given clause
+                && !clauses.get(i).equals(ONENTER) && !clauses.get(i).equals(ONDROP)) {//adds all of the commands in the given clause
                     result.add(clauses.get(i));
                     i++;
                 }
@@ -131,7 +133,7 @@ public class Script implements Serializable {
     public String toString() {
         String result = "";
         for(String i : clauses){
-            result += " " + i;
+            result += i + '\n';
         }
         return result;
     }

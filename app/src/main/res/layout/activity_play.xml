@@ -7,4 +7,8 @@
     android:orientation="vertical"
     tools:context="edu.stanford.cs108.bunnyworld.PlayActivity">
 
+    <edu.stanford.cs108.bunnyworld.PageViewGameMode
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
 </LinearLayout>

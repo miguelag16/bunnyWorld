@@ -126,6 +126,9 @@ public class Shape implements Serializable {
         textSize = f;
     }
 
+    public boolean isMovable(){
+        return this.isMovable;
+    }
 
     //shapes can have clauses in them that when executed, hide other shapes
     public void setIsHidden(boolean isHidden){
@@ -134,7 +137,15 @@ public class Shape implements Serializable {
 
     //leave drop name as the empty string if it is not a drop event.
     public void enactScript(String TriggerEvent, String dropName){
+        System.out.println("enact scripts called");
         ArrayList<String> commands = script.getClauses(TriggerEvent, dropName);
+        System.out.println(commands.size());
+        System.out.println(script);
+
+        System.out.println("commands printed below");
+        for(String i : commands){
+            System.out.println(i);
+        }
         if(commands.size() == 0){
             return;
         }
@@ -154,6 +165,7 @@ public class Shape implements Serializable {
                 }
             }
             else if(commands.get(i).equals(Script.PLAY)){
+                System.out.println("tried to play thriller aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
                 ResSingleton resSingleton = ResSingleton.getInstance();
                 MediaPlayer mp = MediaPlayer.create(resSingleton.getContext(),R.raw.thriller);
                 mp.start();
@@ -162,6 +174,9 @@ public class Shape implements Serializable {
                 //experimental but I think it will work
                 //may need some way to signify to book or page view that is needs to be redrawn
                 book.setCurrentPage(book.pagesMap.get(commands.get(i + 1)));
+            }
+            else{
+
             }
         }
     }

@@ -11,6 +11,7 @@ public class MainActivity extends AppCompatActivity {
 
     // LinkedHashMap of books
     public static LinkedHashMap<String, Book> booksMap = new LinkedHashMap<String, Book>();
+    private Book testingBook; //testing around to get gameplay to work
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,7 +23,15 @@ public class MainActivity extends AppCompatActivity {
         rs.setContext(this.getApplicationContext());
 
         // *** FOR TESTING PURPOSES ***
-        booksMap.put("Book1", new Book("Book1"));
+        testingBook = new  Book("Book1");
+        Page samplePage = new Page("", testingBook);
+        Point p = new Point(0, 0);
+        Shape sampleShape = new Shape(samplePage, "dolan", "", false, false, true, p);
+        sampleShape.script.addOnEnterTrigger();
+        sampleShape.script.addPlaySoundAction("thriller", Script.ONENTER);
+        samplePage.addShape(sampleShape);
+        testingBook.addPage(samplePage);
+        booksMap.put("Book1", testingBook);
         booksMap.put("Book2", new Book("Book2"));
         booksMap.put("Book3", new Book("Book3"));
         booksMap.put("Book4", new Book("Book4"));
@@ -45,6 +54,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void play(View view) {
+        CurBookSingleton b = CurBookSingleton.getInstance();
+        b.setCurrentBook(testingBook);
+        b.getCurrentBook().setEditorMode(false);
         Intent intent = new Intent(this, PlayActivity.class);
         startActivity(intent);
     }
