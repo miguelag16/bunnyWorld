@@ -110,6 +110,7 @@ public class ScriptCreator extends AppCompatActivity {
         Button b = (Button) findViewById(R.id.SelectItemButton);
         b.setVisibility(View.VISIBLE);
         SetUpActionsSpinner(view);
+        SetUpShapesSpinnerOnDrop(view);
 
     }
 
@@ -133,6 +134,31 @@ public class ScriptCreator extends AppCompatActivity {
         spinner.setAdapter(adapter);
     }
 
+    //sets the spinner to display list of all shape names
+    public void SetUpShapesSpinnerOnDrop(View view){
+        ArrayList<String> shapeNames = getAllShapeNames();
+        Spinner spinner = (Spinner) findViewById(R.id.onDropShapeName);
+        String[] names = shapeNames.toArray(new String[shapeNames.size()]);
+        ArrayAdapter<String> gameKindArray= new ArrayAdapter<String>(ScriptCreator.this,android.R.layout.simple_spinner_item, names);
+        gameKindArray.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner.setAdapter(gameKindArray);
+
+
+    }
+
+
+    public ArrayList<String> getAllShapeNames(){
+        Book book = CurBookSingleton.getInstance().getCurrentBook();
+        ArrayList<String> names = new ArrayList<String>();
+        //adds the name of every shape from every page into the names list
+        for(String i : book.pagesMap.keySet()){
+            for(Shape j : book.pagesMap.get(i).shapeList){
+                names.add(j.getName());
+            }
+        }
+        return names;
+    }
+
 
 
 
@@ -140,11 +166,6 @@ public class ScriptCreator extends AppCompatActivity {
 
 
 }
-
-
-
-
-
 
 
 
