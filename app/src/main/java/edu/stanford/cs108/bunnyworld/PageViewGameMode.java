@@ -1,5 +1,18 @@
 package edu.stanford.cs108.bunnyworld;
 
+/**
+ * Created by domin on 3/13/2017.
+ */
+
+
+import android.content.Context;
+import android.graphics.Canvas;
+import android.util.AttributeSet;
+import android.view.MotionEvent;
+import android.view.View;
+import android.widget.EditText;
+import android.widget.LinearLayout;
+
 import android.content.Context;
 import android.graphics.Canvas;
 import android.util.AttributeSet;
@@ -13,20 +26,20 @@ import android.widget.TextView;
  * Created by miguelgarcia on 3/10/17.
  */
 
-public class PageView extends View {
+public class PageViewGameMode extends View {
 
     private Page cp = null;
     private Shape cs = null;
     private Canvas c = null; //Best variable name I have ever seen in my life
 
-    public PageView(Context context, AttributeSet attrs) {
+    public PageViewGameMode(Context context, AttributeSet attrs) {
         super(context, attrs);
     }
 
     public Shape getPVCurrentShape() {return this.cs; }
     public void deleteShape() {
         cp.removeShape(cs);
-        hideEditXML();
+        //hideEditXML();
         invalidate();
     }
 
@@ -34,7 +47,15 @@ public class PageView extends View {
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
         c = canvas;
-        cp = CurBookSingleton.getInstance().getCurrentBook().getCurrentPage();
+        Page temp = CurBookSingleton.getInstance().getCurrentBook().getCurrentPage();
+        if(cp != temp){//actually do want to compare the literal addresses
+            System.out.println("cp does not equal temp");
+            cp = temp;
+            for(Shape i : cp.shapeList){
+                System.out.println("enacting script on " + i.getName());
+                i.enactScript(Script.ONENTER, "");
+            }
+        }
         cp.draw(canvas);
     }
 
@@ -49,12 +70,13 @@ public class PageView extends View {
                 cs = cp.findSelectedShape(x, y);
 
                 if(cs != null) {
-                    System.out.println(cs.getName());
-                    setupEditXML();
+                    cs.enactScript(Script.ONCLICK, "");
+                    invalidate();
+                    //setupEditXML();
                 }
                 else {
                     System.out.println("null shape on action down");
-                    hideEditXML();
+                    //hideEditXML();
                     cs = null;
                 }
                 break;
@@ -62,7 +84,9 @@ public class PageView extends View {
                 if(cs != null){
                     x = event.getX();
                     y = event.getY();
-                    cs.setLocation(x, y);
+                    if(cs.isMovable()){
+                        cs.setLocation(x, y);
+                    }
                     System.out.println("Reset location of " + cs.getName());
                 }
                 System.out.println("null shape on action move");
@@ -106,3 +130,4 @@ public class PageView extends View {
     }
 
 }
+

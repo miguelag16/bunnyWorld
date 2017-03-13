@@ -3,7 +3,7 @@
     <string-array name="actions_array">
         <item>show</item>
         <item>hide</item>
-        <item> goto </item>
-        <item> play </item>
+        <item>goto</item>
+        <item>play</item>
     </string-array>
 </resources>

@@ -7,6 +7,7 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.RectF;
 import android.graphics.drawable.BitmapDrawable;
+import android.media.MediaPlayer;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -125,6 +126,9 @@ public class Shape implements Serializable {
         textSize = f;
     }
 
+    public boolean isMovable(){
+        return this.isMovable;
+    }
 
     //shapes can have clauses in them that when executed, hide other shapes
     public void setIsHidden(boolean isHidden){
@@ -133,15 +137,23 @@ public class Shape implements Serializable {
 
     //leave drop name as the empty string if it is not a drop event.
     public void enactScript(String TriggerEvent, String dropName){
+        System.out.println("enact scripts called");
         ArrayList<String> commands = script.getClauses(TriggerEvent, dropName);
+        System.out.println(commands.size());
+        System.out.println(script);
+
+        System.out.println("commands printed below");
+        for(String i : commands){
+            System.out.println(i);
+        }
         if(commands.size() == 0){
             return;
         }
         Book book = CurBookSingleton.getInstance().getCurrentBook();
         for(int i = 0; i < commands.size(); i = i + 2){
-            if(commands.get(i).equals("hide") || commands.get(i).equals("show")){
+            if(commands.get(i).equals(Script.HIDE) || commands.get(i).equals(Script.SHOW)){
                 boolean flag = true;
-                if(commands.get(i).equals("show")){//enables me to have one loop to handle hide and show
+                if(commands.get(i).equals(Script.SHOW)){//enables me to have one loop to handle hide and show
                     flag = false;                  //versus two identical loops except the set value
                 }
                 for(int j = 0; j < book.pagesMap.size(); j++){//looks thorugh all pages and all shapes for one it needs to hide
@@ -152,16 +164,21 @@ public class Shape implements Serializable {
                     }
                 }
             }
-            else if(commands.get(i).equals("play")){
-                //Someone please add code here to play designated sound file
+            else if(commands.get(i).equals(Script.PLAY)){
+                System.out.println("tried to play thriller aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
+                ResSingleton resSingleton = ResSingleton.getInstance();
+                MediaPlayer mp = MediaPlayer.create(resSingleton.getContext(),R.raw.thriller);
+                mp.start();
+            }
+            else if(commands.get(i).equals(Script.GOTO)){
+                //experimental but I think it will work
+                //may need some way to signify to book or page view that is needs to be redrawn
+                book.setCurrentPage(book.pagesMap.get(commands.get(i + 1)));
             }
             else{
-                //experimental but I think it will work
-                //int pageIndex = book.pagesMap.indexOf(commands.get(i + 1));
-                //book.setCurrentPage(book.pagesMap.get(pageIndex));
+
             }
         }
-
     }
 
     //I think the below two classes will enable me to use hashmaps/sets
