@@ -4,6 +4,11 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
+    <TextView
+        android:text="Triggers:"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
     <RadioGroup
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -62,6 +67,7 @@
 
     <Spinner
         android:visibility="gone"
+
         android:id="@+id/actionListSpinner"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">

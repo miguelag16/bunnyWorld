@@ -13,9 +13,13 @@ public class Script implements Serializable {
     private ArrayList<String> clauses;
 
 
-    private static final String ONCLICK = "on click";
-    private static final String ONENTER = "on enter";
-    private static final String ONDROP = "on drop";
+    public static final String ONCLICK = "on click";
+    public static final String ONENTER = "on enter";
+    public static final String ONDROP = "on drop";
+    public static final String GOTO = "goto";
+    public static final String SHOW = "show";
+    public static final String HIDE = "hide";
+    public static final String PLAY = "play";
 
 
 
@@ -35,7 +39,7 @@ public class Script implements Serializable {
         if(trigger.equals(Script.ONDROP)){
             index++;
         }
-        clauses.add(index + 1, "goto");
+        clauses.add(index + 1, Script.GOTO);
         clauses.add(index + 2, page_name);
     }
 
@@ -45,7 +49,7 @@ public class Script implements Serializable {
         if(trigger.equals(Script.ONDROP)){
             index++;
         }
-        clauses.add(index + 1, "play");
+        clauses.add(index + 1, Script.PLAY);
         clauses.add(index + 2, sound_name);
     }
 
@@ -55,7 +59,7 @@ public class Script implements Serializable {
         if(trigger.equals(Script.ONDROP)){
             index++;
         }
-        clauses.add(index + 1, "hide");
+        clauses.add(index + 1, Script.HIDE);
         clauses.add(index + 2, shape_name);
     }
 
@@ -65,7 +69,7 @@ public class Script implements Serializable {
         if(trigger.equals(Script.ONDROP)){
             index++;
         }
-        clauses.add(index + 1, "show");
+        clauses.add(index + 1, Script.SHOW);
         clauses.add(index + 2, shape_name);
     }
 
@@ -79,7 +83,8 @@ public class Script implements Serializable {
                 if(Trigger.equals(ONDROP) && !clauses.get(i + 1).equals(dropName)){//only applies to drop triggers
                     continue;//increments i goes to top of for loop
                 }
-                while(!clauses.get(i).equals(";")){//adds all of the commands in the given clause
+                while(i < clauses.size() && !clauses.get(i).equals(ONCLICK)
+                && !clauses.get(i).equals(ONENTER) && !clauses.get(i).equals(ONDROP)){//adds all of the commands in the given clause
                     result.add(clauses.get(i));
                     i++;
                 }
@@ -89,27 +94,46 @@ public class Script implements Serializable {
         return null;//if null is returned, no actions are required for the trigger
     }
 
-    public void addOnClickTrigger(){
+    public void addOnClickTrigger() {
+        if (clauses.contains(ONCLICK)) {
+            return;
+        }
         clauses.add(ONCLICK);
     }
 
-    public void addEnterClickTrigger(){
+    public void addOnEnterTrigger(){
+        if (clauses.contains(ONENTER)) {
+            return;
+        }
         clauses.add(ONENTER);
     }
 
     public void addDropClickTrigger(String nameOfShapeDropped){
+        if (clauses.contains(ONDROP)) {
+            return;
+        }
         clauses.add(ONDROP);
         clauses.add(nameOfShapeDropped);
     }
 
-    //adds semicolon to end of current list of commands to signal the clause is finished
+    //SemiColon is kind of pointless in current implementation of Script.
+    //getClauses returns everything inbetween triggers and script creator currently does not
+    //have the ability to add semicolons between triggers.
+    //also trying to add actions to the same trigger will append the actions to that type of trigger.
+    //scripts will not let you have two triggers of the same type.
+    //basically this function is never used and has no need to exist
     public void EndCurrentClause(){
         clauses.add(";");
     }
 
 
-
-
-
+    @Override
+    public String toString() {
+        String result = "";
+        for(String i : clauses){
+            result += " " + i;
+        }
+        return result;
+    }
 
 }

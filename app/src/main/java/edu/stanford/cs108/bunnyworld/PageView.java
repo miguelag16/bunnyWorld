@@ -17,7 +17,7 @@ public class PageView extends View {
 
     private Page cp = null;
     private Shape cs = null;
-    private Canvas c = null;
+    private Canvas c = null; //Best variable name I have ever seen in my life
 
     public PageView(Context context, AttributeSet attrs) {
         super(context, attrs);

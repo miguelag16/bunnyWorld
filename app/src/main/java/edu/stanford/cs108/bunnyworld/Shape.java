@@ -7,6 +7,7 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.RectF;
 import android.graphics.drawable.BitmapDrawable;
+import android.media.MediaPlayer;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -139,9 +140,9 @@ public class Shape implements Serializable {
         }
         Book book = CurBookSingleton.getInstance().getCurrentBook();
         for(int i = 0; i < commands.size(); i = i + 2){
-            if(commands.get(i).equals("hide") || commands.get(i).equals("show")){
+            if(commands.get(i).equals(Script.HIDE) || commands.get(i).equals(Script.SHOW)){
                 boolean flag = true;
-                if(commands.get(i).equals("show")){//enables me to have one loop to handle hide and show
+                if(commands.get(i).equals(Script.SHOW)){//enables me to have one loop to handle hide and show
                     flag = false;                  //versus two identical loops except the set value
                 }
                 for(int j = 0; j < book.pagesMap.size(); j++){//looks thorugh all pages and all shapes for one it needs to hide
@@ -152,16 +153,17 @@ public class Shape implements Serializable {
                     }
                 }
             }
-            else if(commands.get(i).equals("play")){
-                //Someone please add code here to play designated sound file
+            else if(commands.get(i).equals(Script.PLAY)){
+                ResSingleton resSingleton = ResSingleton.getInstance();
+                MediaPlayer mp = MediaPlayer.create(resSingleton.getContext(),R.raw.thriller);
+                mp.start();
             }
-            else{
+            else if(commands.get(i).equals(Script.GOTO)){
                 //experimental but I think it will work
-                //int pageIndex = book.pagesMap.indexOf(commands.get(i + 1));
-                //book.setCurrentPage(book.pagesMap.get(pageIndex));
+                //may need some way to signify to book or page view that is needs to be redrawn
+                book.setCurrentPage(book.pagesMap.get(commands.get(i + 1)));
             }
         }
-
     }
 
     //I think the below two classes will enable me to use hashmaps/sets

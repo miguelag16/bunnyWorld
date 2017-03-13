@@ -82,4 +82,6 @@ public class Page implements Serializable {
         return false;
     }
 
+    public String getName(){return this.name;}
+
 }
