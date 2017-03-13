@@ -1,12 +1,15 @@
 package edu.stanford.cs108.bunnyworld;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,15 +36,21 @@ public class ChooseOrCreatePage extends AppCompatActivity {
 
         // Find the ListView resource
         existing_pages = (ListView) findViewById(R.id.existing_pages);
-
         // Create and populate a List of book names
         List<String> pageNameList = new ArrayList<String>(CurBookSingleton.getInstance().getCurrentBook().pagesMap.keySet());
-
         // Create ArrayAdapter using the bookNameList
         listAdapter = new ArrayAdapter<String>(this, R.layout.listview_template, pageNameList);
-
         // Set the ArrayAdapter as the ListView's adapter
         existing_pages.setAdapter(listAdapter);
+
+
+        existing_pages.setOnItemClickListener(new AdapterView.OnItemClickListener()
+        {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                existing_pages.getItemAtPosition(i);
+            }
+        });
     }
 
     public void addPage(View view) {
