@@ -1,12 +1,17 @@
 package edu.stanford.cs108.bunnyworld;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.DragEvent;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.CheckBox;
 import android.widget.ListView;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -58,6 +63,20 @@ public class ChooseOrCreateBook extends AppCompatActivity {
                 // Goto ChooseOrCreatePage
                 Intent intent = new Intent(getApplicationContext(), ChooseOrCreatePage.class);
                 startActivity(intent);
+            }
+        });
+
+        existing_books.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
+                String bookName = existing_books.getItemAtPosition(i).toString();
+                Toast.makeText(getApplicationContext(), "Deleted \"" + bookName + "\"" , Toast.LENGTH_SHORT).show();
+                MainActivity.booksMap.remove(bookName);
+
+                Intent intent = getIntent();
+                finish();
+                startActivity(intent);
+                return true;
             }
         });
 
