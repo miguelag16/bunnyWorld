@@ -18,59 +18,82 @@ import java.util.ArrayList;
 
 public class Shape implements Serializable {
 
-    protected static final float DEFAULT_WIDTH = 200.0f;
-    protected static final float DEFAULT_HEIGHT = 200.0f;
+    private static final float DEFAULT_WIDTH = 200.0f;
+    private static final float DEFAULT_HEIGHT = 200.0f;
+    private static final float DEFAULT_TEXT_SIZE = 50.0f;
 
-    private float width;
-    private float height;
+    private float width = DEFAULT_WIDTH;
+    private float height = DEFAULT_HEIGHT;
+    private float textSize = DEFAULT_TEXT_SIZE;
 
-    private Context context;
-
-    private float textSize = 50.0f;
-    private boolean isMovable;
-    private boolean isHidden;
     private Page page;
+
+    private boolean isMovable = false;
+    private boolean isHidden = false;
+    private boolean inPossessions = false;
+
+    private Point point = new Point(0, 0);
     private String shapeName;
-    private String resText;
-    private String drawableText;
+    private String filename;
+    private String wordArt;
+
     private Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
-    private Point point;
 
     //a shape's script needs to be able to be changed by other classes in editor mode
-    public Script script;
+    public Script script = new Script();;
 
+    public Shape(Page p, String filename, String wordArt) {
+        this.shapeName = p.name + "/" + filename + "-" + wordArt;
 
-    private boolean possessions;
-
-
-    public Shape(Page p, String resText, String drawableText, boolean inPossessions,
-                 boolean isHidden, boolean isMovable, Point point) {
-        this.shapeName = p.name + "/" + resText + "-" + drawableText;
-        this.width = DEFAULT_WIDTH;
-        this.height = DEFAULT_HEIGHT;
-
-        this.resText = resText;
-        this.drawableText = drawableText;
-        this.isHidden = isHidden;
-        this.isMovable = isMovable;
+        this.filename = filename;
+        this.wordArt = wordArt;
 
         this.page = p;
-        this.possessions = inPossessions;
-        this.script = new Script();
-        this.point = point;
     }
 
-    public float getWidth(){ return this.width; }
-    public void setWidth(float f){ this.width = f; }
+    String getName() {
+        return shapeName;
+    }
+    void setName(String newName) {
+        this.shapeName = newName;
+    }
 
-    public float getHeight(){ return this.height; }
-    public void setHeight(float f){ this.height = f; }
+    float getWidth(){ return this.width; }
+    void setWidth(float f){ this.width = f; }
 
-    public Point getLocation() {return this.point; }
-    public void setLocation(float x, float y) {
+    float getHeight(){ return this.height; }
+    void setHeight(float f){ this.height = f; }
+
+    Point getLocation() {return this.point; }
+    void setLocation(float x, float y) {
         this.point.setLeft(x);
         this.point.setTop(y);
     }
+
+    float getTextSize(){
+        return this.textSize;
+    }
+    void setTextSize(float f){
+        this.textSize = f;
+    }
+
+    boolean inPossessions() {
+        return this.inPossessions;
+    }
+    void setInPossessions() { this.inPossessions = true;}
+    void setNotInPossessions() { this.inPossessions = false;}
+
+    boolean isMovable(){
+        return this.isMovable;
+    }
+    void setMovable() { this.isMovable = true;}
+    void setNotMovable() { this.isMovable = false;}
+
+    boolean isHidden(){
+        return this.isHidden;
+    }
+    void setHidden() { this.isHidden = true;}
+    void setNotHidden() { this.isHidden = false;}
 
     private void highlightShape(Canvas canvas) {
         RectF highlight = new RectF(point.getLeft(), point.getTop(),
@@ -87,14 +110,14 @@ public class Shape implements Serializable {
     public void draw(Canvas canvas) {
          //need to fix hidden based on whether it is gameplay or editor mode
         if (!isHidden || CurBookSingleton.getInstance().getCurrentBook().isEditorMode()) {
-            if (!drawableText.isEmpty()){
+            if (!wordArt.isEmpty()){
                 paint.setTextSize(textSize);
-                canvas.drawText(drawableText, point.getLeft(), point.getTop() + textSize, paint);//text is drawn starting at lower left corner
+                canvas.drawText(wordArt, point.getLeft(), point.getTop() + textSize, paint);//text is drawn starting at lower left corner
             }
-            else if (!resText.isEmpty()) {
+            else if (!filename.isEmpty()) {
                 ResSingleton rs = ResSingleton.getInstance();
                 int fileID = rs.getContext()
-                        .getResources().getIdentifier(resText, "drawable", rs.getContext().getPackageName());
+                        .getResources().getIdentifier(filename, "drawable", rs.getContext().getPackageName());
                 BitmapDrawable x =
                         (BitmapDrawable) rs.getContext().getResources().getDrawable(fileID);
                 canvas.drawBitmap(
@@ -110,25 +133,7 @@ public class Shape implements Serializable {
         }
     }
 
-    public boolean inPossessions() {
-        return possessions;
-    }
 
-    public String getName() {
-        return shapeName;
-    }
-
-    public void setName(String newName) {
-        this.shapeName = newName;
-    }
-
-    public void setTextSize(float f){
-        textSize = f;
-    }
-
-    public boolean isMovable(){
-        return this.isMovable;
-    }
 
     //shapes can have clauses in them that when executed, hide other shapes
     public void setIsHidden(boolean isHidden){

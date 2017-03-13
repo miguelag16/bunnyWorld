@@ -22,19 +22,15 @@ public class ShapeCreator extends AppCompatActivity {
         CurBookSingleton cbs = CurBookSingleton.getInstance();
         Page cp = cbs.getCurrentBook().getCurrentPage();
 
-        System.out.println("Here");
-        String resText = ((Spinner) findViewById(R.id.sc_spinner)).getSelectedItem().toString();
+        String filename = ((Spinner) findViewById(R.id.sc_spinner)).getSelectedItem().toString();
+        filename = filename.substring(0, filename.indexOf('.'));
+        String wordArt = ((EditText) findViewById(R.id.sc_text)).getText().toString();
 
-        resText = resText.substring(0, resText.indexOf('.'));
-        System.out.println(resText);
-        String drawableText = ((EditText) findViewById(R.id.sc_text)).getText().toString();
-        System.out.println(drawableText);
-        boolean isHidden = ((RadioButton) findViewById(R.id.sc_hidden)).isChecked();
-        boolean isMovable = ((RadioButton) findViewById(R.id.sc_movable)).isChecked();
+        Shape x = new Shape(cp, filename, wordArt);
 
-        Point p = new Point(0, 0);
+        if(((RadioButton) findViewById(R.id.sc_hidden)).isChecked()) x.setHidden();
+        if(((RadioButton) findViewById(R.id.sc_movable)).isChecked()) x.setMovable();
 
-        Shape x = new Shape(cp, resText, drawableText, false, isHidden, isMovable, p);
         cp.addShape(x);
 
         Intent intent = new Intent(this, PageCreator.class);
