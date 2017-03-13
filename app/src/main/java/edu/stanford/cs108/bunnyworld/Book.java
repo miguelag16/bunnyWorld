@@ -67,14 +67,7 @@ public class Book implements Serializable {
         this.pagesMap.put(page.name, page);
     }
 
-    /*
-     * Should be called by a button in editor mode.
-     * Should create a new shape on the currently being edited page.
-     * Should get all the information for the shape from checkboxes and text fields.
-     */
-    public void addShape(){
-        // Do stuff to current page
-    }
+
 
 
 //    private void init() {

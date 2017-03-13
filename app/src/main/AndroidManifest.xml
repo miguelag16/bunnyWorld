@@ -19,6 +19,7 @@
         <activity android:name=".PageCreator" />
         <activity android:name=".ShapeCreator" />
         <activity android:name=".ChooseOrCreateBook" />
+        <activity android:name=".ScriptCreator" />
         <activity android:name=".PlayActivity"></activity>
     </application>
 

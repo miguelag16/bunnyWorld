@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <RadioGroup
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/onClickCheckBox"
+            android:onClick="onClickType"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="on click" />
+
+        <RadioButton
+            android:id="@+id/onEnterCheckBox"
+            android:onClick="onEnterType"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="on enter" />
+
+        <RadioButton
+            android:id="@+id/onDropCheckBox"
+            android:onClick="onDropType"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="on drop" />
+
+
+    </RadioGroup>
+
+    <TextView
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/InstructionsforOnDropShape"
+        android:text="Choose name of shape to be dropped for action" />
+
+
+    <Spinner
+        android:visibility="gone"
+        android:id="@+id/onDropShapeName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    </Spinner>
+
+
+    <TextView
+        android:visibility="gone"
+        android:id="@+id/actionListSpinnerInstructions"
+        android:text="choose action for trigger"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <Spinner
+        android:visibility="gone"
+        android:id="@+id/actionListSpinner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    </Spinner>
+
+    <Button
+        android:visibility="gone"
+        android:onClick="getObjectsList"
+        android:id="@+id/SelectItemButton"
+        android:text="CHOOSE DIRECT OBJECT OF ACTION"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+
+    <TextView
+        android:visibility="gone"
+        android:id="@+id/ListofItemsToPerformActionOnInstructions"
+        android:text="choose direct object of action"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    <Spinner
+        android:visibility="gone"
+        android:id="@+id/ListofItemsToPerformActionOn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+    </Spinner>
+
+    <Button
+        android:visibility="gone"
+        android:id="@+id/AddActionsButton"
+        android:onClick="AddCommands"
+        android:text="Add Actions"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+
+
+
+</LinearLayout>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
