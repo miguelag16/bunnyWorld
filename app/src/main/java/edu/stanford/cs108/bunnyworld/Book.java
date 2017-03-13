@@ -67,7 +67,9 @@ public class Book implements Serializable {
         this.pagesMap.put(page.name, page);
     }
 
-
+    public Page getPage(String name) {
+        return pagesMap.get(name);
+    }
 
 
 //    private void init() {

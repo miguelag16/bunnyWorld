@@ -27,6 +27,20 @@ public class ChooseOrCreatePage extends AppCompatActivity {
     private ArrayAdapter<String> listAdapter;
 
     @Override
+    protected void onResume() {
+        super.onResume();
+
+        // Find the ListView resource
+        existing_pages = (ListView) findViewById(R.id.existing_pages);
+        // Create and populate a List of book names
+        List<String> pageNameList = new ArrayList<String>(CurBookSingleton.getInstance().getCurrentBook().pagesMap.keySet());
+        // Create ArrayAdapter using the bookNameList
+        listAdapter = new ArrayAdapter<String>(this, R.layout.listview_template, pageNameList);
+        // Set the ArrayAdapter as the ListView's adapter
+        existing_pages.setAdapter(listAdapter);
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_choose_or_create_page);
@@ -48,7 +62,15 @@ public class ChooseOrCreatePage extends AppCompatActivity {
         {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                existing_pages.getItemAtPosition(i);
+                String pageName = existing_pages.getItemAtPosition(i).toString();
+
+                // Set as current page. Might store this in a singleton instead
+                Book cur = CurBookSingleton.getInstance().getCurrentBook();
+                cur.setCurrentPage(cur.getPage(pageName));
+
+                // Go to PageCreator
+                Intent intent = new Intent(getApplicationContext(), PageCreator.class);
+                startActivity(intent);
             }
         });
     }

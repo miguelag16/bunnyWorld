@@ -17,6 +17,21 @@ public class ChooseOrCreateBook extends AppCompatActivity {
     private ArrayAdapter<String> listAdapter;
 
     @Override
+    protected void onResume() {
+        super.onResume();
+
+        // Find the ListView resource
+        existing_books = (ListView) findViewById(R.id.existing_books);
+
+        // Create and populate a List of book names
+        List<String> bookNameList = new ArrayList<String>(MainActivity.booksMap.keySet());
+        // Create ArrayAdapter using the bookNameList
+        listAdapter = new ArrayAdapter<String>(this, R.layout.listview_template, bookNameList);
+        // Set the ArrayAdapter as the ListView's adapter
+        existing_books.setAdapter(listAdapter);
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_choose_or_create_book);
