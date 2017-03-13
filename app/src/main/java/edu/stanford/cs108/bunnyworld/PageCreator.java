@@ -16,7 +16,7 @@ import android.widget.TextView;
 public class PageCreator extends AppCompatActivity {
 
     edu.stanford.cs108.bunnyworld.PageView pv;
-    Shape current = null;
+    Shape cs = null;
 
     public void addShape(View view) {
         Intent intent = new Intent(this, ShapeCreator.class);
@@ -24,11 +24,9 @@ public class PageCreator extends AppCompatActivity {
     }
 
     public void undo(View view) {
-//        LinearLayout x = (LinearLayout) findViewById(R.id.pc_buttonRow);
-//        x.setVisibility(View.GONE);
-//
-//        LinearLayout y = (LinearLayout) findViewById(R.id.pc_editLL);
-//        y.setVisibility(View.VISIBLE);
+        if(cs != null){
+
+        }
     }
 
     public void save(View view) {
@@ -41,16 +39,16 @@ public class PageCreator extends AppCompatActivity {
     }
 
     public void updateShape(View view) {
-        current = pv.getPVCurrentShape();
+        cs = pv.getPVCurrentShape();
 
         EditText n = (EditText) findViewById(R.id.pc_nameET);
-        current.setName(n.getText().toString());
+        cs.setName(n.getText().toString());
 
         EditText w = (EditText) findViewById(R.id.pc_widthET);
-        current.setWidth(Float.parseFloat(w.getText().toString()));
+        cs.setWidth(Float.parseFloat(w.getText().toString()));
 
         EditText h = (EditText) findViewById(R.id.pc_heightET);
-        current.setHeight(Float.parseFloat(h.getText().toString()));
+        cs.setHeight(Float.parseFloat(h.getText().toString()));
 
         LinearLayout ell = (LinearLayout) findViewById(R.id.pc_editLL);
         ell.setVisibility(View.GONE);

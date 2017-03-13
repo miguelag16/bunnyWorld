@@ -29,7 +29,6 @@ public class ChooseOrCreatePage extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-
         // Find the ListView resource
         existing_pages = (ListView) findViewById(R.id.existing_pages);
         // Create and populate a List of book names
@@ -71,6 +70,26 @@ public class ChooseOrCreatePage extends AppCompatActivity {
                 // Go to PageCreator
                 Intent intent = new Intent(getApplicationContext(), PageCreator.class);
                 startActivity(intent);
+            }
+        });
+
+        existing_pages.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
+                String pageName = existing_pages.getItemAtPosition(i).toString();
+                Book b = CurBookSingleton.getInstance().getCurrentBook();
+                Page p = b.getPage(pageName);
+
+                if(p.isFirstPage())
+                    Toast.makeText(getApplicationContext(), "You cannot delete the first page of a book" , Toast.LENGTH_SHORT).show();
+                else {
+                    b.removePage(p);
+                    Intent intent = getIntent();
+                    finish();
+                    startActivity(intent);
+                    Toast.makeText(getApplicationContext(), "Deleted page \"" + pageName + "\"", Toast.LENGTH_SHORT).show();
+                }
+                return true;
             }
         });
     }

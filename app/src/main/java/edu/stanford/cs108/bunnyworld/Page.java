@@ -18,20 +18,21 @@ import static android.content.ContentValues.TAG;
 
 public class Page implements Serializable {
 
-    private static int pageCount;
     protected String name;
     private Canvas canvas;
     public ArrayList<Shape> shapeList;
 
+    private final boolean isFirstPage;
+
     public Page(String name, Book book) {
-        if(name.isEmpty()){
-            this.name = "Page" + Integer.toString(book.pagesMap.size() + 1);
-        }
-        else{
-            this.name = name;
-        }
+        this.isFirstPage = (book.pagesMap.size() == 0);
+
+        this.name = (name.isEmpty())? "Page " + Integer.toString(book.pagesMap.size() + 1): name;
+
         shapeList = new ArrayList<Shape>();
     }
+
+    public boolean isFirstPage() {return this.isFirstPage; }
 
     public void setCanvas(Canvas canvas) {
         this.canvas = canvas;

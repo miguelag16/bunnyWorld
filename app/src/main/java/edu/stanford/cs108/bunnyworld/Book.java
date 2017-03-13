@@ -65,9 +65,13 @@ public class Book implements Serializable {
      * Should create a new page with the name from some text field.
      * Then set current page equal to it and allow the user to add shapes
      */
-    public void addPage(Page page){
+    public void addPage(Page page) {
         this.setCurrentPage(page);
         this.pagesMap.put(page.name, page);
+    }
+
+    public void removePage(Page page) {
+        this.pagesMap.remove(page.name);
     }
 
     public Page getPage(String name) {
