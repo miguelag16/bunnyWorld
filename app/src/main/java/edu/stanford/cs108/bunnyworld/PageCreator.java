@@ -17,6 +17,7 @@ public class PageCreator extends AppCompatActivity {
 
     edu.stanford.cs108.bunnyworld.PageView pv;
     private Page cp;
+    Shape backup = null;
     Shape cs = null;
 
     public void addShape(View view) {
@@ -28,8 +29,9 @@ public class PageCreator extends AppCompatActivity {
         if(cs != null){
             // needs some work, inspect removeShape, figure out unique naming of shapes
             cp.removeShape(cs);
-            cp.addShape(cs);
+            cp.addShape(backup);
             cs = null;
+            backup = null;
             pv.reDraw();
         }
     }
@@ -40,12 +42,14 @@ public class PageCreator extends AppCompatActivity {
     }
 
     public void deleteShape(View view) {
+        backup = new Shape(pv.getPVCurrentShape());
         cs = pv.getPVCurrentShape();
         pv.deleteShape();
     }
 
     public void updateShape(View view) {
-        cs = new Shape(pv.getPVCurrentShape());
+        backup = new Shape(pv.getPVCurrentShape());
+        cs = pv.getPVCurrentShape();
 
         EditText n = (EditText) findViewById(R.id.pc_nameET);
         pv.getPVCurrentShape().setName(n.getText().toString());
@@ -62,7 +66,6 @@ public class PageCreator extends AppCompatActivity {
         LinearLayout br = (LinearLayout) findViewById(R.id.pc_buttonRow);
         br.setVisibility(View.VISIBLE);
 
-//        pv.resetPVCurrentShape();
     }
 
     @Override

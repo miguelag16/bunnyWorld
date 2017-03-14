@@ -65,6 +65,7 @@ public class PageView extends View {
                     x = event.getX();
                     y = event.getY();
                     cs.setLocation(x, y);
+                    //backup here
                     System.out.println("Reset location of " + cs.getName());
                 }
                 System.out.println("null shape on action move");
