@@ -11,12 +11,61 @@ import android.widget.RadioButton;
 import android.widget.Spinner;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by miguelgarcia on 3/8/17.
  */
 
 public class ShapeCreator extends AppCompatActivity {
+
+    private Script ScriptForAddedShape = new Script();
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        System.out.println("MACRO KEY 2 cauz im soooo cool");
+        if(requestCode == 1) {
+            System.out.println("stan missed his butt");
+            System.out.println(resultCode);
+            if(resultCode == RESULT_OK) {
+                System.out.println("looooooooooooooolz");
+                Spinner spinner = (Spinner) findViewById(R.id.sc_spinner);
+                // Create an ArrayAdapter using the string array and a default spinner layout
+                ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
+                        R.array.shapes_array, android.R.layout.simple_spinner_item);
+                // Specify the layout to use when the list of choices appears
+                adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                // Apply the adapter to the spinner
+                spinner.setAdapter(adapter);
+
+
+                ArrayList<String> scriptStrings = data.getStringArrayListExtra("script");
+
+
+                if (scriptStrings == null) {
+                    System.out.println("ScriptStrings is NULL aAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
+                    return;
+                }
+                System.out.println("scriptStrings " + scriptStrings.size());
+
+                ScriptForAddedShape.setScript(data.getStringArrayListExtra("script"));
+
+
+                ArrayList<String> x = new ArrayList<String>();
+                System.out.println("this is passed through the intent:");
+                System.out.println(ScriptForAddedShape.toString());
+                x.add(ScriptForAddedShape.toString());
+
+
+                ListView list = (ListView) findViewById(R.id.script_list);
+                ArrayAdapter<String> itemsAdapter =
+                        new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, x);
+
+                list.setAdapter(itemsAdapter);
+            }
+        }
+    }
 
     public void addShapeToPage(View view) {
         CurBookSingleton cbs = CurBookSingleton.getInstance();
@@ -29,6 +78,7 @@ public class ShapeCreator extends AppCompatActivity {
         Shape s = new Shape(filename, wordArt);
         s.setIsHidden(((RadioButton) findViewById(R.id.sc_hidden)).isChecked());
         s.setIsMovable(((RadioButton) findViewById(R.id.sc_movable)).isChecked());
+        s.script.setScript(ScriptForAddedShape.getScript());//I know this is a bit wonky
 
         cp.addShape(s);
 
@@ -40,35 +90,13 @@ public class ShapeCreator extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.shape_creator);
+//        ScriptForAddedShape =
 
-        Spinner spinner = (Spinner) findViewById(R.id.sc_spinner);
-        // Create an ArrayAdapter using the string array and a default spinner layout
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
-                R.array.shapes_array, android.R.layout.simple_spinner_item);
-        // Specify the layout to use when the list of choices appears
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        // Apply the adapter to the spinner
-        spinner.setAdapter(adapter);
-
-        ArrayList<String> x = new ArrayList<String>();
-        x.add("miguel");
-        x.add("dom");
-        x.add("stan");
-        x.add("garcia");
-        x.add("abbondanzo");
-        x.add("chernavsky");
-        x.add("barcelona");
-
-        ListView list = (ListView) findViewById(R.id.script_list);
-        ArrayAdapter<String> itemsAdapter =
-                new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, x);
-
-        list.setAdapter(itemsAdapter);
     }
 
     public void addScriptToShape(View view){
         Intent intent = new Intent(this, ScriptCreator.class);
-        startActivity(intent);
+        startActivityForResult(intent, 1);
     }
 
 
