@@ -26,36 +26,57 @@ public class Shape implements Serializable {
     private float height = DEFAULT_HEIGHT;
     private float textSize = DEFAULT_TEXT_SIZE;
 
-    private Page page;
-
     private boolean isMovable = false;
     private boolean isHidden = false;
     private boolean inPossessions = false;
 
-    private Point point = new Point(0, 0);
     private String shapeName;
     private String filename;
     private String wordArt;
 
+    private Point point = new Point(0, 0);
     private Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
 
     //a shape's script needs to be able to be changed by other classes in editor mode
     public Script script = new Script();
 
-    public Shape(Page p, String filename, String wordArt) {
-        this.shapeName = p.name + "/" + filename + "-" + wordArt;
-
+    public Shape(String filename, String wordArt) {
+        this.shapeName = filename + "-" + wordArt;
         this.filename = filename;
         this.wordArt = wordArt;
+    }
 
-        this.page = p;
+    /*
+        Copy constructor, useful for undo
+     */
+    public Shape(Page p, Shape s) {
+        this.shapeName = s.getName();
+        this.filename = s.getFilename();
+        this.wordArt = s.getWordArt();
+
+        this.width = s.getWidth();
+        this.height = s.getHeight();
+        this.textSize = s.getTextSize();
+
+        this.isMovable = s.isMovable();
+        this.isHidden = s.isHidden();
+        this.inPossessions = s.inPossessions();
+
+        this.script = new Script(s);
     }
 
     String getName() {
-        return shapeName;
+        return this.shapeName;
     }
     void setName(String newName) {
         this.shapeName = newName;
+    }
+
+    String getFilename() {
+        return this.filename;
+    }
+    String getWordArt() {
+        return this.wordArt;
     }
 
     float getWidth(){ return this.width; }
@@ -80,20 +101,19 @@ public class Shape implements Serializable {
     boolean inPossessions() {
         return this.inPossessions;
     }
-    void setInPossessions() { this.inPossessions = true;}
-    void setNotInPossessions() { this.inPossessions = false;}
+    void setInPossessions(boolean b) { this.inPossessions = b;}
 
     boolean isMovable(){
         return this.isMovable;
     }
-    void setMovable() { this.isMovable = true;}
-    void setNotMovable() { this.isMovable = false;}
+    void setIsMovable(boolean b) { this.isMovable = b;}
 
     boolean isHidden(){
         return this.isHidden;
     }
-    void setHidden() { this.isHidden = true;}
-    void setNotHidden() { this.isHidden = false;}
+    void setIsHidden(boolean b) { this.isHidden = b;}
+
+    public Script getScript() { return this.script; }
 
     private void highlightShape(Canvas canvas) {
         RectF highlight = new RectF(point.getLeft(), point.getTop(),
@@ -131,13 +151,6 @@ public class Shape implements Serializable {
                 canvas.drawRect(r, paint);
             }
         }
-    }
-
-
-
-    //shapes can have clauses in them that when executed, hide other shapes
-    public void setIsHidden(boolean isHidden){
-        this.isHidden = isHidden;
     }
 
     //leave drop name as the empty string if it is not a drop event.

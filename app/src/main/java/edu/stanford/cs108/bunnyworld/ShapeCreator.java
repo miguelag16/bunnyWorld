@@ -26,12 +26,11 @@ public class ShapeCreator extends AppCompatActivity {
         filename = filename.substring(0, filename.indexOf('.'));
         String wordArt = ((EditText) findViewById(R.id.sc_text)).getText().toString();
 
-        Shape x = new Shape(cp, filename, wordArt);
+        Shape s = new Shape(filename, wordArt);
+        s.setIsHidden(((RadioButton) findViewById(R.id.sc_hidden)).isChecked());
+        s.setIsMovable(((RadioButton) findViewById(R.id.sc_movable)).isChecked());
 
-        if(((RadioButton) findViewById(R.id.sc_hidden)).isChecked()) x.setHidden();
-        if(((RadioButton) findViewById(R.id.sc_movable)).isChecked()) x.setMovable();
-
-        cp.addShape(x);
+        cp.addShape(s);
 
         Intent intent = new Intent(this, PageCreator.class);
         startActivity(intent);

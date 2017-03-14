@@ -19,9 +19,7 @@ import static android.content.ContentValues.TAG;
 public class Page implements Serializable {
 
     protected String name;
-    private Canvas canvas;
-    public ArrayList<Shape> shapeList;
-
+    ArrayList<Shape> shapeList;
     private final boolean isFirstPage;
 
     public Page(String name, Book book) {
@@ -32,35 +30,52 @@ public class Page implements Serializable {
         shapeList = new ArrayList<Shape>();
     }
 
-    public boolean isFirstPage() {return this.isFirstPage; }
+    /*
+        Copy constructor, useful for undo
+     */
+    public Page(Page page) {
+        this.isFirstPage = page.isFirstPage();
 
-    public void setCanvas(Canvas canvas) {
-        this.canvas = canvas;
+        this.name = page.getName();
+
+        shapeList = page.shapeListCopy();
     }
 
-    public void addShape(Shape shape){
+    public String getName(){return this.name;}
+    boolean isFirstPage() {return this.isFirstPage; }
+
+    void addShape(Shape shape){
         this.shapeList.add(shape);
     }
-    public void removeShape(Shape shape) {
+    void removeShape(Shape shape) {
         shapeList.remove(shape);
     }
 
-    public Canvas getCanvas() {
-        return this.canvas;
+    private ArrayList<Shape> shapeListCopy() {
+        ArrayList<Shape> copy = new ArrayList<Shape>();
+
+        for(Shape s: this.shapeList)
+            copy.add(new Shape(this, s));
+
+        return copy;
     }
 
     public int numShapes() {
         return shapeList.size();
     }
 
+
+    /*
+        Methods for drawing a page and modifying its shapes.
+     */
+
     public void draw(Canvas canvas) {
-        this.canvas = canvas;
         for(Shape i : shapeList){
             i.draw(canvas);
         }
     }
 
-    public Shape findSelectedShape(float x, float y) {
+    Shape findSelectedShape(float x, float y) {
         for(int i = shapeList.size() - 1; i >= 0; i--){
             Shape cur = shapeList.get(i);
             System.out.println(cur.getName());
@@ -82,7 +97,5 @@ public class Page implements Serializable {
         }
         return false;
     }
-
-    public String getName(){return this.name;}
 
 }

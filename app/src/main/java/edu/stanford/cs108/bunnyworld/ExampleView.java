@@ -32,7 +32,6 @@ public class ExampleView extends View {
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        p.setCanvas(canvas);
         init();
         p.draw(canvas);
 

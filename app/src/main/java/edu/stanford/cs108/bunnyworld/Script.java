@@ -22,16 +22,24 @@ public class Script implements Serializable {
     public static final String PLAY = "play";
 
 
-
-
-
-
-
     public Script(){
         clauses = new ArrayList<String>();
     }
 
+    /*
+        Copy constructor, useful for undo
+     */
+    public Script(Shape s) {
+        this.clauses = s.getScript().copyScript();
+    }
 
+    public ArrayList<String> copyScript() {
+        ArrayList<String> copy = new ArrayList<String>();
+        for(String s: this.clauses)
+            copy.add(s);
+
+        return copy;
+    }
 
     //adds the goto action to to the commands executed for the given trigger
     public void addGotoAction(String page_name, String trigger){

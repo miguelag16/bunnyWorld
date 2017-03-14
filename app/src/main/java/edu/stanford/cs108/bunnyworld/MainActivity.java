@@ -26,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
         testingBook = new  Book("Book1");
         Page samplePage = new Page("", testingBook);
         Point p = new Point(0, 0);
-        Shape sampleShape = new Shape(samplePage, "dolan", "");
+        Shape sampleShape = new Shape("dolan", "");
         sampleShape.script.addOnEnterTrigger();
         sampleShape.script.addPlaySoundAction("thriller", Script.ONENTER);
         samplePage.addShape(sampleShape);
