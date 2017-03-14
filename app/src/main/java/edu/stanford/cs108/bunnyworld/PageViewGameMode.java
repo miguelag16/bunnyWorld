@@ -85,6 +85,10 @@ public class PageViewGameMode extends View {
                     x = event.getX();
                     y = event.getY();
                     if(cs.isMovable()){
+                        Shape temp = cp.findSelectedShape(x, y);
+                        if(temp != null){
+                            temp.enactScript(Script.ONDROP, cs.getName());
+                        }
                         cs.setLocation(x, y);
                     }
                     System.out.println("Reset location of " + cs.getName());

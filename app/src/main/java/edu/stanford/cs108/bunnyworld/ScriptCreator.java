@@ -1,5 +1,6 @@
 package edu.stanford.cs108.bunnyworld;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.PersistableBundle;
 import android.support.annotation.Nullable;
@@ -28,6 +29,15 @@ public class ScriptCreator extends AppCompatActivity{
 
     private Script script;
     private String trigger;
+
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent();
+        intent.putExtra("script", script.getScript());
+        System.out.println("scriptsize= " + intent.getStringArrayListExtra("script").size());
+        setResult(RESULT_OK, intent);
+        finish();
+    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {

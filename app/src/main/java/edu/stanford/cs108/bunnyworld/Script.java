@@ -33,6 +33,18 @@ public class Script implements Serializable {
         this.clauses = s.getScript().copyScript();
     }
 
+
+    //essentially returns the private variable stored in the given shape
+    //used in scriptcreator to pass a string through an intent, then set Script can be used
+    //to recreate the Script
+    public ArrayList<String> getScript(){
+        return clauses;
+    }
+
+    public void setScript(ArrayList<String> s){
+        this.clauses = s;
+    }
+
     public ArrayList<String> copyScript() {
         ArrayList<String> copy = new ArrayList<String>();
         for(String s: this.clauses)
@@ -101,7 +113,7 @@ public class Script implements Serializable {
                 return result;//result will always have even number of elements if configured properly
             }                 //it will always have a command directly followed by a shapename or a soundfile name
         }
-        return null;//if null is returned, no actions are required for the trigger
+        return result;//result will have zero elements in this case
     }
 
     public void addOnClickTrigger() {

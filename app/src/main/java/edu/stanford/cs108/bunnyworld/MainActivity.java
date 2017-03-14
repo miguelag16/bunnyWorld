@@ -29,6 +29,7 @@ public class MainActivity extends AppCompatActivity {
         Shape sampleShape = new Shape("dolan", "");
         sampleShape.script.addOnEnterTrigger();
         sampleShape.script.addPlaySoundAction("thriller", Script.ONENTER);
+        sampleShape.setIsMovable(true);
         samplePage.addShape(sampleShape);
         testingBook.addPage(samplePage);
         booksMap.put("Book1", testingBook);
