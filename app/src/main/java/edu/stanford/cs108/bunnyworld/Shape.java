@@ -40,7 +40,7 @@ public class Shape implements Serializable {
     private Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
 
     //a shape's script needs to be able to be changed by other classes in editor mode
-    public Script script = new Script();;
+    public Script script = new Script();
 
     public Shape(Page p, String filename, String wordArt) {
         this.shapeName = p.name + "/" + filename + "-" + wordArt;
@@ -195,6 +195,8 @@ public class Shape implements Serializable {
         return shapeName != null ? shapeName.equals(shape.shapeName) : shape.shapeName == null;
 
     }
+
+
 
     @Override
     public int hashCode() {
