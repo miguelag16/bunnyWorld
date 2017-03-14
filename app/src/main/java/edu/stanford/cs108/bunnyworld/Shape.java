@@ -49,7 +49,7 @@ public class Shape implements Serializable {
     /*
         Copy constructor, useful for undo
      */
-    public Shape(Page p, Shape s) {
+    public Shape(Shape s) {
         this.shapeName = s.getName();
         this.filename = s.getFilename();
         this.wordArt = s.getWordArt();
@@ -62,6 +62,7 @@ public class Shape implements Serializable {
         this.isHidden = s.isHidden();
         this.inPossessions = s.inPossessions();
 
+        this.point = new Point(s.getLocation());
         this.script = new Script(s);
     }
 

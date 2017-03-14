@@ -16,6 +16,7 @@ import android.widget.TextView;
 public class PageCreator extends AppCompatActivity {
 
     edu.stanford.cs108.bunnyworld.PageView pv;
+    private Page cp;
     Shape cs = null;
 
     public void addShape(View view) {
@@ -25,7 +26,11 @@ public class PageCreator extends AppCompatActivity {
 
     public void undo(View view) {
         if(cs != null){
-
+            // needs some work, inspect removeShape, figure out unique naming of shapes
+            cp.removeShape(cs);
+            cp.addShape(cs);
+            cs = null;
+            pv.reDraw();
         }
     }
 
@@ -35,20 +40,21 @@ public class PageCreator extends AppCompatActivity {
     }
 
     public void deleteShape(View view) {
+        cs = pv.getPVCurrentShape();
         pv.deleteShape();
     }
 
     public void updateShape(View view) {
-        cs = pv.getPVCurrentShape();
+        cs = new Shape(pv.getPVCurrentShape());
 
         EditText n = (EditText) findViewById(R.id.pc_nameET);
-        cs.setName(n.getText().toString());
+        pv.getPVCurrentShape().setName(n.getText().toString());
 
         EditText w = (EditText) findViewById(R.id.pc_widthET);
-        cs.setWidth(Float.parseFloat(w.getText().toString()));
+        pv.getPVCurrentShape().setWidth(Float.parseFloat(w.getText().toString()));
 
         EditText h = (EditText) findViewById(R.id.pc_heightET);
-        cs.setHeight(Float.parseFloat(h.getText().toString()));
+        pv.getPVCurrentShape().setHeight(Float.parseFloat(h.getText().toString()));
 
         LinearLayout ell = (LinearLayout) findViewById(R.id.pc_editLL);
         ell.setVisibility(View.GONE);
@@ -68,7 +74,7 @@ public class PageCreator extends AppCompatActivity {
                 findViewById(R.id.pc_pageView);
 
         CurBookSingleton cb = CurBookSingleton.getInstance();
-        Page cp = cb.getCurrentBook().getCurrentPage();
+        cp = cb.getCurrentBook().getCurrentPage();
         ((TextView)findViewById(R.id.pc_pageName)).setText(cp.name);
     }
 }

@@ -55,7 +55,7 @@ public class Page implements Serializable {
         ArrayList<Shape> copy = new ArrayList<Shape>();
 
         for(Shape s: this.shapeList)
-            copy.add(new Shape(this, s));
+            copy.add(new Shape(s));
 
         return copy;
     }
