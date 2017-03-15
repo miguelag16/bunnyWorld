@@ -15,9 +15,12 @@ public class Book implements Serializable {
     private static int numBooks = 0;
     private Page currentPage;   // The page that needs to be drawn
     private Page firstPage;     //the page that gameplay mode will start on
+
+
     public LinkedHashMap<String, Page> pagesMap;    // Shapes need to be able to access other shapes on different pages
     private boolean isEditorMode;
     private Possessions possessions;
+
     private String bookName;
 
     public Book(String name) {
@@ -66,7 +69,6 @@ public class Book implements Serializable {
      * Then set current page equal to it and allow the user to add shapes
      */
     public void addPage(Page page) {
-//        this.setCurrentPage(page);
         this.pagesMap.put(page.name, page);
     }
 
@@ -83,27 +85,9 @@ public class Book implements Serializable {
         return pagesMap.get(name);
     }
 
-    public Page getFirstPage(){
-        return this.firstPage;
-    }
 
 
-//    private void init() {
-//        // We need to fix draw so that we can pass the file extension to draw, image vs audio
-//        Shape s = new Shape(currentPage, "dolan", "", false, false, false, new Point(20, 20, 500, 500));
-//        currentPage.addShape(s);
-//        s = new Shape(currentPage, "", "stan is the wurrrrst", false, false, false, new Point(20, 40, 100000, 100000));
-//        currentPage.addShape(s);
-//    }
-//
-//    @Override
-//    protected void onDraw(Canvas canvas) {
-//        super.onDraw(canvas);
-//        currentPage.setCanvas(canvas);
-//        init();
-//        currentPage.Draw(canvas);
-//        possessions.Draw(canvas);
-//    }
+
 
 
     public class Possessions{
