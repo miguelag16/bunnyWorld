@@ -11,7 +11,7 @@
     >
 
     <TextView
-        android:text="Choose an image file, if any:"
+        android:text="Choose an Image File"
         android:textAlignment="center"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
@@ -25,7 +25,7 @@
 
     <EditText
         android:id="@+id/sc_text"
-        android:hint="Enter text to draw, if any"
+        android:hint="Enter Text to Draw"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
@@ -42,12 +42,12 @@
             android:layout_weight="1"
             android:layout_height="wrap_content"
             android:orientation="vertical">
-            <RadioButton
+            <CheckBox
                 android:id="@+id/sc_movable"
                 android:text="Movable"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
-            <RadioButton
+            <CheckBox
                 android:id="@+id/sc_hidden"
                 android:text="Hidden"
                 android:layout_width="match_parent"
