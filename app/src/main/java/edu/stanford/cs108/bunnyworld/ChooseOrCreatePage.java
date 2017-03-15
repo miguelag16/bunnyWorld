@@ -110,4 +110,12 @@ public class ChooseOrCreatePage extends AppCompatActivity {
         startActivity(intent);
     }
 
+    @Override
+    public void onBackPressed() {
+        // Goto ChooseOrCreatePage
+        super.onBackPressed();
+        Intent intent = new Intent(getApplicationContext(), ChooseOrCreateBook.class);
+        startActivity(intent);
+    }
+
 }
