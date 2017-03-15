@@ -24,30 +24,9 @@ public class MainActivity extends AppCompatActivity {
         MediaPlayer mp = MediaPlayer.create(this,R.raw.theme);
         mp.start();
 
-        //Use to access files in shapeCreator
+        // Use to access files in shapeCreator
         ResSingleton rs = ResSingleton.getInstance();
         rs.setContext(this.getApplicationContext());
-
-//        // *** FOR TESTING PURPOSES ***
-//        testingBook = new  Book("Book1");
-//        Page samplePage = new Page("", testingBook);
-//        Point p = new Point(0, 0);
-//        Shape sampleShape = new Shape("dolan", "");
-//        sampleShape.script.addOnEnterTrigger();
-//        sampleShape.script.addPlaySoundAction("thriller", Script.ONENTER);
-//        sampleShape.setIsMovable(true);
-//        samplePage.addShape(sampleShape);
-//        testingBook.addPage(samplePage);
-//        booksMap.put("Book1", testingBook);
-//        booksMap.put("Book2", new Book("Book2"));
-//        booksMap.put("Book3", new Book("Book3"));
-//        booksMap.put("Book4", new Book("Book4"));
-//        try {
-//            FileStorage.store(booksMap);
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//        // *** FOR TESTING PURPOSES ***
 
         // Load existing books from file
         try {
