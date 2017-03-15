@@ -37,8 +37,8 @@ public class PageCreator extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-//        this.cbs.getCurrentBook().removePage(this.cbs.getCurrentPage());
-//        this.cbs.getCurrentBook().addPage(this.original);
+        this.cbs.getCurrentBook().removePage(this.cbs.getCurrentPage());
+        this.cbs.getCurrentBook().addPage(this.original);
         Toast.makeText(this, "Changes discarded", Toast.LENGTH_SHORT).show();
         Intent intent = new Intent(this, ChooseOrCreatePage.class);
         startActivity(intent);
