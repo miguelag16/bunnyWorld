@@ -136,7 +136,7 @@
             android:layout_weight="1"
             android:layout_height="wrap_content"
             android:backgroundTint="@color/hotPink"
-            android:text="SAVE PAGE"
+            android:text="SAVE"
             android:onClick="save" />
 
     </LinearLayout>

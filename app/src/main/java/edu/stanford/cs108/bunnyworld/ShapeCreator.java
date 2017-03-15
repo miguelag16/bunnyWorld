@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.ArrayAdapter;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.RadioButton;
@@ -77,8 +78,8 @@ public class ShapeCreator extends AppCompatActivity {
         String wordArt = ((EditText) findViewById(R.id.sc_text)).getText().toString();
 
         Shape s = new Shape(filename, wordArt);
-        s.setIsHidden(((RadioButton) findViewById(R.id.sc_hidden)).isChecked());
-        s.setIsMovable(((RadioButton) findViewById(R.id.sc_movable)).isChecked());
+        s.setIsHidden(((CheckBox) findViewById(R.id.sc_hidden)).isChecked());
+        s.setIsMovable(((CheckBox) findViewById(R.id.sc_movable)).isChecked());
         s.script.setScript(ScriptForAddedShape.getScript());//I know this is a bit wonky
 
         cp.addShape(s);
