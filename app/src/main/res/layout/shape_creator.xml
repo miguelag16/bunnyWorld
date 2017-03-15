@@ -80,7 +80,7 @@
     <TextView
         android:paddingTop="4dp"
         android:textAlignment="center"
-        android:text="Attached scripts: "
+        android:text="Attached Scripts"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
@@ -104,7 +104,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:onClick="addShapeToPage"
-                android:text="create shape"
+                android:text="CREATE SHAPE"
                 android:backgroundTint="@color/hotPink"/>
         </LinearLayout>
     </LinearLayout>
