@@ -30,4 +30,11 @@
         android:text="CREATE NEW BOOK"
         android:onClick="createBook"/>
 
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/buttonGreen"
+        android:text="SAVE BOOKS"
+        android:onClick="saveBooks"/>
+
 </LinearLayout>
