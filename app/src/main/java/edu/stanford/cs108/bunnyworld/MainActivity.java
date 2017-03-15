@@ -14,7 +14,6 @@ public class MainActivity extends AppCompatActivity {
 
     // LinkedHashMap of books
     public static LinkedHashMap<String, Book> booksMap = new LinkedHashMap<String, Book>();
-    private Book testingBook; //testing around to get gameplay to work
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,9 +39,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void play(View view) {
-        CurBookSingleton b = CurBookSingleton.getInstance();
-        b.setCurrentBook(testingBook);
-        b.getCurrentBook().setEditorMode(false);
         Intent intent = new Intent(this, ChooseBookToPlay.class);
         startActivity(intent);
     }
