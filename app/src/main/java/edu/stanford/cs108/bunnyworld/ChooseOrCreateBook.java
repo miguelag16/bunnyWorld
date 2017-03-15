@@ -22,6 +22,11 @@ public class ChooseOrCreateBook extends AppCompatActivity {
     private ArrayAdapter<String> listAdapter;
 
     @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+    }
+
+    @Override
     protected void onResume() {
         super.onResume();
 

@@ -20,7 +20,6 @@ public class PageCreator extends AppCompatActivity {
     edu.stanford.cs108.bunnyworld.PageView pv;
 
     private final Page original = new Page(this.cbs.getCurrentPage());
-//    private Page cp = this.cbs.getCurrentPage();
 
     public void addShape(View view) {
         Intent intent = new Intent(this, ShapeCreator.class);
@@ -50,7 +49,7 @@ public class PageCreator extends AppCompatActivity {
     public void save(View view) {
         this.cbs.resetBackupPage();
         this.cbs.resetCurrentPage();
-
+        Toast.makeText(this, "Changes saved", Toast.LENGTH_SHORT).show();
         Intent intent = new Intent(this, ChooseOrCreatePage.class);
         startActivity(intent);
     }
