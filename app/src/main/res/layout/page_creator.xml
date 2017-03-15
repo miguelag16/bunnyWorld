@@ -6,30 +6,29 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:layout_height="wrap_content">
 
         <EditText
             android:id="@+id/pc_pageName"
-            android:layout_width="0dp"
-            android:layout_weight="3"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="40sp"
             android:fontFamily="cursive"
             android:textColor="@color/colorPrimaryDark"
-            android:layout_gravity="center_horizontal"
+            android:layout_centerHorizontal="true"
             android:inputType="textNoSuggestions" />
+
         <TextView
-            android:layout_width="0dp"
-            android:layout_weight="1"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:textAlignment="center"
+            android:layout_alignParentRight="true"
+            android:padding="8dp"
+            android:textSize="16sp"
             android:id="@+id/pc_numShapes"/>
 
-    </LinearLayout>
+    </RelativeLayout>
 
     <edu.stanford.cs108.bunnyworld.PageView
         android:id="@+id/pc_pageView"
@@ -136,7 +135,7 @@
             android:layout_weight="1"
             android:layout_height="wrap_content"
             android:backgroundTint="@color/hotPink"
-            android:text="SAVE PAGE"
+            android:text="SAVE"
             android:onClick="save" />
 
     </LinearLayout>
