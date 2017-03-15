@@ -89,7 +89,7 @@ public class PageCreator extends AppCompatActivity {
         this.pv = (edu.stanford.cs108.bunnyworld.PageView)
                 findViewById(R.id.pc_pageView);
 
-        ((EditText)findViewById(R.id.pc_pageName)).setText(this.cbs.getCurrentPage().name);
+        ((EditText)findViewById(R.id.pc_pageName)).setText(this.cbs.getCurrentPage().getName());
         ((TextView)findViewById(R.id.pc_numShapes)).setText("Shapes: " + this.cbs.getCurrentPage().numShapes());
     }
 }

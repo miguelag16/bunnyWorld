@@ -18,14 +18,17 @@ import static android.content.ContentValues.TAG;
 
 public class Page implements Serializable {
 
-    protected String name;
+    private final int index;
+    protected String displayName;
     ArrayList<Shape> shapeList;
     private final boolean isFirstPage;
 
     public Page(String name, Book book) {
+        this.index = book.pagesMap.size();
+
         this.isFirstPage = (book.pagesMap.size() == 0);
 
-        this.name = (name.isEmpty())? "Page " + Integer.toString(book.pagesMap.size() + 1): name;
+        this.displayName = (name.isEmpty())? "Page " + Integer.toString(this.index + 1): name;
 
         shapeList = new ArrayList<Shape>();
     }
@@ -34,14 +37,17 @@ public class Page implements Serializable {
         Copy constructor, useful for undo
      */
     public Page(Page page) {
+        this.index = page.getIndex();
+
         this.isFirstPage = page.isFirstPage();
 
-        this.name = page.getName();
+        this.displayName = page.getName();
 
         shapeList = page.shapeListCopy();
     }
 
-    public String getName(){return this.name;}
+    public int getIndex() { return this.index; }
+    public String getName(){return this.displayName;}
     boolean isFirstPage() {return this.isFirstPage; }
 
     void addShape(Shape shape){
@@ -49,6 +55,9 @@ public class Page implements Serializable {
     }
     void removeShape(Shape shape) {
         shapeList.remove(shape);
+    }
+    public ArrayList<Shape> getAllShapes() {
+        return this.shapeList;
     }
 
     private ArrayList<Shape> shapeListCopy() {

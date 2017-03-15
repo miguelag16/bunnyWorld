@@ -3,7 +3,9 @@ package edu.stanford.cs108.bunnyworld;
 import android.graphics.Canvas;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.LinkedHashMap;
+import java.util.List;
 
 /**
  * Created by dominic on 3/7/2017.
@@ -16,36 +18,37 @@ public class Book implements Serializable {
     private Page currentPage;   // The page that needs to be drawn
     private Page firstPage;     //the page that gameplay mode will start on
 
-
-    public LinkedHashMap<String, Page> pagesMap;    // Shapes need to be able to access other shapes on different pages
+    public LinkedHashMap<Integer, Page> pagesMap;    // Shapes need to be able to access other shapes on different pages
     private boolean isEditorMode;
     private Possessions possessions;
 
-    private String bookName;
+    private static final int index = numBooks;
+    private String displayName;
 
     public Book(String name) {
-        pagesMap = new LinkedHashMap<String, Page>();
+        pagesMap = new LinkedHashMap<Integer, Page>();
         possessions = new Possessions(this);
-        numBooks++;
+        this.numBooks++;
 
-        if(name.isEmpty()) bookName = "Book" + Integer.toString(numBooks);
-        else bookName = name;
+        if(name.isEmpty()) this.displayName = "Book " + Integer.toString(this.numBooks);
+        else this.displayName = name;
 
         // Automatically add a default page when a new book is created
-        Page page = new Page("", this);
-        this.firstPage = page; //the automatically added page will always be the first one
-                               //please allow for some way of changing the name of a page
-        pagesMap.put(page.name, page);
+        this.firstPage = new Page("", this);
+        this.addPage(this.firstPage);
     }
 
+    public int getIndex() { return this.index; }
     public String getName(){
-        return bookName;
+        return this.displayName;
     }
+    public Page getFirstPage() {return this.firstPage; }
 
+
+    // Delete both of these
     public Page getCurrentPage(){
         return currentPage;
     }
-
     public void setCurrentPage(Page p){
         currentPage = p;
     }
@@ -69,24 +72,32 @@ public class Book implements Serializable {
      * Then set current page equal to it and allow the user to add shapes
      */
     public void addPage(Page page) {
-        this.pagesMap.put(page.name, page);
+        this.pagesMap.put(page.getIndex(), page);
     }
 
     public void removePage(Page page) {
         System.out.println("xxxxxxxxxxxxxxxxxx");
         System.out.println("Size: " + pagesMap.size());
-        this.pagesMap.remove(page.name);
+        this.pagesMap.remove(page.getIndex());
         System.out.println("Size: " + pagesMap.size());
         System.out.println("xxxxxxxxxxxxxxxxxx");
 
     }
 
-    public Page getPage(String name) {
-        return pagesMap.get(name);
+    public Page getPageByIndex(Integer index) {
+        return pagesMap.get(index);
+    }
+    public List<String> getPageNames() {
+        List<String> names = new ArrayList<>();
+        for(Page p : this.pagesMap.values()) {
+            names.add(p.getName());
+        }
+        return names;
     }
 
-
-
+    public Collection<Page> getAllPages(){
+        return this.pagesMap.values();
+    }
 
 
 

@@ -230,11 +230,16 @@ public class ScriptCreator extends AppCompatActivity{
         Book book = CurBookSingleton.getInstance().getCurrentBook();
         ArrayList<String> names = new ArrayList<String>();
         //adds the name of every shape from every page into the names list
-        for(String i : book.pagesMap.keySet()){
-            for(Shape j : book.pagesMap.get(i).shapeList){
+        for(Page p: book.getAllPages()) {
+            for (Shape j : p.getAllShapes())
                 names.add(j.getName());
-            }
         }
+
+//        for(String i : book.pagesMap.keySet()){
+//            for(Shape j : book.pagesMap.get(i).shapeList){
+//                names.add(j.getName());
+//            }
+//        }
         return names;
     }
 
@@ -242,10 +247,11 @@ public class ScriptCreator extends AppCompatActivity{
     public ArrayList<String> getAllPageNames(){
         Book book = CurBookSingleton.getInstance().getCurrentBook();
         ArrayList<String> names = new ArrayList<String>();
-        //adds the name of every shape from every page into the names list
-        for(String i : book.pagesMap.keySet()){
-            names.add(book.pagesMap.get(i).getName());
-        }
+        for(Page p: book.getAllPages())
+            names.add(p.getName());
+//        for(String i : book.pagesMap.keySet()){
+//            names.add(book.pagesMap.get(i).getName());
+//        }
         return names;
     }
 

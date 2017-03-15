@@ -34,7 +34,7 @@ public class ChooseOrCreatePage extends AppCompatActivity {
         // Find the ListView resource
         existing_pages = (ListView) findViewById(R.id.existing_pages);
         // Create and populate a List of book names
-        List<String> pageNameList = new ArrayList<String>(cbs.getCurrentBook().pagesMap.keySet());
+        List<String> pageNameList = cbs.getCurrentBook().getPageNames();
         // Create ArrayAdapter using the bookNameList
         listAdapter = new ArrayAdapter<String>(this, R.layout.listview_template, pageNameList);
         // Set the ArrayAdapter as the ListView's adapter
@@ -54,7 +54,7 @@ public class ChooseOrCreatePage extends AppCompatActivity {
         // Find the ListView resource
         existing_pages = (ListView) findViewById(R.id.existing_pages);
         // Create and populate a List of book names
-        List<String> pageNameList = new ArrayList<String>(cbs.getCurrentBook().pagesMap.keySet());
+        List<String> pageNameList = cbs.getCurrentBook().getPageNames();
         // Create ArrayAdapter using the bookNameList
         listAdapter = new ArrayAdapter<String>(this, R.layout.listview_template, pageNameList);
         // Set the ArrayAdapter as the ListView's adapter
@@ -65,11 +65,11 @@ public class ChooseOrCreatePage extends AppCompatActivity {
         {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                String pageName = existing_pages.getItemAtPosition(i).toString();
+//                String pageName = existing_pages.getItemAtPosition(i).toString();
 
                 // Set as current page. Might store this in a singleton instead
                 Book cur = cbs.getCurrentBook();
-                cbs.setCurrentPage(cur.getPage(pageName));
+                cbs.setCurrentPage(cur.getPageByIndex(i));
 
                 // Go to PageCreator
                 Intent intent = new Intent(getApplicationContext(), PageCreator.class);
@@ -82,7 +82,7 @@ public class ChooseOrCreatePage extends AppCompatActivity {
             public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
                 String pageName = existing_pages.getItemAtPosition(i).toString();
                 Book b = cbs.getCurrentBook();
-                Page p = b.getPage(pageName);
+                Page p = b.getPageByIndex(i);
 
                 if(p.isFirstPage())
                     Toast.makeText(getApplicationContext(), "You cannot delete the first page of a book" , Toast.LENGTH_SHORT).show();
