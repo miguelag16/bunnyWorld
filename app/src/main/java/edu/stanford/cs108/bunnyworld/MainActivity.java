@@ -1,11 +1,14 @@
 package edu.stanford.cs108.bunnyworld;
 
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import java.io.IOException;
 import java.util.LinkedHashMap;
+
+import static java.security.AccessController.getContext;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -17,6 +20,9 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        MediaPlayer mp = MediaPlayer.create(this,R.raw.theme);
+        mp.start();
 
         //Use to access files in shapeCreator
         ResSingleton rs = ResSingleton.getInstance();
@@ -58,7 +64,7 @@ public class MainActivity extends AppCompatActivity {
         CurBookSingleton b = CurBookSingleton.getInstance();
         b.setCurrentBook(testingBook);
         b.getCurrentBook().setEditorMode(false);
-        Intent intent = new Intent(this, PlayActivity.class);
+        Intent intent = new Intent(this, ChooseBookToPlay.class);
         startActivity(intent);
     }
 
