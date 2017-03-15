@@ -19,8 +19,6 @@ public class PageCreator extends AppCompatActivity {
     CurBookSingleton cbs = CurBookSingleton.getInstance();
     edu.stanford.cs108.bunnyworld.PageView pv;
 
-    private final Page original = new Page(this.cbs.getCurrentPage());
-
     public void addShape(View view) {
         Intent intent = new Intent(this, ShapeCreator.class);
         startActivity(intent);
@@ -34,11 +32,13 @@ public class PageCreator extends AppCompatActivity {
         view.invalidate();
     }
 
+    // We store the original page before this activity is started and revert all changes if the back button is pressed
+    // by replacing the page that has been edited with a copy of its original state. 
     @Override
     public void onBackPressed() {
         super.onBackPressed();
         this.cbs.getCurrentBook().removePage(this.cbs.getCurrentPage());
-        this.cbs.getCurrentBook().addPage(this.original);
+        this.cbs.getCurrentBook().addPage(this.cbs.getOriginalPage());
         Toast.makeText(this, "Changes discarded", Toast.LENGTH_SHORT).show();
         Intent intent = new Intent(this, ChooseOrCreatePage.class);
         startActivity(intent);
