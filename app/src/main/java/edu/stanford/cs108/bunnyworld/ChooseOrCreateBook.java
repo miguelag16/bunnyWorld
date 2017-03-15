@@ -13,6 +13,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -92,6 +93,16 @@ public class ChooseOrCreateBook extends AppCompatActivity {
         // Goto ChooseOrCreatePage
         Intent intent = new Intent(this, ChooseOrCreatePage.class);
         startActivity(intent);
+    }
+
+    public void saveBooks (View view) {
+        try {
+            FileStorage.store(MainActivity.booksMap);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        Toast toast = Toast.makeText(ChooseOrCreateBook.this, "Books Saved", Toast.LENGTH_SHORT);
+        toast.show();
     }
 
     @Override

@@ -1,11 +1,14 @@
 package edu.stanford.cs108.bunnyworld;
 
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import java.io.IOException;
 import java.util.LinkedHashMap;
+
+import static java.security.AccessController.getContext;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -18,30 +21,33 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        MediaPlayer mp = MediaPlayer.create(this,R.raw.theme);
+        mp.start();
+
         //Use to access files in shapeCreator
         ResSingleton rs = ResSingleton.getInstance();
         rs.setContext(this.getApplicationContext());
 
-        // *** FOR TESTING PURPOSES ***
-        testingBook = new  Book("Book1");
-        Page samplePage = new Page("", testingBook);
-        Point p = new Point(0, 0);
-        Shape sampleShape = new Shape("dolan", "");
-        sampleShape.script.addOnEnterTrigger();
-        sampleShape.script.addPlaySoundAction("thriller", Script.ONENTER);
-        sampleShape.setIsMovable(true);
-        samplePage.addShape(sampleShape);
-        testingBook.addPage(samplePage);
-        booksMap.put("Book1", testingBook);
-        booksMap.put("Book2", new Book("Book2"));
-        booksMap.put("Book3", new Book("Book3"));
-        booksMap.put("Book4", new Book("Book4"));
-        try {
-            FileStorage.store(booksMap);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        // *** FOR TESTING PURPOSES ***
+//        // *** FOR TESTING PURPOSES ***
+//        testingBook = new  Book("Book1");
+//        Page samplePage = new Page("", testingBook);
+//        Point p = new Point(0, 0);
+//        Shape sampleShape = new Shape("dolan", "");
+//        sampleShape.script.addOnEnterTrigger();
+//        sampleShape.script.addPlaySoundAction("thriller", Script.ONENTER);
+//        sampleShape.setIsMovable(true);
+//        samplePage.addShape(sampleShape);
+//        testingBook.addPage(samplePage);
+//        booksMap.put("Book1", testingBook);
+//        booksMap.put("Book2", new Book("Book2"));
+//        booksMap.put("Book3", new Book("Book3"));
+//        booksMap.put("Book4", new Book("Book4"));
+//        try {
+//            FileStorage.store(booksMap);
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//        // *** FOR TESTING PURPOSES ***
 
         // Load existing books from file
         try {
@@ -58,7 +64,7 @@ public class MainActivity extends AppCompatActivity {
         CurBookSingleton b = CurBookSingleton.getInstance();
         b.setCurrentBook(testingBook);
         b.getCurrentBook().setEditorMode(false);
-        Intent intent = new Intent(this, PlayActivity.class);
+        Intent intent = new Intent(this, ChooseBookToPlay.class);
         startActivity(intent);
     }
 
