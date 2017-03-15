@@ -25,13 +25,17 @@ class CurBookSingleton {
     protected Page curPage = null;
     public void setCurrentPage(Page p) {this.curPage = p; }
     public Page getCurrentPage() {return this.curPage; }
+    public void resetCurrentPage() {this.curPage = null;}
 
     protected Page backup = null;
     public boolean backupExists() {return backup != null; }
     public void makeBackupPage() { this.backup = new Page(curPage); }
     public void restorePreviousPage() {
         this.curPage = this.backup;
+        this.curBook.removePage(this.curPage);
+        this.curBook.addPage(this.curPage);
         this.backup = null;
     }
+    public void resetBackupPage() {this.backup = null; }
 
 }

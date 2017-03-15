@@ -68,6 +68,7 @@ public class ShapeCreator extends AppCompatActivity {
 
     public void addShapeToPage(View view) {
         CurBookSingleton cbs = CurBookSingleton.getInstance();
+        cbs.makeBackupPage();
         Page cp = cbs.getCurrentPage();
 
         String filename = ((Spinner) findViewById(R.id.sc_spinner)).getSelectedItem().toString();

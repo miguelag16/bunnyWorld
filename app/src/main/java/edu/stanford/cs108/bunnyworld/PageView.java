@@ -24,7 +24,6 @@ public class PageView extends View {
         super(context, attrs);
     }
 
-    public void reDraw() {invalidate(); }
     public Shape getPVCurrentShape() {return this.cs; }
 
     public void deleteShape() {

@@ -71,7 +71,12 @@ public class Book implements Serializable {
     }
 
     public void removePage(Page page) {
+        System.out.println("xxxxxxxxxxxxxxxxxx");
+        System.out.println("Size: " + pagesMap.size());
         this.pagesMap.remove(page.name);
+        System.out.println("Size: " + pagesMap.size());
+        System.out.println("xxxxxxxxxxxxxxxxxx");
+
     }
 
     public Page getPage(String name) {
