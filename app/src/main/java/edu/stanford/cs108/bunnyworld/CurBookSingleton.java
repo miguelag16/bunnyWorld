@@ -14,7 +14,7 @@ class CurBookSingleton {
     private CurBookSingleton() {
     }
 
-    protected Book curBook;
+    protected Book curBook; //initialize to null
     public Book getCurrentBook() {
         return curBook;
     }
@@ -22,11 +22,16 @@ class CurBookSingleton {
         this.curBook = b;
     }
 
+    protected Page curPage = null;
+    public void setCurrentPage(Page p) {this.curPage = p; }
+    public Page getCurrentPage() {return this.curPage; }
 
-//    protected Shape curShape;
-//    public void setCurrentShape(Shape s) {this.curShape = s; }
-//    public Shape getCurrentShape(Shape s) {
-//        return this.curShape;
-//    }
+    protected Page backup = null;
+    public boolean backupExists() {return backup != null; }
+    public void makeBackupPage() { this.backup = new Page(curPage); }
+    public void restorePreviousPage() {
+        this.curPage = this.backup;
+        this.backup = null;
+    }
 
 }

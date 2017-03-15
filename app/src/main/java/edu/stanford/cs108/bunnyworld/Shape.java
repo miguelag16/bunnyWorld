@@ -192,7 +192,7 @@ public class Shape implements Serializable {
             else if(commands.get(i).equals(Script.GOTO)){
                 //experimental but I think it will work
                 //may need some way to signify to book or page view that is needs to be redrawn
-                book.setCurrentPage(book.pagesMap.get(commands.get(i + 1)));
+//                book.setCurrentPage(book.pagesMap.get(commands.get(i + 1)));
             }
             else{
 

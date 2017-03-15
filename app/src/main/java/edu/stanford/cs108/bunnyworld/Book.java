@@ -66,7 +66,7 @@ public class Book implements Serializable {
      * Then set current page equal to it and allow the user to add shapes
      */
     public void addPage(Page page) {
-        this.setCurrentPage(page);
+//        this.setCurrentPage(page);
         this.pagesMap.put(page.name, page);
     }
 

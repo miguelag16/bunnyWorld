@@ -61,7 +61,6 @@ public class ShapeCreator extends AppCompatActivity {
                 ListView list = (ListView) findViewById(R.id.script_list);
                 ArrayAdapter<String> itemsAdapter =
                         new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, x);
-
                 list.setAdapter(itemsAdapter);
             }
         }
@@ -69,7 +68,7 @@ public class ShapeCreator extends AppCompatActivity {
 
     public void addShapeToPage(View view) {
         CurBookSingleton cbs = CurBookSingleton.getInstance();
-        Page cp = cbs.getCurrentBook().getCurrentPage();
+        Page cp = cbs.getCurrentPage();
 
         String filename = ((Spinner) findViewById(R.id.sc_spinner)).getSelectedItem().toString();
         filename = filename.substring(0, filename.indexOf('.'));
@@ -90,8 +89,15 @@ public class ShapeCreator extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.shape_creator);
-//        ScriptForAddedShape =
 
+        Spinner spinner = (Spinner) findViewById(R.id.sc_spinner);
+        // Create an ArrayAdapter using the string array and a default spinner layout
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
+                R.array.shapes_array, android.R.layout.simple_spinner_item);
+        // Specify the layout to use when the list of choices appears
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        // Apply the adapter to the spinner
+        spinner.setAdapter(adapter);
     }
 
     public void addScriptToShape(View view){

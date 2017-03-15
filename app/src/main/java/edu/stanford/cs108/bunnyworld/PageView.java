@@ -15,9 +15,10 @@ import android.widget.TextView;
 
 public class PageView extends View {
 
+    CurBookSingleton cbs = CurBookSingleton.getInstance();
+
     private Page cp = null;
     private Shape cs = null;
-    private Canvas c = null; //Best variable name I have ever seen in my life
 
     public PageView(Context context, AttributeSet attrs) {
         super(context, attrs);
@@ -35,11 +36,11 @@ public class PageView extends View {
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        c = canvas;
-        cp = CurBookSingleton.getInstance().getCurrentBook().getCurrentPage();
+        cp = cbs.getCurrentPage();
         cp.draw(canvas);
     }
 
+    private int pastEvent = -1; //Sentinel value = -1
     @Override
     public boolean onTouchEvent(MotionEvent event) {
         float x, y;
@@ -62,10 +63,11 @@ public class PageView extends View {
                 break;
             case MotionEvent.ACTION_MOVE:
                 if(cs != null){
+                    //We only want to backup the page before the series of ACTION_MOVE events
+                    if(pastEvent != MotionEvent.ACTION_MOVE) cbs.makeBackupPage();
                     x = event.getX();
                     y = event.getY();
                     cs.setLocation(x, y);
-                    //backup here
                     System.out.println("Reset location of " + cs.getName());
                 }
                 System.out.println("null shape on action move");
@@ -75,6 +77,7 @@ public class PageView extends View {
                 break;
         }
 
+        pastEvent = event.getAction();
         return true;
     }
 

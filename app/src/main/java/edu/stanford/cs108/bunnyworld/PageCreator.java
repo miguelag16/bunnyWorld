@@ -15,7 +15,9 @@ import android.widget.TextView;
 
 public class PageCreator extends AppCompatActivity {
 
+    CurBookSingleton cbs = CurBookSingleton.getInstance();
     edu.stanford.cs108.bunnyworld.PageView pv;
+
     private Page cp;
     Shape backup = null;
     Shape cs = null;
@@ -26,12 +28,8 @@ public class PageCreator extends AppCompatActivity {
     }
 
     public void undo(View view) {
-        if(cs != null){
-            // needs some work, inspect removeShape, figure out unique naming of shapes
-            cp.removeShape(cs);
-            cp.addShape(backup);
-            cs = null;
-            backup = null;
+        if(cbs.backupExists()){
+            cbs.restorePreviousPage();
             pv.reDraw();
         }
     }
@@ -42,14 +40,12 @@ public class PageCreator extends AppCompatActivity {
     }
 
     public void deleteShape(View view) {
-        backup = new Shape(pv.getPVCurrentShape());
-        cs = pv.getPVCurrentShape();
+        cbs.makeBackupPage();
         pv.deleteShape();
     }
 
     public void updateShape(View view) {
-        backup = new Shape(pv.getPVCurrentShape());
-        cs = pv.getPVCurrentShape();
+        cbs.makeBackupPage();
 
         EditText n = (EditText) findViewById(R.id.pc_nameET);
         pv.getPVCurrentShape().setName(n.getText().toString());
@@ -76,8 +72,7 @@ public class PageCreator extends AppCompatActivity {
         pv = (edu.stanford.cs108.bunnyworld.PageView)
                 findViewById(R.id.pc_pageView);
 
-        CurBookSingleton cb = CurBookSingleton.getInstance();
-        cp = cb.getCurrentBook().getCurrentPage();
+        cp = cbs.getCurrentPage();
         ((TextView)findViewById(R.id.pc_pageName)).setText(cp.name);
     }
 }
