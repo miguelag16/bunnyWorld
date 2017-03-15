@@ -97,7 +97,7 @@ public class ChooseOrCreateBook extends AppCompatActivity {
 
     public void saveBooks (View view) {
         try {
-            FileStorage.store(MainActivity.booksMap);
+            FileStorage.store(this.getApplicationContext(), MainActivity.booksMap);
         } catch (IOException e) {
             e.printStackTrace();
         }

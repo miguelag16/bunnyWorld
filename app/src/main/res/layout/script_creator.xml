@@ -38,7 +38,6 @@
             android:layout_weight="1"
             android:text="on drop" />
 
-
     </RadioGroup>
 
     <TextView
@@ -53,9 +52,7 @@
         android:visibility="gone"
         android:id="@+id/onDropShapeName"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-    </Spinner>
+        android:layout_height="wrap_content" />
 
 
     <TextView
@@ -65,14 +62,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
+
     <Spinner
         android:visibility="gone"
 
         android:id="@+id/actionListSpinner"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content" />
 
-    </Spinner>
 
     <Button
         android:visibility="gone"
@@ -89,12 +86,14 @@
         android:text="choose direct object of action"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
+
+
     <Spinner
         android:visibility="gone"
         android:id="@+id/ListofItemsToPerformActionOn"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-    </Spinner>
+        android:layout_height="wrap_content" />
+
 
     <Button
         android:visibility="gone"
@@ -103,8 +102,6 @@
         android:text="Add Actions"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
-
-
 
 
 </LinearLayout>
