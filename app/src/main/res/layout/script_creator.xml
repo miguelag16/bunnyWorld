@@ -4,12 +4,38 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <TextView
-        android:text="Triggers:"
+    <LinearLayout
+        android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content">
+
+
+        <View
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="0dp"/>
+
+        <TextView
+            android:fontFamily="serif-monospace"
+            android:textStyle="bold"
+            android:text="Triggers:"
+            android:textSize="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <View
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="0dp"/>
+
+
+
+
+    </LinearLayout>
+
 
     <RadioGroup
+        android:paddingTop="8dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
@@ -41,24 +67,27 @@
     </RadioGroup>
 
     <LinearLayout
+        android:paddingTop="8dp"
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <view
+        <View
             android:layout_weight="1"
             android:layout_width="0dp"
             android:layout_height="0dp"/>
 
         <TextView
 
-            android:padding="8dp"
+            android:visibility="gone"
+            android:textStyle="bold"
+            android:fontFamily="sans-serif"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/InstructionsforOnDropShape"
             android:text="Choose name of shape to be dropped for action" />
 
-        <view
+        <View
             android:layout_weight="1"
             android:layout_width="0dp"
             android:layout_height="0dp"/>
@@ -67,29 +96,33 @@
 
 
     <Spinner
-
+        android:visibility="gone"
+        android:paddingTop="8dp"
         android:id="@+id/onDropShapeName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
 
     <LinearLayout
+        android:paddingTop="8dp"
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <view
+        <View
             android:layout_weight="1"
             android:layout_width="0dp"
             android:layout_height="0dp"/>
 
         <TextView
+            android:visibility="gone"
+            android:textStyle="bold"
             android:id="@+id/actionListSpinnerInstructions"
             android:text="choose action for trigger"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 
-        <view
+        <View
             android:layout_weight="1"
             android:layout_width="0dp"
             android:layout_height="0dp"/>
@@ -98,62 +131,37 @@
 
 
 
-    <ListView
-
-
+    <Spinner
+        android:visibility="gone"
+        android:paddingTop="8dp"
         android:id="@+id/actionListSpinner"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
 
     <LinearLayout
+        android:paddingTop="8dp"
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-
-        <view
+        <View
             android:layout_weight="1"
             android:layout_width="0dp"
             android:layout_height="0dp"/>
-
-        <Button
-
-            android:onClick="getObjectsList"
-            android:id="@+id/SelectItemButton"
-            android:text="CHOOSE DIRECT OBJECT OF ACTION"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-
-
-        <view
-            android:layout_weight="1"
-            android:layout_width="0dp"
-            android:layout_height="0dp"/>
-
-    </LinearLayout>
-
-
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <view
-            android:layout_weight="1"
-            android:layout_width="0dp"
-            android:layout_height="0dp"/>
-
 
 
         <TextView
 
+            android:visibility="gone"
+            android:textStyle="bold"
             android:id="@+id/ListofItemsToPerformActionOnInstructions"
-            android:text="choose direct object of action"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif"
+            android:text="choose direct object of action" />
 
-        <view
+        <View
             android:layout_weight="1"
             android:layout_width="0dp"
             android:layout_height="0dp"/>
@@ -165,16 +173,20 @@
 
     <Spinner
 
+        android:visibility="gone"
+        android:paddingTop="8dp"
         android:id="@+id/ListofItemsToPerformActionOn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
 
     <LinearLayout
+        android:paddingTop="8dp"
+        android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <view
+        <View
             android:layout_weight="1"
             android:layout_width="0dp"
             android:layout_height="0dp"/>
@@ -182,6 +194,7 @@
 
         <Button
 
+            android:visibility="gone"
             android:id="@+id/AddActionsButton"
             android:onClick="AddCommands"
             android:text="Add Actions"
@@ -189,7 +202,7 @@
             android:layout_height="wrap_content" />
 
 
-        <view
+        <View
             android:layout_weight="1"
             android:layout_width="0dp"
             android:layout_height="0dp"/>

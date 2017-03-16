@@ -44,6 +44,26 @@ public class ScriptCreator extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.script_creator);
         script = new Script();
+
+
+        Spinner spinner = (Spinner) findViewById(R.id.actionListSpinner);
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
+                getObjectsList(selectedItemView);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parentView) {
+                //nothing
+            }
+
+        });
+
+
+
+
+
     }
 
     public void AddCommands(View view){
@@ -110,13 +130,11 @@ public class ScriptCreator extends AppCompatActivity{
         tv.setVisibility(View.GONE);
         sp = (Spinner) findViewById(R.id.actionListSpinner);
         sp.setVisibility(View.GONE);
-        Button b = (Button) findViewById(R.id.SelectItemButton);
-        b.setVisibility(View.GONE);
         tv = (TextView) findViewById(R.id.ListofItemsToPerformActionOnInstructions);
         tv.setVisibility(View.GONE);
         sp = (Spinner) findViewById(R.id.ListofItemsToPerformActionOn);
         sp.setVisibility(View.GONE);
-        b = (Button) findViewById(R.id.AddActionsButton);
+        Button b = (Button) findViewById(R.id.AddActionsButton);
         b.setVisibility(View.GONE);
     }
 
@@ -127,8 +145,6 @@ public class ScriptCreator extends AppCompatActivity{
         tv.setVisibility(View.VISIBLE);
         Spinner sp = (Spinner) findViewById(R.id.actionListSpinner);
         sp.setVisibility(View.VISIBLE);
-        Button b = (Button) findViewById(R.id.SelectItemButton);
-        b.setVisibility(View.VISIBLE);
         SetUpActionsSpinner(view);
 
     }
@@ -140,8 +156,6 @@ public class ScriptCreator extends AppCompatActivity{
         tv.setVisibility(View.VISIBLE);
         Spinner sp = (Spinner) findViewById(R.id.actionListSpinner);
         sp.setVisibility(View.VISIBLE);
-        Button b = (Button) findViewById(R.id.SelectItemButton);
-        b.setVisibility(View.VISIBLE);
         SetUpActionsSpinner(view);
     }
 
@@ -156,8 +170,6 @@ public class ScriptCreator extends AppCompatActivity{
         tv.setVisibility(View.VISIBLE);
         sp = (Spinner) findViewById(R.id.actionListSpinner);
         sp.setVisibility(View.VISIBLE);
-        Button b = (Button) findViewById(R.id.SelectItemButton);
-        b.setVisibility(View.VISIBLE);
         SetUpActionsSpinner(view);
         SetUpShapesSpinnerOnDrop(view);
 

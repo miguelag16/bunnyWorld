@@ -57,8 +57,21 @@ public class ShapeCreator extends AppCompatActivity {
                 ArrayList<String> x = new ArrayList<String>();
                 System.out.println("this is passed through the intent:");
                 System.out.println(ScriptForAddedShape.toString());
-                x.add(ScriptForAddedShape.toString());
 
+                //x.add(ScriptForAddedShape.toString());
+
+                String line = "";
+                for(int i = 0; i < ScriptForAddedShape.getScript().size(); i++){
+                    if(i != 0 && (ScriptForAddedShape.getScript().get(i).equals(Script.ONCLICK) ||
+                            ScriptForAddedShape.getScript().get(i).equals(Script.ONENTER) || ScriptForAddedShape.getScript().get(i).equals(Script.ONDROP))){
+                        x.add(line);
+                        line = ScriptForAddedShape.getScript().get(i) + " ";
+                    }
+                    else{
+                        line += ScriptForAddedShape.getScript().get(i) +" ";
+                    }
+                }
+                x.add(line);
 
                 ListView list = (ListView) findViewById(R.id.script_list);
                 ArrayAdapter<String> itemsAdapter =
