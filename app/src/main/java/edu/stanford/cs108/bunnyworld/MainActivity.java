@@ -27,19 +27,24 @@ public class MainActivity extends AppCompatActivity {
         ResSingleton rs = ResSingleton.getInstance();
         rs.setContext(this.getApplicationContext());
 
+
         // Load existing books from file
+        LinkedHashMap<String, Book> loadedBooksMap = null;
         try {
-            booksMap = FileStorage.load();
+            loadedBooksMap = FileStorage.load(this.getApplicationContext());
         } catch (IOException e) {
             e.printStackTrace();
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
 
+        if(loadedBooksMap != null)
+            booksMap = loadedBooksMap;
+
     }
 
     public void play(View view) {
-        Intent intent = new Intent(this, ChooseBookToPlay.class);
+        Intent intent = new Intent(this, PossessionsGrid.class);
         startActivity(intent);
     }
 

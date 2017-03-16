@@ -22,6 +22,7 @@
         <activity android:name=".ScriptCreator" />
         <activity android:name=".PlayActivity" />
         <activity android:name=".ChooseBookToPlay"></activity>
+        <activity android:name="PossessionsGrid"></activity>
     </application>
 
 </manifest>

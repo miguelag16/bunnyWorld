@@ -32,6 +32,10 @@ public class PageView extends View {
         invalidate();
     }
 
+    public void reDrawPage() {
+        this.invalidate();
+    }
+
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);

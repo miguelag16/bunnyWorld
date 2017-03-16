@@ -1,9 +1,13 @@
 package edu.stanford.cs108.bunnyworld;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.res.Resources;
 import android.graphics.Canvas;
+import android.graphics.Paint;
 import android.nfc.Tag;
 import android.util.AttributeSet;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
 
@@ -78,10 +82,15 @@ public class Page implements Serializable {
         Methods for drawing a page and modifying its shapes.
      */
 
+    private static final Paint possessionsLine = new Paint();
+    private static final float possessionsHeight = 500.0f;
     public void draw(Canvas canvas) {
         for(Shape i : shapeList){
             i.draw(canvas);
         }
+        possessionsLine.setStrokeWidth(7.0f);
+        float height = canvas.getHeight();
+        canvas.drawLine(0, height - possessionsHeight, canvas.getWidth(), height - possessionsHeight, possessionsLine);
     }
 
     Shape findSelectedShape(float x, float y) {

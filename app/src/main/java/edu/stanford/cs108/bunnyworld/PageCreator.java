@@ -29,11 +29,12 @@ public class PageCreator extends AppCompatActivity {
             this.cbs.restorePreviousPage();
         }
         ((TextView)findViewById(R.id.pc_numShapes)).setText("Shapes: " + this.cbs.getCurrentPage().numShapes());
+        pv.reDrawPage();
         view.invalidate();
     }
 
     // We store the original page before this activity is started and revert all changes if the back button is pressed
-    // by replacing the page that has been edited with a copy of its original state. 
+    // by replacing the page that has been edited with a copy of its original state.
     @Override
     public void onBackPressed() {
         super.onBackPressed();

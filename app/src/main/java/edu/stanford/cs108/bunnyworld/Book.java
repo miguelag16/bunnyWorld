@@ -20,14 +20,14 @@ public class Book implements Serializable {
 
     public LinkedHashMap<Integer, Page> pagesMap;    // Shapes need to be able to access other shapes on different pages
     private boolean isEditorMode;
-    private Possessions possessions;
+//    private Possessions possessions;
 
     private static final int index = numBooks;
     private String displayName;
 
     public Book(String name) {
         pagesMap = new LinkedHashMap<Integer, Page>();
-        possessions = new Possessions(this);
+//        possessions = new Possessions(this);
         this.numBooks++;
 
         if(name.isEmpty()) this.displayName = "Book " + Integer.toString(this.numBooks);
@@ -53,9 +53,9 @@ public class Book implements Serializable {
         currentPage = p;
     }
 
-    public Possessions getPossessions(){
-        return possessions;
-    }
+//    public Possessions getPossessions(){
+//        return possessions;
+//    }
 
     public boolean isEditorMode(){
         return this.isEditorMode;
@@ -101,41 +101,41 @@ public class Book implements Serializable {
 
 
 
-    public class Possessions{
-
-        private ArrayList<Shape> inventory;
-        private Book book;  // The book it belongs to
-
-        public Possessions(Book book){
-            this.book = book;
-            inventory = new ArrayList<Shape>();
-        }
-
-        public void removeShape(Shape s){inventory.remove(s);}
-
-        public boolean containsShape(Shape s){return inventory.contains(s);}
-
-        public void Draw(Canvas canvas) {
-            for(Shape i : inventory){
-                i.draw(canvas);
-            }
-        }
-
-        public void addShape(Shape s){
-            inventory.add(s);
-            Book book = CurBookSingleton.getInstance().getCurrentBook();
-            //since it has been placed in inventory,  below loop removes it from page it used to be on
-            //assumes all shape names are unique, need to add this error checking when getting android data
-            for(int i = 0; i < book.pagesMap.size(); i++){//looks thorugh all pages and all shapes for one it needs to hide
-                for(int j = 0; j < book.pagesMap.get(i).shapeList.size(); j++){
-                    if(book.pagesMap.get(i).shapeList.get(j).getName().equals(s.getName())){
-                        book.pagesMap.get(i).shapeList.remove(j);
-                        return;
-                    }
-                }
-            }
-
-        }
-    }
+//    public class Possessions{
+//
+//        private ArrayList<Shape> inventory;
+//        private Book book;  // The book it belongs to
+//
+//        public Possessions(Book book){
+//            this.book = book;
+//            inventory = new ArrayList<Shape>();
+//        }
+//
+//        public void removeShape(Shape s){inventory.remove(s);}
+//
+//        public boolean containsShape(Shape s){return inventory.contains(s);}
+//
+//        public void Draw(Canvas canvas) {
+//            for(Shape i : inventory){
+//                i.draw(canvas);
+//            }
+//        }
+//
+//        public void addShape(Shape s){
+//            inventory.add(s);
+//            Book book = CurBookSingleton.getInstance().getCurrentBook();
+//            //since it has been placed in inventory,  below loop removes it from page it used to be on
+//            //assumes all shape names are unique, need to add this error checking when getting android data
+//            for(int i = 0; i < book.pagesMap.size(); i++){//looks thorugh all pages and all shapes for one it needs to hide
+//                for(int j = 0; j < book.pagesMap.get(i).shapeList.size(); j++){
+//                    if(book.pagesMap.get(i).shapeList.get(j).getName().equals(s.getName())){
+//                        book.pagesMap.get(i).shapeList.remove(j);
+//                        return;
+//                    }
+//                }
+//            }
+//
+//        }
+//    }
 
 }
