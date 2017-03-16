@@ -28,14 +28,18 @@ public class MainActivity extends AppCompatActivity {
         rs.setContext(this.getApplicationContext());
 
         // Load existing books from file
+        LinkedHashMap<String, Book> loadedBooksMap = null;
         try {
-            booksMap = FileStorage.load();
+            loadedBooksMap = FileStorage.load(this.getApplicationContext());
         } catch (IOException e) {
             e.printStackTrace();
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
 
+        if (loadedBooksMap != null) {
+            booksMap = loadedBooksMap;
+        }
     }
 
     public void play(View view) {
