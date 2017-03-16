@@ -40,68 +40,163 @@
 
     </RadioGroup>
 
-    <TextView
-        android:visibility="gone"
+    <LinearLayout
+        android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/InstructionsforOnDropShape"
-        android:text="Choose name of shape to be dropped for action" />
+        android:layout_height="wrap_content">
+
+        <view
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="0dp"/>
+
+        <TextView
+
+            android:padding="8dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/InstructionsforOnDropShape"
+            android:text="Choose name of shape to be dropped for action" />
+
+        <view
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="0dp"/>
+
+    </LinearLayout>
 
 
     <Spinner
-        android:visibility="gone"
+
         android:id="@+id/onDropShapeName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
 
-    <TextView
-        android:visibility="gone"
-        android:id="@+id/actionListSpinnerInstructions"
-        android:text="choose action for trigger"
+    <LinearLayout
+        android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content">
+
+        <view
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="0dp"/>
+
+        <TextView
+            android:id="@+id/actionListSpinnerInstructions"
+            android:text="choose action for trigger"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <view
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="0dp"/>
+
+    </LinearLayout>
 
 
-    <Spinner
-        android:visibility="gone"
+
+    <ListView
+
 
         android:id="@+id/actionListSpinner"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
 
-    <Button
-        android:visibility="gone"
-        android:onClick="getObjectsList"
-        android:id="@+id/SelectItemButton"
-        android:text="CHOOSE DIRECT OBJECT OF ACTION"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
-
-
-    <TextView
-        android:visibility="gone"
-        android:id="@+id/ListofItemsToPerformActionOnInstructions"
-        android:text="choose direct object of action"
+    <LinearLayout
+        android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content">
+
+
+        <view
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="0dp"/>
+
+        <Button
+
+            android:onClick="getObjectsList"
+            android:id="@+id/SelectItemButton"
+            android:text="CHOOSE DIRECT OBJECT OF ACTION"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+
+        <view
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="0dp"/>
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <view
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="0dp"/>
+
+
+
+        <TextView
+
+            android:id="@+id/ListofItemsToPerformActionOnInstructions"
+            android:text="choose direct object of action"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <view
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="0dp"/>
+
+
+
+    </LinearLayout>
 
 
     <Spinner
-        android:visibility="gone"
+
         android:id="@+id/ListofItemsToPerformActionOn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
 
-    <Button
-        android:visibility="gone"
-        android:id="@+id/AddActionsButton"
-        android:onClick="AddCommands"
-        android:text="Add Actions"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <view
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="0dp"/>
+
+
+        <Button
+
+            android:id="@+id/AddActionsButton"
+            android:onClick="AddCommands"
+            android:text="Add Actions"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+
+        <view
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="0dp"/>
+
+
+
+    </LinearLayout>
 
 
 </LinearLayout>
