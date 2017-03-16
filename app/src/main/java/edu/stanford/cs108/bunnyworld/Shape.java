@@ -35,7 +35,7 @@ public class Shape implements Serializable {
     private String wordArt;
 
     private Point point = new Point(0, 0);
-    private Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
+    private PaintSerializable paint = new PaintSerializable(Paint.ANTI_ALIAS_FLAG);
 
     //a shape's script needs to be able to be changed by other classes in editor mode
     public Script script = new Script();
