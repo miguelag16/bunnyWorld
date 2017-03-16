@@ -9,7 +9,9 @@ import java.io.Serializable;
  */
 
 public class PaintSerializable extends Paint implements Serializable {
+
     public PaintSerializable(int flags) {
         super(flags);
     }
 }
+

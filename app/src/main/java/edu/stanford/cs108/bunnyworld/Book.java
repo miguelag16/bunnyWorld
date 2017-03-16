@@ -101,7 +101,8 @@ public class Book implements Serializable {
 
 
 
-//    public class Possessions{
+
+//    public class Possessions implements Serializable {
 //
 //        private ArrayList<Shape> inventory;
 //        private Book book;  // The book it belongs to
