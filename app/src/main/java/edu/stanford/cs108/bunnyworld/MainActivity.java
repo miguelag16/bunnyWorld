@@ -46,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void play(View view) {
-        Intent intent = new Intent(this, PlayActivity.class);
+        Intent intent = new Intent(this, ChooseBookToPlay.class);
         startActivity(intent);
     }
 
