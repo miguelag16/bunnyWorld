@@ -12,6 +12,7 @@ import android.view.View;
 
 public class PageViewGameMode extends View {
 
+    private CurBookSingleton cbs = CurBookSingleton.getInstance();
     private Page cp = null;
     private Shape cs = null;
 
@@ -22,17 +23,13 @@ public class PageViewGameMode extends View {
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-//        Page temp = CurBookSingleton.getInstance().getCurrentBook().getPageByIndex(0);
-//        Page temp = CurBookSingleton.getInstance().getCurrentPage();
-//        if(cp != temp){//actually do want to compare the literal addresses
-//            System.out.println("cp does not equal temp");
-//            cp = temp;
-//            for(Shape i : cp.shapeList){
-//                System.out.println("enacting script on " + i.getName());
-//                i.enactScript(Script.ONENTER, "");
-//            }
-//        }
-        
+
+        this.cp = cbs.getCurrentPage();
+        for(Shape i : cp.shapeList){
+            System.out.println("enacting script on " + i.getName());
+            i.enactScript(Script.ONENTER, "");
+        }
+
         cp.draw(canvas);
     }
 
@@ -47,13 +44,11 @@ public class PageViewGameMode extends View {
                 cs = cp.findSelectedShape(x, y);
 
                 if(cs != null) {
+                    System.out.println("onclick will be called for" + cs.getName());
                     cs.enactScript(Script.ONCLICK, "");
                     invalidate();
-                    //setupEditXML();
                 }
                 else {
-                    System.out.println("null shape on action down");
-                    //hideEditXML();
                     cs = null;
                 }
                 break;
@@ -70,7 +65,6 @@ public class PageViewGameMode extends View {
                     }
                     System.out.println("Reset location of " + cs.getName());
                 }
-                System.out.println("null shape on action move");
                 break;
             case MotionEvent.ACTION_UP:
                 invalidate();

@@ -8,18 +8,16 @@ import android.view.View;
 import java.io.IOException;
 import java.util.LinkedHashMap;
 
-import static java.security.AccessController.getContext;
 
 public class MainActivity extends AppCompatActivity {
 
     // LinkedHashMap of books
     public static LinkedHashMap<Integer, Book> booksMap = new LinkedHashMap<Integer, Book>();
 
-//    public static LinkedHashMap<Integer, Book> loadedBooksMap = new LinkedHashMap<Integer, Book>();
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        System.out.println("ON CREAAAATEEEEEEEEEEEEEEEEEEEEEEEEEEE");
         setContentView(R.layout.activity_main);
 
         MediaPlayer mp = MediaPlayer.create(this,R.raw.theme);
@@ -40,6 +38,7 @@ public class MainActivity extends AppCompatActivity {
             e.printStackTrace();
         }
 
+        //If file not empty, load the existing books into booksMap.
         if(loadedBooksMap != null)
             booksMap = loadedBooksMap;
 
@@ -55,4 +54,12 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public static Book chooseBookFromList(String book_name){
+        for(Book b : MainActivity.booksMap.values()){
+            if(b.getName().equals(book_name)){
+                return b;
+            }
+        }
+        return null;
+    }
 }

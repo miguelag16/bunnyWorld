@@ -1,6 +1,5 @@
 package edu.stanford.cs108.bunnyworld;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -13,11 +12,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.util.ArrayList;
 import java.util.List;
-
-import static edu.stanford.cs108.bunnyworld.R.id.existing_books;
-import static edu.stanford.cs108.bunnyworld.R.id.existing_pages;
 
 /**
  * Created by miguelgarcia on 3/8/17.
@@ -66,8 +61,6 @@ public class ChooseOrCreatePage extends AppCompatActivity {
         {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-//                String pageName = existing_pages.getItemAtPosition(i).toString();
-
                 // Set as current page. Might store this in a singleton instead
                 Book cur = cbs.getCurrentBook();
                 cbs.setCurrentPage(cur.getPageByIndex(i));
@@ -128,7 +121,6 @@ public class ChooseOrCreatePage extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        // Goto ChooseOrCreatePage
         super.onBackPressed();
         Intent intent = new Intent(getApplicationContext(), ChooseOrCreateBook.class);
         startActivity(intent);

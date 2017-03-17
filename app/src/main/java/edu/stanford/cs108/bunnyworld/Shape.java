@@ -1,7 +1,6 @@
 package edu.stanford.cs108.bunnyworld;
 
 
-import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -18,7 +17,7 @@ import java.util.ArrayList;
 
 public class Shape implements Serializable {
 
-    private static int NUMBEROFSHAPES = 0;
+    private static int NUMBER_OF_SHAPES = 0;
 
     private static final float DEFAULT_WIDTH = 200.0f;
     private static final float DEFAULT_HEIGHT = 200.0f;
@@ -38,14 +37,14 @@ public class Shape implements Serializable {
     private String wordArt;
 
     private Point point = new Point(0, 0);
-    private PaintSerializable paint = new PaintSerializable(Paint.ANTI_ALIAS_FLAG);
+    private PaintSerializable paint = new PaintSerializable(Paint.ANTI_ALIAS_FLAG); //Sharpens text
 
-    //a shape's script needs to be able to be changed by other classes in editor mode
+    //A shape's script needs to be able to be changed by other classes in editor mode
     public Script script = new Script();
 
     public Shape(String filename, String wordArt) {
-        this.shapeName = filename + "-" + NUMBEROFSHAPES + wordArt;
-        NUMBEROFSHAPES++;
+        this.shapeName = filename + "-" + NUMBER_OF_SHAPES + wordArt;
+        NUMBER_OF_SHAPES++;
         this.displayName = this.shapeName;
         this.filename = filename;
         this.wordArt = wordArt;
@@ -75,17 +74,18 @@ public class Shape implements Serializable {
     public String getName() {
         return this.displayName;
     }
-
-    public String getRealName(){return this.shapeName;}
-
     void setName(String newName) {
         this.displayName = newName;
     }
 
-    String getFilename() {
+    public String getRealName(){return this.shapeName;}
+
+
+
+    private String getFilename() {
         return this.filename;
     }
-    String getWordArt() {
+    private String getWordArt() {
         return this.wordArt;
     }
 
@@ -140,7 +140,6 @@ public class Shape implements Serializable {
     }
 
 
-    //needs to take in a Canvas object instead of getting it exclusivley from its page because it could be the possessions trying to draw it.
     public void draw(Canvas canvas) {
          //need to fix hidden based on whether it is gameplay or editor mode
         if (!isHidden || CurBookSingleton.getInstance().getCurrentBook().isEditorMode()) {
@@ -183,18 +182,22 @@ public class Shape implements Serializable {
         }
         Book book = CurBookSingleton.getInstance().getCurrentBook();
         for(int i = 0; i < commands.size(); i = i + 2){
+//            System.out.println(commands.get(i) + " " + commands.get(i).equals(Script.HIDE));
             if(commands.get(i).equals(Script.HIDE) || commands.get(i).equals(Script.SHOW)){
                 boolean flag = true;
                 if(commands.get(i).equals(Script.SHOW)){//enables me to have one loop to handle hide and show
                     flag = false;                  //versus two identical loops except the set value
                 }
-                for(int j = 0; j < book.pagesMap.size(); j++){//looks thorugh all pages and all shapes for one it needs to hide
-                    for(int k = 0; k < book.pagesMap.get(j).shapeList.size(); k++){
-                        if(book.pagesMap.get(j).shapeList.get(k).equals(commands.get(i + 1))){
-                            book.pagesMap.get(j).shapeList.get(k).setIsHidden(flag);
+
+                // Find the shape to hide.
+                for(Page p: book.getAllPages()){
+                    for(Shape s: p.getAllShapes()){
+                        if(s.getName().equals(commands.get(i+1))) {
+                            s.setIsHidden(flag);
                         }
                     }
                 }
+
             }
             else if(commands.get(i).equals(Script.PLAY)){
                 System.out.println("tried to play thriller aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
@@ -205,7 +208,19 @@ public class Shape implements Serializable {
             else if(commands.get(i).equals(Script.GOTO)){
                 for(Page p : book.getAllPages()){
                     if(p.getName().equals(commands.get(i + 1))){
-                        book.setCurrentPage(p);
+                        // Update possessions for next page.
+                        CurBookSingleton cbs = CurBookSingleton.getInstance();
+                        ArrayList<Shape> possessionsToPass = cbs.getCurrentPage().possessions;
+                        cbs.setCurrentPage(p);
+                        ArrayList<Shape> newShapeList = cbs.getCurrentPage().shapeList;
+                        for(Shape s: possessionsToPass){
+                            boolean contained = false;
+                            for(Shape ns: newShapeList){
+                                if(s.getRealName().equals(ns.getRealName()))
+                                    contained = true;
+                            }
+                            if(!contained) cbs.getCurrentPage().addShape(s);
+                        }
                         break;
                     }
                 }
@@ -228,19 +243,5 @@ public class Shape implements Serializable {
 
     }
 
-
-
-    @Override
-    public int hashCode() {
-        return shapeName != null ? shapeName.hashCode() : 0;
-    }
-
-    //    private boolean isImage(String resText) {
-//        String[]
-//    }
-//
-//    private boolean isAudio(String resText) {
-//
-//    }
 
 }

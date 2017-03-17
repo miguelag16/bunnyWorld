@@ -13,29 +13,23 @@ import java.util.List;
 
 public class Book implements Serializable {
 
-    public static int numBooks = 0;//MainActivity.loadedBooksMap.size();
-    private Page currentPage;   // The page that needs to be drawn
-    private Page firstPage;     //the page that gameplay mode will start on
+    public static int numBooks = 0;
 
-    public LinkedHashMap<Integer, Page> pagesMap;    // Shapes need to be able to access other shapes on different pages
+    public LinkedHashMap<Integer, Page> pagesMap; // Shapes need to be able to access other shapes on different pages
     private boolean isEditorMode;
-//    private Possessions possessions;
 
     private final int index = numBooks;
     private String displayName;
 
-
     public Book(String name) {
         pagesMap = new LinkedHashMap<Integer, Page>();
-//        possessions = new Possessions(this);
         this.numBooks++;
 
         if(name.isEmpty()) this.displayName = "Book " + Integer.toString(this.numBooks);
         else this.displayName = name;
 
-        // Automatically add a default page when a new book is created
-        this.firstPage = new Page("", this);
-        this.addPage(this.firstPage);
+        // Automatically add the first page when a new book is created
+        this.addPage(new Page("", this));
     }
 
     public int getIndex() { return this.index; }
@@ -44,20 +38,6 @@ public class Book implements Serializable {
     }
     public void setName(String name) { this.displayName = name; }
 
-//    public Page getFirstPage() {return this.firstPage; }
-
-
-    // Delete both of these
-    public Page getCurrentPage(){
-        return currentPage;
-    }
-    public void setCurrentPage(Page p){
-        currentPage = p;
-    }
-
-//    public Possessions getPossessions(){
-//        return possessions;
-//    }
 
     public boolean isEditorMode(){
         return this.isEditorMode;
@@ -68,22 +48,11 @@ public class Book implements Serializable {
     }
 
 
-    /*
-     * Should be called by a button in editor mode.
-     * Should create a new page with the name from some text field.
-     * Then set current page equal to it and allow the user to add shapes
-     */
     public void addPage(Page page) {
         this.pagesMap.put(page.getIndex(), page);
     }
-
     public void removePage(Page page) {
-        System.out.println("xxxxxxxxxxxxxxxxxx");
-        System.out.println("Size: " + pagesMap.size());
         this.pagesMap.remove(page.getIndex());
-        System.out.println("Size: " + pagesMap.size());
-        System.out.println("xxxxxxxxxxxxxxxxxx");
-
     }
 
     public Page getPageByIndex(Integer index) {

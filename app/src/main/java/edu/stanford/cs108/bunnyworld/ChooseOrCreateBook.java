@@ -60,25 +60,18 @@ public class ChooseOrCreateBook extends AppCompatActivity {
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 String book_name = existing_books.getItemAtPosition(i).toString();
 
-                Book selected = null;
-                for(Book b : MainActivity.booksMap.values()){
-                    if(b.getName().equals(book_name)){
-                        selected = b;
-                        break;
-                    }
-                }
+                Book selected = MainActivity.chooseBookFromList(book_name);
 
-                if(selected == null){
-                    while(true){
-                        System.out.println("error");
-                    }
-                }
-                // Set as current book
-                CurBookSingleton.getInstance().setCurrentBook(selected);
+                if(selected != null) {
+                    // Set as current book
+                    CurBookSingleton.getInstance().setCurrentBook(selected);
 
-                // Goto ChooseOrCreatePage
-                Intent intent = new Intent(getApplicationContext(), ChooseOrCreatePage.class);
-                startActivity(intent);
+                    Toast.makeText(getApplicationContext(), selected.getName() + " started", Toast.LENGTH_SHORT).show();
+
+                    // Goto ChooseOrCreatePage
+                    Intent intent = new Intent(getApplicationContext(), ChooseOrCreatePage.class);
+                    startActivity(intent);
+                } else Toast.makeText(getApplicationContext(), "Error: no selection made", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -87,19 +80,17 @@ public class ChooseOrCreateBook extends AppCompatActivity {
             public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
                 String book_name = existing_books.getItemAtPosition(i).toString();
 
-                Book selected = null;
-                for(Book b : MainActivity.booksMap.values()){
-                    if(b.getName().equals(book_name)){
-                        selected = b;
-                        break;
-                    }
-                }
-                Toast.makeText(getApplicationContext(), "Deleted \"" + book_name + "\"" , Toast.LENGTH_SHORT).show();
-                MainActivity.booksMap.remove(selected.getIndex());
+                Book selected = MainActivity.chooseBookFromList(book_name);
 
-                Intent intent = getIntent();
-                finish();
-                startActivity(intent);
+                if(selected != null) {
+                    Toast.makeText(getApplicationContext(), "Deleted \"" + book_name + "\"" , Toast.LENGTH_SHORT).show();
+                    MainActivity.booksMap.remove(selected.getIndex());
+
+                    Intent intent = getIntent();
+                    finish();
+                    startActivity(intent);
+                } else Toast.makeText(getApplicationContext(), "Error: no selection made", Toast.LENGTH_SHORT).show();
+
                 return true;
             }
         });
@@ -111,7 +102,6 @@ public class ChooseOrCreateBook extends AppCompatActivity {
         Book.numBooks = (Book.numBooks > MainActivity.booksMap.size()) ? Book.numBooks : MainActivity.booksMap.size();
         Book book = new Book("");
         MainActivity.booksMap.put(book.getIndex(), book);
-        System.out.println(book.getIndex() + " MIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII");
 
         // Set as current book
         CurBookSingleton.getInstance().setCurrentBook(book);
@@ -126,13 +116,11 @@ public class ChooseOrCreateBook extends AppCompatActivity {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        Toast toast = Toast.makeText(ChooseOrCreateBook.this, "Books Saved", Toast.LENGTH_SHORT);
-        toast.show();
+        Toast.makeText(ChooseOrCreateBook.this, "Books Saved", Toast.LENGTH_SHORT).show();
     }
 
     @Override
     public void onBackPressed() {
-        // Goto ChooseOrCreatePage
         super.onBackPressed();
         Intent intent = new Intent(getApplicationContext(), MainActivity.class);
         startActivity(intent);
