@@ -50,7 +50,6 @@ public class FileStorage {
         // Get a books map that contains the default world from the raw directory
         InputStream rawStream = context.getResources().openRawResource(R.raw.savedbooks);
         LinkedHashMap<Integer, Book> defaultBooksMap = null;
-        FileInputStream fis = null;
         ObjectInputStream in = null;
         try {
             in = new ObjectInputStream(rawStream);
