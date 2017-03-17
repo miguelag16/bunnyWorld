@@ -14,7 +14,7 @@ import java.util.List;
 
 public class Book implements Serializable {
 
-    private static int numBooks = 0;
+    public static int numBooks = 0;//MainActivity.loadedBooksMap.size();
     private Page currentPage;   // The page that needs to be drawn
     private Page firstPage;     //the page that gameplay mode will start on
 
@@ -22,8 +22,9 @@ public class Book implements Serializable {
     private boolean isEditorMode;
 //    private Possessions possessions;
 
-    private static final int index = numBooks;
+    private final int index = numBooks;
     private String displayName;
+
 
     public Book(String name) {
         pagesMap = new LinkedHashMap<Integer, Page>();

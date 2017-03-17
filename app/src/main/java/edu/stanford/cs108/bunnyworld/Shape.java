@@ -18,6 +18,8 @@ import java.util.ArrayList;
 
 public class Shape implements Serializable {
 
+    private static int NUMBEROFSHAPES = 0;
+
     private static final float DEFAULT_WIDTH = 200.0f;
     private static final float DEFAULT_HEIGHT = 200.0f;
     private static final float DEFAULT_TEXT_SIZE = 50.0f;
@@ -31,6 +33,7 @@ public class Shape implements Serializable {
     private boolean inPossessions = false;
 
     private String shapeName;
+    private String displayName;
     private String filename;
     private String wordArt;
 
@@ -41,7 +44,9 @@ public class Shape implements Serializable {
     public Script script = new Script();
 
     public Shape(String filename, String wordArt) {
-        this.shapeName = filename + "-" + wordArt;
+        this.shapeName = filename + "-" + NUMBEROFSHAPES + wordArt;
+        NUMBEROFSHAPES++;
+        this.displayName = this.shapeName;
         this.filename = filename;
         this.wordArt = wordArt;
     }
@@ -50,7 +55,8 @@ public class Shape implements Serializable {
         Copy constructor, useful for undo
      */
     public Shape(Shape s) {
-        this.shapeName = s.getName();
+        this.shapeName = s.getRealName();
+        this.displayName = this.shapeName;
         this.filename = s.getFilename();
         this.wordArt = s.getWordArt();
 
@@ -66,11 +72,14 @@ public class Shape implements Serializable {
         this.script = new Script(s);
     }
 
-    String getName() {
-        return this.shapeName;
+    public String getName() {
+        return this.displayName;
     }
+
+    public String getRealName(){return this.shapeName;}
+
     void setName(String newName) {
-        this.shapeName = newName;
+        this.displayName = newName;
     }
 
     String getFilename() {
@@ -194,12 +203,17 @@ public class Shape implements Serializable {
                 mp.start();
             }
             else if(commands.get(i).equals(Script.GOTO)){
-                //experimental but I think it will work
-                //may need some way to signify to book or page view that is needs to be redrawn
-//                book.setCurrentPage(book.pagesMap.get(commands.get(i + 1)));
+                for(Page p : book.getAllPages()){
+                    if(p.getName().equals(commands.get(i + 1))){
+                        book.setCurrentPage(p);
+                        break;
+                    }
+                }
             }
             else{
-
+                while(true){
+                    System.out.println("error");
+                }
             }
         }
     }

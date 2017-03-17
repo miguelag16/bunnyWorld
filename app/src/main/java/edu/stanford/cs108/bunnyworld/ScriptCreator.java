@@ -76,8 +76,8 @@ public class ScriptCreator extends AppCompatActivity{
         String action = actionSpinner.getSelectedItem().toString();
         Spinner directObjectSpinner = (Spinner) findViewById(R.id.ListofItemsToPerformActionOn);
         String directObject = directObjectSpinner.getSelectedItem().toString();
-        if(trigger.equals(Script.ONDROP)){
-            script.addDropClickTrigger(shapeToBeDropped);
+        if(trigger.equals(Script.ONDROP)){//shapetobedropped is display name, but script needs to have actual name added
+            script.addDropClickTrigger(getRealShapeName(shapeToBeDropped));
         }
         else if(trigger.equals(Script.ONCLICK)){
             script.addOnClickTrigger();
@@ -86,16 +86,16 @@ public class ScriptCreator extends AppCompatActivity{
             script.addOnEnterTrigger();
         }
 
-        if(action.equals(Script.HIDE)){
-            script.addHideAction(directObject, trigger);
+        if(action.equals(Script.HIDE)){//directObject is display name, but script needs to have actual name added
+            script.addHideAction(getRealShapeName(directObject), trigger);
         }
-        else if(action.equals(Script.SHOW)){
-            script.addShowAction(directObject, trigger);
+        else if(action.equals(Script.SHOW)){//directObject is display name, but script needs to have actual name added
+            script.addShowAction(getRealShapeName(directObject), trigger);
         }
         else if(action.equals(Script.PLAY)){
             script.addPlaySoundAction(directObject, trigger);
         }
-        else if(action.equals(Script.GOTO)){
+        else if(action.equals(Script.GOTO)){//directObject is display name of page, but script needs to have actual name added
             script.addGotoAction(directObject, trigger);
         }
         //after Taking all the info, need to clear the data and toast to tell them they can add another or go back to page editor
@@ -108,6 +108,39 @@ public class ScriptCreator extends AppCompatActivity{
         //System.out.println(script);
 
     }
+
+    public String getRealShapeName(String ShapeDisplayName){
+        Book book = CurBookSingleton.getInstance().getCurrentBook();
+        for(Page p : book.getAllPages()){
+            for(Shape s : p.getAllShapes()){
+                if(s.getName().equals(ShapeDisplayName)){
+                    return s.getRealName();
+                }
+            }
+        }
+        while(true){
+            System.out.println("big error");
+        }
+        //return "";
+
+    }
+
+//    public String getRealPageName(String PageDisplayName){
+//        Book book = CurBookSingleton.getInstance().getCurrentBook();
+//        for(Page p : book.getAllPages()){
+//            if(p.getName() == PageDisplayName){
+//                    return s.getRealName();
+//            }
+//        }
+//        while(true){
+//            System.out.println("big error");
+//        }
+//        //return "";
+//
+//    }
+
+
+
 
     public void ClearData(View view){
         RadioButton box = (RadioButton) findViewById(R.id.onClickCheckBox);
