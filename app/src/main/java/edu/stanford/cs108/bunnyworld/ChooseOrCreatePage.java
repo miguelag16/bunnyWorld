@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -108,7 +109,19 @@ public class ChooseOrCreatePage extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void closeBook(View view) {
+    public void updateBook(View view) {
+        EditText book_name_view = (EditText) findViewById(R.id.bookName);
+        String book_name = book_name_view.getText().toString();
+
+        for(Book b: MainActivity.booksMap.values()){
+            if(b.getName().equals(book_name) && !book_name.equals(cbs.getCurrentBook().getName())){
+                book_name_view.setText(cbs.getCurrentBook().getName());
+                Toast.makeText(this, "Name already exists, \nchoose unique book names", Toast.LENGTH_LONG).show();
+                return;
+            }
+        }
+
+        cbs.getCurrentBook().setName(book_name);
         Intent intent = new Intent(this, ChooseOrCreateBook.class);
         startActivity(intent);
     }

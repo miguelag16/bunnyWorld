@@ -1,6 +1,5 @@
 package edu.stanford.cs108.bunnyworld;
 
-import android.graphics.Canvas;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -43,7 +42,9 @@ public class Book implements Serializable {
     public String getName(){
         return this.displayName;
     }
-    public Page getFirstPage() {return this.firstPage; }
+    public void setName(String name) { this.displayName = name; }
+
+//    public Page getFirstPage() {return this.firstPage; }
 
 
     // Delete both of these
