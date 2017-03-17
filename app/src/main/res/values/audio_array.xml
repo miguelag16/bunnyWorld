@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string-array name="shapes_array">
-        <item>dolan.png</item>
+    <string-array name="audio_array">
+        <item>theme.mp3</item>
         <item>thriller.mp3</item>
-        <item> (None) </item>
     </string-array>
 </resources>

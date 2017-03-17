@@ -200,10 +200,16 @@ public class Shape implements Serializable {
 
             }
             else if(commands.get(i).equals(Script.PLAY)){
-                System.out.println("tried to play thriller aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
                 ResSingleton resSingleton = ResSingleton.getInstance();
-                MediaPlayer mp = MediaPlayer.create(resSingleton.getContext(),R.raw.thriller);
+                String file = commands.get(i+1).substring(0, commands.get(i+1).indexOf('.'));
+                System.out.println("tried to play " + file);
+                int fileID = resSingleton.getContext()
+                        .getResources().getIdentifier(file, "raw", resSingleton.getContext().getPackageName());
+                System.out.println("just before the mp is created");
+                MediaPlayer mp = MediaPlayer.create(resSingleton.getContext(), fileID);
+                System.out.println("mp.create called");
                 mp.start();
+                System.out.println("mp.start() called");
             }
             else if(commands.get(i).equals(Script.GOTO)){
                 for(Page p : book.getAllPages()){

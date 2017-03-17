@@ -230,7 +230,7 @@ public class ScriptCreator extends AppCompatActivity{
         else if(action.equals(Script.PLAY)){
             Spinner spinner = (Spinner) findViewById(R.id.ListofItemsToPerformActionOn);
             ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
-                    R.array.shapes_array, android.R.layout.simple_spinner_item);
+                    R.array.audio_array, android.R.layout.simple_spinner_item);
             adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
             spinner.setAdapter(adapter);
         }

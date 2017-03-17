@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="drawable_array">
+        <item>dolan.png</item>
+        <item>zayets.png</item>
+        <item> (None) </item>
+    </string-array>
+</resources>

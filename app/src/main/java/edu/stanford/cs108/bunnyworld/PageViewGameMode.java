@@ -24,10 +24,14 @@ public class PageViewGameMode extends View {
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
 
-        this.cp = cbs.getCurrentPage();
-        for(Shape i : cp.shapeList){
-            System.out.println("enacting script on " + i.getName());
-            i.enactScript(Script.ONENTER, "");
+        Page temp = cbs.getCurrentPage();
+        //this.cp = cbs.getCurrentPage();
+        if(temp != this.cp){
+            this.cp = temp;
+            for(Shape i : cp.shapeList){
+                System.out.println("enacting script on " + i.getName());
+                i.enactScript(Script.ONENTER, "");
+            }
         }
 
         cp.draw(canvas);
