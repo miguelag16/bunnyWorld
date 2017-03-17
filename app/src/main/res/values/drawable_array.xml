@@ -1,8 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string-array name="drawable_array">
+        <item>(None)</item>
+        <item>carrot.png</item>
+        <item>carrot2.png</item>
+        <item>death.png</item>
+        <item>duck.png</item>
+        <item>fire.png</item>
+        <item>mystic.png</item>
         <item>dolan.png</item>
-        <item>zayets.png</item>
-        <item> (None) </item>
     </string-array>
 </resources>

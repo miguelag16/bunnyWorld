@@ -11,6 +11,7 @@ import java.util.ArrayList;
 public class Script implements Serializable {
 
     private ArrayList<String> clauses;
+    private ArrayList<String> display_clauses;
 
 
     public static final String ONCLICK = "on click";
@@ -41,8 +42,17 @@ public class Script implements Serializable {
         return clauses;
     }
 
+    public ArrayList<String> getDisplayScript(){
+        return display_clauses;
+    }
+
+
     public void setScript(ArrayList<String> s){
         this.clauses = s;
+    }
+
+    public void setDisplayScript(ArrayList<String> s){
+        this.display_clauses = s;
     }
 
     public ArrayList<String> copyScript() {

@@ -77,7 +77,7 @@ public class ScriptCreator extends AppCompatActivity{
         Spinner directObjectSpinner = (Spinner) findViewById(R.id.ListofItemsToPerformActionOn);
         String directObject = directObjectSpinner.getSelectedItem().toString();
         if(trigger.equals(Script.ONDROP)){//shapetobedropped is display name, but script needs to have actual name added
-            script.addDropClickTrigger(getRealShapeName(shapeToBeDropped));
+            script.addDropClickTrigger(shapeToBeDropped);
         }
         else if(trigger.equals(Script.ONCLICK)){
             script.addOnClickTrigger();
@@ -87,10 +87,10 @@ public class ScriptCreator extends AppCompatActivity{
         }
 
         if(action.equals(Script.HIDE)){//directObject is display name, but script needs to have actual name added
-            script.addHideAction(getRealShapeName(directObject), trigger);
+            script.addHideAction(directObject, trigger);
         }
         else if(action.equals(Script.SHOW)){//directObject is display name, but script needs to have actual name added
-            script.addShowAction(getRealShapeName(directObject), trigger);
+            script.addShowAction(directObject, trigger);
         }
         else if(action.equals(Script.PLAY)){
             script.addPlaySoundAction(directObject, trigger);

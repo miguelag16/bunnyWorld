@@ -1,6 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string-array name="audio_array">
+        <item>carrotcarrotcarrot.mp3</item>
+        <item>evillaugh.mp3</item>
+        <item>fire.mp3</item>
+        <item>hooray.mp3</item>
+        <item>munch.mp3</item>
+        <item>munching.mp3</item>
+        <item>woof.mp3</item>
         <item>theme.mp3</item>
         <item>thriller.mp3</item>
     </string-array>

@@ -32,14 +32,17 @@ public class ShapeCreator extends AppCompatActivity {
             System.out.println(resultCode);
             if(resultCode == RESULT_OK) {
                 System.out.println("looooooooooooooolz");
-                Spinner spinner = (Spinner) findViewById(R.id.sc_spinner);
+                //commented out setting up spinner again, wanted old selection to remeian
+
+
+                //Spinner spinner = (Spinner) findViewById(R.id.sc_spinner);
                 // Create an ArrayAdapter using the string array and a default spinner layout
-                ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
-                        R.array.drawable_array, android.R.layout.simple_spinner_item);
+                //ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
+                //        R.array.drawable_array, android.R.layout.simple_spinner_item);
                 // Specify the layout to use when the list of choices appears
-                adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                //adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                 // Apply the adapter to the spinner
-                spinner.setAdapter(adapter);
+                //spinner.setAdapter(adapter);
 
 
                 ArrayList<String> scriptStrings = data.getStringArrayListExtra("script");

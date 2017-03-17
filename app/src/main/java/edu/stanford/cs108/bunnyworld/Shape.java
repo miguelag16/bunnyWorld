@@ -142,6 +142,7 @@ public class Shape implements Serializable {
 
     public void draw(Canvas canvas) {
          //need to fix hidden based on whether it is gameplay or editor mode
+        System.out.println(filename +"dominic");
         if (!isHidden || CurBookSingleton.getInstance().getCurrentBook().isEditorMode()) {
             if (!wordArt.isEmpty()){
                 paint.setTextSize(textSize);
@@ -192,7 +193,7 @@ public class Shape implements Serializable {
                 // Find the shape to hide.
                 for(Page p: book.getAllPages()){
                     for(Shape s: p.getAllShapes()){
-                        if(s.getName().equals(commands.get(i+1))) {
+                        if(s.getName().equals(getRealShapeName(commands.get(i+1)))) {
                             s.setIsHidden(flag);
                         }
                     }
@@ -248,6 +249,23 @@ public class Shape implements Serializable {
         return shapeName != null ? shapeName.equals(shape.shapeName) : shape.shapeName == null;
 
     }
+
+    public String getRealShapeName(String ShapeDisplayName){
+        Book book = CurBookSingleton.getInstance().getCurrentBook();
+        for(Page p : book.getAllPages()){
+            for(Shape s : p.getAllShapes()){
+                if(s.getName().equals(ShapeDisplayName)){
+                    return s.getRealName();
+                }
+            }
+        }
+        while(true){
+            System.out.println("big error");
+        }
+        //return "";
+
+    }
+
 
 
 }
