@@ -87,7 +87,7 @@ public class PageViewGameMode extends View {
                     if(cs.isMovable()){
                         Shape temp = cp.findSelectedShape(x, y);
                         if(temp != null){
-                            temp.enactScript(Script.ONDROP, cs.getName());
+                            temp.enactScript(Script.ONDROP, cs.getRealName());
                         }
                         cs.setLocation(x, y);
                     }

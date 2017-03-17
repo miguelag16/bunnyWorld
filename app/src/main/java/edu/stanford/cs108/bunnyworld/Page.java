@@ -52,6 +52,7 @@ public class Page implements Serializable {
 
     public int getIndex() { return this.index; }
     public String getName(){return this.displayName;}
+    public void setName(String newName){this.displayName = newName;}
     boolean isFirstPage() {return this.isFirstPage; }
 
     void addShape(Shape shape){

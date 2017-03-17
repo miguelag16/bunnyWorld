@@ -30,7 +30,10 @@ public class ChooseOrCreateBook extends AppCompatActivity {
         existing_books = (ListView) findViewById(R.id.existing_books);
 
         // Create and populate a List of book names
-        List<String> bookNameList = new ArrayList<String>(MainActivity.booksMap.keySet());
+        List<String> bookNameList = new ArrayList<String>();
+        for(Book b : MainActivity.booksMap.values()){
+            bookNameList.add(b.getName());
+        }
         // Create ArrayAdapter using the bookNameList
         listAdapter = new ArrayAdapter<String>(this, R.layout.listview_template, bookNameList);
         // Set the ArrayAdapter as the ListView's adapter
@@ -46,7 +49,10 @@ public class ChooseOrCreateBook extends AppCompatActivity {
         existing_books = (ListView) findViewById(R.id.existing_books);
 
         // Create and populate a List of book names
-        List<String> bookNameList = new ArrayList<String>(MainActivity.booksMap.keySet());
+        List<String> bookNameList = new ArrayList<String>();
+        for(Book b : MainActivity.booksMap.values()){
+            bookNameList.add(b.getName());
+        }
         // Create ArrayAdapter using the bookNameList
         listAdapter = new ArrayAdapter<String>(this, R.layout.listview_template, bookNameList);
         // Set the ArrayAdapter as the ListView's adapter
@@ -56,8 +62,21 @@ public class ChooseOrCreateBook extends AppCompatActivity {
         {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Book selected = MainActivity.booksMap.get(existing_books.getItemAtPosition(i));
+                String book_name = existing_books.getItemAtPosition(i).toString();
 
+                Book selected = null;
+                for(Book b : MainActivity.booksMap.values()){
+                    if(b.getName().equals(book_name)){
+                        selected = b;
+                        break;
+                    }
+                }
+
+                if(selected == null){
+                    while(true){
+                        System.out.println("error");
+                    }
+                }
                 // Set as current book
                 CurBookSingleton.getInstance().setCurrentBook(selected);
 
@@ -70,9 +89,17 @@ public class ChooseOrCreateBook extends AppCompatActivity {
         existing_books.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
-                String bookName = existing_books.getItemAtPosition(i).toString();
-                Toast.makeText(getApplicationContext(), "Deleted \"" + bookName + "\"" , Toast.LENGTH_SHORT).show();
-                MainActivity.booksMap.remove(bookName);
+                String book_name = existing_books.getItemAtPosition(i).toString();
+
+                Book selected = null;
+                for(Book b : MainActivity.booksMap.values()){
+                    if(b.getName().equals(book_name)){
+                        selected = b;
+                        break;
+                    }
+                }
+                Toast.makeText(getApplicationContext(), "Deleted \"" + book_name + "\"" , Toast.LENGTH_SHORT).show();
+                MainActivity.booksMap.remove(selected.getIndex());
 
                 Intent intent = getIntent();
                 finish();
@@ -85,8 +112,10 @@ public class ChooseOrCreateBook extends AppCompatActivity {
 
     public void createBook (View view) {
         // Create a new book and add it to booksList
+        Book.numBooks = (Book.numBooks > MainActivity.booksMap.size()) ? Book.numBooks : MainActivity.booksMap.size();
         Book book = new Book("");
-        MainActivity.booksMap.put(book.getName(), book);
+        MainActivity.booksMap.put(book.getIndex(), book);
+        System.out.println(book.getIndex() + " MIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII");
 
         // Set as current book
         CurBookSingleton.getInstance().setCurrentBook(book);

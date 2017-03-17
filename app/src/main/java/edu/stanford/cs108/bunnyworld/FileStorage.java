@@ -24,7 +24,7 @@ public class FileStorage {
 
     static String filename = "savedBooks.ser";
 
-    public static void store(Context context, LinkedHashMap<String, Book> booksMap) throws IOException {
+    public static void store(Context context, LinkedHashMap<Integer, Book> booksMap) throws IOException {
 
         File path = context.getFilesDir();
         String fileString = path.toString() + "/" + filename;
@@ -44,18 +44,18 @@ public class FileStorage {
 
     }
 
-    public static LinkedHashMap<String, Book> load(Context context) throws IOException, ClassNotFoundException {
+    public static LinkedHashMap<Integer, Book> load(Context context) throws IOException, ClassNotFoundException {
 
         File path = context.getFilesDir();
         String file = path.toString() + "/" + filename;
 
-        LinkedHashMap<String, Book> loadedBooksMap = null;
+        LinkedHashMap<Integer, Book> loadedBooksMap = null;
         FileInputStream fis = null;
         ObjectInputStream in = null;
         try {
             fis = new FileInputStream(file);
             in = new ObjectInputStream(fis);
-            loadedBooksMap = (LinkedHashMap<String, Book>)in.readObject();
+            loadedBooksMap = (LinkedHashMap<Integer, Book>)in.readObject();
             in.close();
         }
         catch(IOException ex) {

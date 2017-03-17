@@ -26,7 +26,12 @@ public class ChooseBookToPlay extends AppCompatActivity {
         books_to_play = (ListView) findViewById(R.id.books_to_play);
 
         // Create and populate a List of book names
-        List<String> bookNameList = new ArrayList<String>(MainActivity.booksMap.keySet());
+
+        List<String> bookNameList = new ArrayList<String>();
+        for(Book b : MainActivity.booksMap.values()){
+            bookNameList.add(b.getName());
+        }
+
         // Create ArrayAdapter using the bookNameList
         listAdapter = new ArrayAdapter<String>(this, R.layout.listview_template, bookNameList);
         // Set the ArrayAdapter as the ListView's adapter

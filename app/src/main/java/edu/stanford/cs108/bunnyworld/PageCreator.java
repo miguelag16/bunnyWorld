@@ -29,6 +29,7 @@ public class PageCreator extends AppCompatActivity {
             this.cbs.restorePreviousPage();
         }
         ((TextView)findViewById(R.id.pc_numShapes)).setText("Shapes: " + this.cbs.getCurrentPage().numShapes());
+        ((EditText)findViewById(R.id.pc_pageName)).setText(this.cbs.getCurrentPage().getName());
         pv.reDrawPage();
         view.invalidate();
     }
@@ -63,10 +64,22 @@ public class PageCreator extends AppCompatActivity {
     }
 
     public void updateShape(View view) {
-        this.cbs.makeBackupPage();
-
         EditText n = (EditText) findViewById(R.id.pc_nameET);
-        this.pv.getPVCurrentShape().setName(n.getText().toString());
+        String name_entered = n.getText().toString();
+
+        for(Page p : this.cbs.getCurrentBook().getAllPages()){
+            for(Shape s : p.getAllShapes()){
+                if(s.getName().equals(name_entered) && !this.pv.getPVCurrentShape().getName().equals(name_entered)){
+                    n.setText(this.pv.getPVCurrentShape().getName());
+                    Toast.makeText(this, "Name already exists, \nchoose unique shape names", Toast.LENGTH_LONG).show();
+                    return;
+                }
+            }
+        }
+
+
+        this.cbs.makeBackupPage();
+        this.pv.getPVCurrentShape().setName(name_entered);
 
         EditText w = (EditText) findViewById(R.id.pc_widthET);
         this.pv.getPVCurrentShape().setWidth(Float.parseFloat(w.getText().toString()));
@@ -94,4 +107,25 @@ public class PageCreator extends AppCompatActivity {
             "\nPossessions: " + this.cbs.getCurrentPage().possessions.size());
     }
 
+    public void UpdatePageName(View view){
+        EditText nameEnteredField = (EditText)findViewById(R.id.pc_pageName);
+        String name_entered = nameEnteredField.getText().toString();
+        for(Page p : cbs.getCurrentBook().getAllPages()){
+            if(p.getName().equals(name_entered)){
+                nameEnteredField.setText(cbs.getCurrentPage().displayName);
+                Toast.makeText(this, "Name already exists, \nchoose unique page names", Toast.LENGTH_LONG).show();
+                return;
+            }
+        }
+        cbs.getCurrentPage().setName(name_entered);
+
+    }
+
 }
+
+
+
+
+
+
+

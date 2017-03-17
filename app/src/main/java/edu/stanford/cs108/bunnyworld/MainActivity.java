@@ -13,7 +13,9 @@ import static java.security.AccessController.getContext;
 public class MainActivity extends AppCompatActivity {
 
     // LinkedHashMap of books
-    public static LinkedHashMap<String, Book> booksMap = new LinkedHashMap<String, Book>();
+    public static LinkedHashMap<Integer, Book> booksMap = new LinkedHashMap<Integer, Book>();
+
+//    public static LinkedHashMap<Integer, Book> loadedBooksMap = new LinkedHashMap<Integer, Book>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,9 +31,9 @@ public class MainActivity extends AppCompatActivity {
 
 
         // Load existing books from file
-        LinkedHashMap<String, Book> loadedBooksMap = null;
+        LinkedHashMap<Integer, Book> loadedBooksMap = null;
         try {
-            loadedBooksMap = FileStorage.load(this.getApplicationContext());
+            loadedBooksMap  = FileStorage.load(this.getApplicationContext());
         } catch (IOException e) {
             e.printStackTrace();
         } catch (ClassNotFoundException e) {
