@@ -1,5 +1,7 @@
 package edu.stanford.cs108.bunnyworld;
 
+import java.util.ArrayList;
+
 /**
  * Created by miguelgarcia on 3/8/17.
  */
@@ -43,5 +45,9 @@ class CurBookSingleton {
         this.backup = null;
     }
     public void resetBackupPage() {this.backup = null; }
+
+    public ArrayList<Shape> currentPossessions = new ArrayList<Shape>();
+    public ArrayList<Shape> getCurrentPossessions() {return this.currentPossessions; }
+    public void setCurrentPossessions(ArrayList<Shape> cpos) {this.currentPossessions = cpos; }
 
 }

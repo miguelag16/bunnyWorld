@@ -79,7 +79,6 @@ public class PageCreator extends AppCompatActivity {
 
         LinearLayout br = (LinearLayout) findViewById(R.id.pc_buttonRow);
         br.setVisibility(View.VISIBLE);
-
     }
 
     @Override
@@ -91,6 +90,8 @@ public class PageCreator extends AppCompatActivity {
                 findViewById(R.id.pc_pageView);
 
         ((EditText)findViewById(R.id.pc_pageName)).setText(this.cbs.getCurrentPage().getName());
-        ((TextView)findViewById(R.id.pc_numShapes)).setText("Shapes: " + this.cbs.getCurrentPage().numShapes());
+        ((TextView)findViewById(R.id.pc_numShapes)).setText("Shapes: " + this.cbs.getCurrentPage().numShapes() +
+            "\nPossessions: " + this.cbs.getCurrentPage().possessions.size());
     }
+
 }

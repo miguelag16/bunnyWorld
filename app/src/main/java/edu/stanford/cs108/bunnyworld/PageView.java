@@ -9,6 +9,8 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+
 /**
  * Created by miguelgarcia on 3/10/17.
  */
@@ -41,6 +43,9 @@ public class PageView extends View {
         super.onDraw(canvas);
         cp = cbs.getCurrentPage();
         cp.draw(canvas);
+        ((TextView)((View)getParent()).findViewById(R.id.pc_numShapes)).setText("Shapes: " + this.cbs.getCurrentPage().numShapes() +
+                "\nPossessions: " + this.cbs.getCurrentPage().possessions.size());
+//        cbs.setCurrentPossessions(cp.possessions); do this on play mode
     }
 
     private int pastEvent = -1; //Sentinel value = -1

@@ -100,8 +100,6 @@ public class Book implements Serializable {
     }
 
 
-
-
 //    public class Possessions implements Serializable {
 //
 //        private ArrayList<Shape> inventory;

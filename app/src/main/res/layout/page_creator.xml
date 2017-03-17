@@ -27,7 +27,6 @@
             android:padding="8dp"
             android:textSize="16sp"
             android:id="@+id/pc_numShapes"/>
-
     </RelativeLayout>
 
     <edu.stanford.cs108.bunnyworld.PageView

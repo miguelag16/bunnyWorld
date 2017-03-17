@@ -79,18 +79,27 @@ public class Page implements Serializable {
 
 
     /*
-        Methods for drawing a page and modifying its shapes.
+        Draw the line for possessions, all the shapes, and decide which shapes are in possessions. Build an array
+        every time the page is drawn so that the possessions are accurately stored, in case a shape is dragged
+        off/into the possessions area. This array will get saved by the book every time we transition to a different page, and will
+        get combined with the shapes already in possessions for that shape. Initially, the book will keep an empty possessions array.
      */
 
+    public ArrayList<Shape> possessions = new ArrayList<>();
     private static final Paint possessionsLine = new Paint();
-    private static final float possessionsHeight = 500.0f;
     public void draw(Canvas canvas) {
+        this.possessionsLine.setStrokeWidth(7.0f);
+        float height = 0.75f*canvas.getHeight();
+        canvas.drawLine(0, height, canvas.getWidth(), height, this.possessionsLine);
+
+        this.possessions = new ArrayList<>();
         for(Shape i : shapeList){
             i.draw(canvas);
+            if(i.getLocation().getTop() > height){
+                i.setInPossessions(true);
+                possessions.add(i);
+            }
         }
-        possessionsLine.setStrokeWidth(7.0f);
-        float height = canvas.getHeight();
-        canvas.drawLine(0, height - possessionsHeight, canvas.getWidth(), height - possessionsHeight, possessionsLine);
     }
 
     Shape findSelectedShape(float x, float y) {
@@ -106,10 +115,10 @@ public class Page implements Serializable {
         System.out.println(Float.toString(x) + "XY" + Float.toString(y));
         Point p = s.getLocation();
         if(x >= p.getLeft() && x <= p.getLeft() + s.getWidth()) {
-            System.out.println(Float.toString(p.getLeft()) + "LR" + Float.toString(p.getLeft() + s.getWidth()));
-            System.out.println(Float.toString(p.getTop()) + "TB" + Float.toString(p.getTop() + s.getHeight()));
+//            System.out.println(Float.toString(p.getLeft()) + "LR" + Float.toString(p.getLeft() + s.getWidth()));
+//            System.out.println(Float.toString(p.getTop()) + "TB" + Float.toString(p.getTop() + s.getHeight()));
             if (y >= p.getTop() && y <= p.getTop() + s.getHeight()) {
-                System.out.println(Float.toString(p.getTop()) + "TB" + Float.toString(p.getTop() + s.getHeight()));
+//                System.out.println(Float.toString(p.getTop()) + "TB" + Float.toString(p.getTop() + s.getHeight()));
                 return true;
             }
         }

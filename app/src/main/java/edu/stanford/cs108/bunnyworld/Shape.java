@@ -102,7 +102,11 @@ public class Shape implements Serializable {
     boolean inPossessions() {
         return this.inPossessions;
     }
-    void setInPossessions(boolean b) { this.inPossessions = b;}
+    void setInPossessions(boolean b) {
+        this.inPossessions = b;
+        if(b)
+            isMovable = b;
+    }
 
     boolean isMovable(){
         return this.isMovable;
