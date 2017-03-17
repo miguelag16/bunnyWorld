@@ -100,6 +100,12 @@ public class Book implements Serializable {
     }
 
 
+
+    //Code for possessions
+    //Grab the shapes in posessions once the page is saved, store them in a hashmap by name,
+    // storing only one shape per key (unique name)
+    private ArrayList<Shape> possessions;
+
 //    public class Possessions implements Serializable {
 //
 //        private ArrayList<Shape> inventory;

@@ -28,7 +28,8 @@ public class PageCreator extends AppCompatActivity {
         if(this.cbs.backupExists()){
             this.cbs.restorePreviousPage();
         }
-        ((TextView)findViewById(R.id.pc_numShapes)).setText("Shapes: " + this.cbs.getCurrentPage().numShapes());
+        ((TextView)findViewById(R.id.pc_numShapes)).setText("Shapes: " + this.cbs.getCurrentPage().numShapes() +
+                "\nPossessions: " + this.cbs.getCurrentPage().possessions.size());
         pv.reDrawPage();
         view.invalidate();
     }
@@ -58,7 +59,8 @@ public class PageCreator extends AppCompatActivity {
     public void deleteShape(View view) {
         this.cbs.makeBackupPage();
         this.pv.deleteShape();
-        ((TextView)findViewById(R.id.pc_numShapes)).setText("Shapes: " + this.cbs.getCurrentPage().numShapes());
+        ((TextView)findViewById(R.id.pc_numShapes)).setText("Shapes: " + this.cbs.getCurrentPage().numShapes() +
+                "\nPossessions: " + this.cbs.getCurrentPage().possessions.size());
         view.invalidate();
     }
 

@@ -44,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void play(View view) {
-        Intent intent = new Intent(this, PossessionsGrid.class);
+        Intent intent = new Intent(this, PlayActivity.class);
         startActivity(intent);
     }
 
