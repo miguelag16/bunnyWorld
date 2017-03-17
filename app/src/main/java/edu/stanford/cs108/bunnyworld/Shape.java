@@ -147,7 +147,7 @@ public class Shape implements Serializable {
                 paint.setTextSize(textSize);
                 canvas.drawText(wordArt, point.getLeft(), point.getTop() + textSize, paint);//text is drawn starting at lower left corner
             }
-            else if (!filename.isEmpty()) {
+            else if (!filename.isEmpty() && !filename.equals("(None)")) {
                 ResSingleton rs = ResSingleton.getInstance();
                 int fileID = rs.getContext()
                         .getResources().getIdentifier(filename, "drawable", rs.getContext().getPackageName());

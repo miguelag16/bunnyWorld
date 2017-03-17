@@ -13,6 +13,7 @@ public class MainActivity extends AppCompatActivity {
 
     // LinkedHashMap of books
     public static LinkedHashMap<Integer, Book> booksMap = new LinkedHashMap<Integer, Book>();
+    public MediaPlayer mp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,7 +21,7 @@ public class MainActivity extends AppCompatActivity {
         System.out.println("ON CREAAAATEEEEEEEEEEEEEEEEEEEEEEEEEEE");
         setContentView(R.layout.activity_main);
 
-        MediaPlayer mp = MediaPlayer.create(this,R.raw.theme);
+        mp = MediaPlayer.create(this,R.raw.theme);
         mp.start();
 
         // Use to access files in shapeCreator
@@ -45,11 +46,13 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void play(View view) {
+        mp.stop();
         Intent intent = new Intent(this, ChooseBookToPlay.class);
         startActivity(intent);
     }
 
     public void edit(View view) {
+        mp.stop();
         Intent intent = new Intent(this, ChooseOrCreateBook.class);
         startActivity(intent);
     }

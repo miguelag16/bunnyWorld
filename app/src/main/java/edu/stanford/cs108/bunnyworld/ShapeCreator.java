@@ -87,7 +87,7 @@ public class ShapeCreator extends AppCompatActivity {
         Page cp = cbs.getCurrentPage();
 
         String filename = ((Spinner) findViewById(R.id.sc_spinner)).getSelectedItem().toString();
-        filename = filename.substring(0, filename.indexOf('.'));
+        if(!filename.equals("(None)")) filename = filename.substring(0, filename.indexOf('.'));
         String wordArt = ((EditText) findViewById(R.id.sc_text)).getText().toString();
 
         Shape s = new Shape(filename, wordArt);
