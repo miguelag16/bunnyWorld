@@ -96,6 +96,13 @@ public class ShapeCreator extends AppCompatActivity {
         Shape s = new Shape(filename, wordArt);
         s.setIsHidden(((CheckBox) findViewById(R.id.sc_hidden)).isChecked());
         s.setIsMovable(((CheckBox) findViewById(R.id.sc_movable)).isChecked());
+        String real_name = s.getRealName();
+
+        for(int i = 0; i < ScriptForAddedShape.getScript().size(); i++){
+            if(ScriptForAddedShape.getScript().get(i).equals("CURRENT SHAPE")){
+                ScriptForAddedShape.getScript().set(i, real_name);
+            }
+        }
         s.script.setScript(ScriptForAddedShape.getScript());//I know this is a bit wonky
 
         cp.addShape(s);

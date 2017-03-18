@@ -280,6 +280,7 @@ public class ScriptCreator extends AppCompatActivity{
                 names.add(j.getName());
         }
 
+        names.add("CURRENT SHAPE");
 //        for(String i : book.pagesMap.keySet()){
 //            for(Shape j : book.pagesMap.get(i).shapeList){
 //                names.add(j.getName());

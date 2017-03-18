@@ -49,20 +49,20 @@ public class FileStorage {
         
 
         // Get a books map that contains the default world from the raw directory
-        InputStream rawStream = context.getResources().openRawResource(R.raw.finaldefaultbook);
-        LinkedHashMap<Integer, Book> defaultBooksMap = null;
-        ObjectInputStream in = null;
-        try {
-            in = new ObjectInputStream(rawStream);
-            defaultBooksMap = (LinkedHashMap<Integer, Book>)in.readObject();
-            in.close();
-        }
-        catch(IOException ex) {
-            ex.printStackTrace();
-        }
-        catch(ClassNotFoundException ex) {
-            ex.printStackTrace();
-        }
+//        InputStream rawStream = context.getResources().openRawResource(R.raw.finaldefaultbook);
+//        LinkedHashMap<Integer, Book> defaultBooksMap = null;
+//        ObjectInputStream in = null;
+//        try {
+//            in = new ObjectInputStream(rawStream);
+//            defaultBooksMap = (LinkedHashMap<Integer, Book>)in.readObject();
+//            in.close();
+//        }
+//        catch(IOException ex) {
+//            ex.printStackTrace();
+//        }
+//        catch(ClassNotFoundException ex) {
+//            ex.printStackTrace();
+//        }
 
 
         // Get all the other worlds stored locally on the emulator
@@ -86,11 +86,12 @@ public class FileStorage {
 
 
         // Combine default world stored in raw directory with other worlds stored on emulator
-        LinkedHashMap<Integer, Book> completeBooksMap = new LinkedHashMap<Integer, Book>();
-        completeBooksMap.putAll(defaultBooksMap);
-        completeBooksMap.putAll(loadedBooksMap);
-        return completeBooksMap;
+//        LinkedHashMap<Integer, Book> completeBooksMap = new LinkedHashMap<Integer, Book>();
+//        completeBooksMap.putAll(defaultBooksMap);
+//        completeBooksMap.putAll(loadedBooksMap);
+//        return completeBooksMap;
 
+        return loadedBooksMap;
     }
 
 }

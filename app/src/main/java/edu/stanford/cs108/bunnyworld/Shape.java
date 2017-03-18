@@ -169,7 +169,16 @@ public class Shape implements Serializable {
 
     //leave drop name as the empty string if it is not a drop event.
     public void enactScript(String TriggerEvent, String dropName){
-        System.out.println("enact scripts called\n" + this.script.toString());
+        ArrayList<String> temp = new ArrayList<String>();
+        for(String i : this.script.getScript()){
+            if(i.equals("CURRENT SHAPE")){
+                temp.add(this.getName());
+            }
+            else {
+                temp.add(i);
+            }
+        }
+        this.script.setScript(temp);
 
         boolean flag;
 
@@ -259,6 +268,7 @@ public class Shape implements Serializable {
             }
         }
         while(true){
+            System.out.println(ShapeDisplayName);
             System.out.println("big error");
         }
         //return "";
