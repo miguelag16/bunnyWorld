@@ -46,26 +46,7 @@ public class FileStorage {
     }
 
     public static LinkedHashMap<Integer, Book> load(Context context) throws IOException, ClassNotFoundException {
-
-
-        if (MainActivity.booksMap.size() == 0) {
-            // Get a books map that contains the default world from the raw directory
-            InputStream rawStream = context.getResources().openRawResource(R.raw.finaldefaultbook);
-            LinkedHashMap<Integer, Book> defaultBooksMap = null;
-            ObjectInputStream in = null;
-            try {
-                in = new ObjectInputStream(rawStream);
-                defaultBooksMap = (LinkedHashMap<Integer, Book>)in.readObject();
-                in.close();
-            }
-            catch(IOException ex) {
-                ex.printStackTrace();
-            }
-            catch(ClassNotFoundException ex) {
-                ex.printStackTrace();
-            }
-            return defaultBooksMap;
-        }
+        
 
         // Get a books map that contains the default world from the raw directory
         InputStream rawStream = context.getResources().openRawResource(R.raw.finaldefaultbook);
