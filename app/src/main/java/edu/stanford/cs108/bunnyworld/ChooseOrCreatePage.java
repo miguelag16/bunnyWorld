@@ -63,7 +63,8 @@ public class ChooseOrCreatePage extends AppCompatActivity {
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 // Set as current page. Might store this in a singleton instead
                 Book cur = cbs.getCurrentBook();
-                cbs.setCurrentPage(cur.getPageByIndex(i));
+                String page_name = existing_pages.getItemAtPosition(i).toString();
+                cbs.setCurrentPage(MainActivity.choosePageFromList(page_name));
 
                 // Go to PageCreator
                 Intent intent = new Intent(getApplicationContext(), PageCreator.class);

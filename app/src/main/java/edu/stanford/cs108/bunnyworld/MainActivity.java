@@ -65,4 +65,13 @@ public class MainActivity extends AppCompatActivity {
         }
         return null;
     }
+
+    public static Page choosePageFromList(String page_name) {
+        for(Page p: CurBookSingleton.getInstance().getCurrentBook().getAllPages()){
+            if(p.getName().equals(page_name)){
+                return p;
+            }
+        }
+        return null;
+    }
 }
