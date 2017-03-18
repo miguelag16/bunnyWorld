@@ -112,6 +112,19 @@ public class Page implements Serializable {
         return null;
     }
 
+    Shape findSelectedShapeForOnDrop(float x, float y, Shape notThisShape) {
+        for(int i = shapeList.size() - 1; i >= 0; i--){
+            Shape cur = shapeList.get(i);
+            System.out.println(cur.getName());
+            if(selected(cur, x, y) && !notThisShape.getRealName().equals(cur.getRealName())) return cur;
+        }
+        return null;
+    }
+
+
+
+
+
     private boolean selected(Shape s, float x, float y) {
         System.out.println(Float.toString(x) + "XY" + Float.toString(y));
         Point p = s.getLocation();

@@ -169,13 +169,17 @@ public class Shape implements Serializable {
 
     //leave drop name as the empty string if it is not a drop event.
     public void enactScript(String TriggerEvent, String dropName){
-        System.out.println("enact scripts called");
+        System.out.println("enact scripts called\n" + this.script.toString());
+
+        boolean flag;
+
         ArrayList<String> commands = script.getClauses(TriggerEvent, dropName);
         System.out.println(commands.size());
         System.out.println(script);
 
         System.out.println("commands printed below");
         for(String i : commands){
+            System.out.println("a");
             System.out.println(i);
         }
         if(commands.size() == 0){
@@ -185,7 +189,7 @@ public class Shape implements Serializable {
         for(int i = 0; i < commands.size(); i = i + 2){
 //            System.out.println(commands.get(i) + " " + commands.get(i).equals(Script.HIDE));
             if(commands.get(i).equals(Script.HIDE) || commands.get(i).equals(Script.SHOW)){
-                boolean flag = true;
+                flag = true;
                 if(commands.get(i).equals(Script.SHOW)){//enables me to have one loop to handle hide and show
                     flag = false;                  //versus two identical loops except the set value
                 }
@@ -230,11 +234,6 @@ public class Shape implements Serializable {
                         }
                         break;
                     }
-                }
-            }
-            else{
-                while(true){
-                    System.out.println("error");
                 }
             }
         }

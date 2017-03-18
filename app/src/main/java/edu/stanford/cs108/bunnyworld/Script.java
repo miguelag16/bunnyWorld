@@ -115,6 +115,9 @@ public class Script implements Serializable {
                     continue;//increments i goes to top of for loop
                 }
                 i++;
+                if(Trigger.equals(Script.ONDROP)){
+                    i++;
+                }
                 while(i < clauses.size() && !clauses.get(i).equals(ONCLICK)
                 && !clauses.get(i).equals(ONENTER) && !clauses.get(i).equals(ONDROP)) {//adds all of the commands in the given clause
                     result.add(clauses.get(i));
